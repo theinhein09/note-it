@@ -43,10 +43,10 @@ const Dashboard = () => {
     for (let category in categories) {
       books.push(
         <Fragment key={category}>
-          <p>{category}</p>
+          <h3>{category}</h3>
           {categories[category].map((book) => (
             <Fragment key={book.id}>
-              <p onClick={() => handleCLick(book)}>{book.title}</p>
+              <h4 onClick={() => handleCLick(book)}>{book.title}</h4>
             </Fragment>
           ))}
         </Fragment>
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <>{loading ? <Loading /> : user.displayName}</>
+      <>{loading ? <Loading /> : <h2>{user.displayName}</h2>}</>
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
       <>
         {sidebar && (

@@ -4,8 +4,8 @@ const BookPreview = (props) => {
   const { selectedBook } = props;
   return (
     <>
-      <p>{selectedBook.title}</p>
-      <p>{selectedBook.category}</p>
+      <h3>{selectedBook.category}</h3>
+      <h4>{selectedBook.title}</h4>
     </>
   );
 };
