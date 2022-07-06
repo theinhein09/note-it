@@ -50,4 +50,14 @@ const getBooks = (userId) =>
     return setTimeout(() => resolve(user.books), 1000);
   });
 
-export { createUser, login, getUser, getBooks };
+const getBook = (userId, bookId) =>
+  new Promise((resolve, reject) => {
+    return setTimeout(() =>
+      resolve(
+        user.books.find((book) => book.id === bookId),
+        1000
+      )
+    );
+  });
+
+export { createUser, login, getUser, getBooks, getBook };
