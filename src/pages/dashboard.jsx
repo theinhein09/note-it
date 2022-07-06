@@ -7,7 +7,7 @@ import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
 
 const Dashboard = () => {
-  const userId = useParams();
+  const { userId } = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
   const [user, setUser] = useState(null);
