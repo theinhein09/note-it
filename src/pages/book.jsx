@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
 import { FaChevronRight } from "react-icons/fa";
+import SectionsContainer from "../containers/sections-container";
 
 const Book = () => {
   const { userId, bookId } = useParams();
@@ -30,23 +31,6 @@ const Book = () => {
     })();
   }, [userId, bookId, startLoading, finishLoading]);
 
-  const renderPages = () => {
-    let pages = [];
-    for (let section in sections) {
-      pages.push(
-        <Fragment key={section}>
-          <h3>{section}</h3>
-          {sections[section].map((page) => (
-            <Fragment key={page.id}>
-              <h4>{page.title}</h4>
-            </Fragment>
-          ))}
-        </Fragment>
-      );
-    }
-
-    return pages;
-  };
   return (
     <>
       <h1>noteIt</h1>
@@ -62,7 +46,7 @@ const Book = () => {
         <>
           {sidebar && (
             <SidebarContainer closeSidebar={closeSidebar}>
-              {renderPages()}
+              <SectionsContainer sections={sections} />
             </SidebarContainer>
           )}
         </>
