@@ -5,8 +5,10 @@ const LoginForm = (props) => {
 
   return (
     <form id="login-form" onSubmit={handleSubmit}>
-      <input type="email" name="email" id="email" />
-      <input type="password" name="password" id="password" />
+      <label htmlFor="login-email">Email</label>
+      <input type="email" name="email" id="login-email" />
+      <label htmlFor="login-password">Password</label>
+      <input type="password" name="password" id="login-password" />
       <button type="submit" form="login-form">
         Sign In
       </button>
