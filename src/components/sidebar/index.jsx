@@ -5,7 +5,7 @@ const Sidebar = (props) => {
   const { closeSidebar, children } = props;
   return (
     <>
-      Sidebar
+      <h1>noteIt</h1>
       <button onClick={closeSidebar}>
         <GrClose />
       </button>

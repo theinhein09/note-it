@@ -34,7 +34,6 @@ const Book = () => {
 
   return (
     <>
-      <h1>noteIt</h1>
       <button onClick={() => navigate(`/${userId}`)}>
         <IoMdArrowRoundBack />
       </button>

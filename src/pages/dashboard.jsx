@@ -63,7 +63,6 @@ const Dashboard = () => {
           <Loading />
         ) : (
           <>
-            <h1>noteIt</h1>
             <h2>{user.displayName}</h2>
           </>
         )}
