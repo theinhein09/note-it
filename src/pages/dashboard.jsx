@@ -2,27 +2,19 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
-import { getBooks, getUser } from "../utils/fakeAPI";
+import { getBooks } from "../utils/fakeAPI";
 import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
 import BookPreviewContainer from "../containers/book-preview-container";
+import { useUserContextState } from "../contexts/user-context";
 
 const Dashboard = () => {
   const { userId } = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
-  const [user, setUser] = useState(null);
   const [categories, setCatagories] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      startLoading();
-      const user = await getUser(userId);
-      setUser(user);
-      finishLoading();
-    })();
-  }, [userId, startLoading, finishLoading]);
+  const user = useUserContextState();
 
   useEffect(() => {
     (async () => {
@@ -58,15 +50,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <>
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <h2>{user.displayName}</h2>
-          </>
-        )}
-      </>
+      <h2>{user.displayName}</h2>
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
       <>
         {sidebar && (

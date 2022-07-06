@@ -6,8 +6,8 @@ const UserContextUpdater = createContext();
 const UserContextProvider = (props) => {
   const { children } = props;
 
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+  console.log(user);
   const context = useMemo(() => ({ user, setUser }), [user]);
 
   return (

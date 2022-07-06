@@ -3,15 +3,18 @@ import LoginForm from "../components/login-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import { login } from "../utils/fakeAPI";
 import { useNavigate } from "react-router-dom";
+import { useUserContextUpdater } from "../contexts/user-context";
 
 const LoginFormContainer = (props) => {
   const { startLoading, finishLoading } = props;
   const setError = useErrorContextUpdater();
+  const setUser = useUserContextUpdater();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     startLoading();
     setError(null);
+    setUser(null);
     event.preventDefault();
     let user;
     const formData = new FormData(event.currentTarget);
@@ -19,6 +22,8 @@ const LoginFormContainer = (props) => {
     const password = formData.get("password");
     try {
       user = await login(email, password);
+      setUser(user);
+      sessionStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       setError(error);
     }
