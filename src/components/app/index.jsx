@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ErrorContextProvider } from "../../contexts/error-context";
+import Dashboard from "../../pages/dashboard";
 import Entry from "../../pages/entry";
 
 const App = (props) => {
@@ -10,7 +11,7 @@ const App = (props) => {
           <Route path="/">
             <Route index element={<Entry />} />
             <Route path=":userId">
-              <Route index element={<div>USER</div>} />
+              <Route index element={<Dashboard />} />
             </Route>
           </Route>
         </Routes>

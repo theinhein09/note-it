@@ -1,5 +1,6 @@
 const user = {
   id: "1",
+  displayName: "Jane Doe",
   email: "janedoe@gmail.com",
   password: "qwe",
 };
@@ -22,4 +23,9 @@ const login = (email, password) =>
     setTimeout(() => resolve(user), 1000);
   });
 
-export { createUser, login };
+const getUser = (userId) =>
+  new Promise((resolve, reject) => {
+    return setTimeout(() => resolve(user), 1000);
+  });
+
+export { createUser, login, getUser };
