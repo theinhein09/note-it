@@ -15,7 +15,10 @@ const AppContainer = () => {
 
   return (
     <App>
-      <LoginFormContainer />
+      <LoginFormContainer
+        startLoading={startLoading}
+        finishLoading={finishLoading}
+      />
       <button onClick={openDialog}>Sign Up</button>
       <ErrorContainer />
       {dialog && (
