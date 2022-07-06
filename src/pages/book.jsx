@@ -8,6 +8,7 @@ import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
 import { FaChevronRight } from "react-icons/fa";
 import SectionsContainer from "../containers/sections-container";
+import TextEditorContainer from "../containers/text-editor-container";
 
 const Book = () => {
   const { userId, bookId } = useParams();
@@ -49,6 +50,7 @@ const Book = () => {
               <SectionsContainer sections={sections} />
             </SidebarContainer>
           )}
+          <TextEditorContainer />
         </>
       )}
     </>
