@@ -5,6 +5,7 @@ import useBoolean from "../hooks/useBoolean";
 import { getBooks, getUser } from "../utils/fakeAPI";
 import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
+import BookPreviewContainer from "../containers/book-preview-container";
 
 const Dashboard = () => {
   const { userId } = useParams();
@@ -70,10 +71,9 @@ const Dashboard = () => {
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
       <>
         {sidebar && (
-          <SidebarContainer
-            selectedBook={selectedBook}
-            closeSidebar={closeSidebar}
-          />
+          <SidebarContainer closeSidebar={closeSidebar}>
+            <BookPreviewContainer selectedBook={selectedBook} />
+          </SidebarContainer>
         )}
       </>
     </>
