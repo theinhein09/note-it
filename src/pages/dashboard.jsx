@@ -6,7 +6,7 @@ import { getBooks } from "../utils/fakeAPI";
 import { groupBy } from "lodash";
 import SidebarContainer from "../containers/sidebar-container";
 import BookPreviewContainer from "../containers/book-preview-container";
-import { useUserContextState } from "../contexts/user-context";
+import UserContainer from "../containers/user-container";
 
 const Dashboard = () => {
   const { userId } = useParams();
@@ -14,14 +14,13 @@ const Dashboard = () => {
   const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
   const [categories, setCatagories] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-  const user = useUserContextState();
 
   useEffect(() => {
     (async () => {
       startLoading();
       const books = await getBooks(userId);
-      const groupByCatagory = groupBy(books, "category");
-      setCatagories(groupByCatagory);
+      const groupByCategory = groupBy(books, "category");
+      setCatagories(groupByCategory);
       finishLoading();
     })();
   }, [userId, startLoading, finishLoading]);
@@ -50,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <h2>{user.displayName}</h2>
+      <UserContainer />
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
       <>
         {sidebar && (
