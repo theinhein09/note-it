@@ -22,8 +22,11 @@ const createUser = (email, password) =>
     setTimeout(() => resolve(Object.values({ email })), 1000);
   });
 
-const SignupFormContainer = () => {
+const SignupFormContainer = (props) => {
+  const { toggleLoading } = props;
+
   const handleSubmit = async (event) => {
+    toggleLoading();
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get("username");
@@ -31,6 +34,7 @@ const SignupFormContainer = () => {
     const password = formData.get("password");
     const user = await createUser(email, password);
     console.log(user);
+    toggleLoading();
   };
   return <SignupForm handleSubmit={handleSubmit} />;
 };
