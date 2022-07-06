@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import App from "../components/app";
 import useBoolean from "../hooks/useBoolean";
 import ModalContainer from "./modal-container";
@@ -11,6 +11,7 @@ import ErrorContainer from "../containers/error-container";
 const AppContainer = () => {
   const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
+  const [message, setMessage] = useState(null);
 
   return (
     <App>
@@ -23,6 +24,7 @@ const AppContainer = () => {
             <SignupFormContainer
               startLoading={startLoading}
               finishLoading={finishLoading}
+              setMessage={setMessage}
             />
           </DialogContainer>
         </ModalContainer>
@@ -32,6 +34,7 @@ const AppContainer = () => {
           <Loading />
         </ModalContainer>
       )}
+      {message && <ModalContainer>{message}</ModalContainer>}
     </App>
   );
 };

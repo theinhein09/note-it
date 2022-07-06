@@ -24,7 +24,7 @@ const createUser = (email, password) =>
   });
 
 const SignupFormContainer = (props) => {
-  const { startLoading, finishLoading } = props;
+  const { startLoading, finishLoading, setMessage } = props;
   const setError = useErrorContextUpdater();
 
   const handleSubmit = async (event) => {
@@ -38,6 +38,9 @@ const SignupFormContainer = (props) => {
     try {
       const user = await createUser(email, password);
       console.log(user);
+      setMessage(
+        "Verification email sent. Please Verify your email to continue."
+      );
     } catch (error) {
       setError(error);
     }
