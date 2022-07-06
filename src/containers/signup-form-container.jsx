@@ -18,8 +18,7 @@ const SignupFormContainer = (props) => {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      const user = await createUser(email, password);
-      console.log(user);
+      await createUser(email, password);
       setMessage(
         "Verification email sent. Please Verify your email to continue."
       );

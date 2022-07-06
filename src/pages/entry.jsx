@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import App from "../components/app";
 import useBoolean from "../hooks/useBoolean";
-import ModalContainer from "./modal-container";
-import LoginFormContainer from "./login-form-container";
-import SignupFormContainer from "./signup-form-container";
-import DialogContainer from "./dialog-container";
-import Loading from "../components/loading";
+import LoginFormContainer from "../containers/login-form-container";
 import ErrorContainer from "../containers/error-container";
+import ModalContainer from "../containers/modal-container";
+import DialogContainer from "../containers/dialog-container";
+import SignupFormContainer from "../containers/signup-form-container";
+import Loading from "../components/loading";
 
-const AppContainer = () => {
+const Entry = () => {
   const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
   const [message, setMessage] = useState(null);
 
   return (
-    <App>
+    <>
       <LoginFormContainer
         startLoading={startLoading}
         finishLoading={finishLoading}
@@ -38,8 +37,8 @@ const AppContainer = () => {
         </ModalContainer>
       )}
       {message && <ModalContainer>{message}</ModalContainer>}
-    </App>
+    </>
   );
 };
 
-export default AppContainer;
+export default Entry;
