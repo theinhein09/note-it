@@ -8,17 +8,20 @@ import DialogContainer from "./dialog-container";
 import Loading from "../components/loading";
 
 const AppContainer = () => {
-  const [modal, { on, off }] = useBoolean(false);
-  const [loading, { toggle: toggleLoading }] = useBoolean();
+  const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
+  const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
 
   return (
     <App>
       <LoginFormContainer />
-      <button onClick={on}>Sign Up</button>
-      {modal && (
+      <button onClick={openDialog}>Sign Up</button>
+      {dialog && (
         <ModalContainer>
-          <DialogContainer closeDialog={off}>
-            <SignupFormContainer toggleLoading={toggleLoading} />
+          <DialogContainer closeDialog={closeDialog}>
+            <SignupFormContainer
+              startLoading={startLoading}
+              finishLoading={finishLoading}
+            />
           </DialogContainer>
         </ModalContainer>
       )}
