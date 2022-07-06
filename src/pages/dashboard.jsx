@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
 import { getBooks, getUser } from "../utils/fakeAPI";
+import { groupBy } from "lodash";
 
 const Dashboard = () => {
   const userId = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [user, setUser] = useState(null);
-  const [books, setBooks] = useState([]);
+  const [categories, setCatagories] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -23,21 +24,31 @@ const Dashboard = () => {
     (async () => {
       startLoading();
       const books = await getBooks(userId);
-      setBooks(books);
+      const groupByCatagory = groupBy(books, "category");
+      setCatagories(groupByCatagory);
       finishLoading();
     })();
   }, [userId, startLoading, finishLoading]);
 
+  const renderCategories = () => {
+    let books = [];
+    for (let category in categories) {
+      books.push(
+        <Fragment key={category}>
+          <>{category}</>
+          {categories[category].map((book) => (
+            <Fragment key={book.id}>{book.title}</Fragment>
+          ))}
+        </Fragment>
+      );
+    }
+    return books;
+  };
+
   return (
     <>
       <>{loading ? <Loading /> : user.displayName}</>
-      <>
-        {loading ? (
-          <Loading />
-        ) : (
-          books.map((book) => <Fragment key={book.id}>{book.title}</Fragment>)
-        )}
-      </>
+      <>{loading ? <Loading /> : <>{renderCategories()}</>}</>
     </>
   );
 };
