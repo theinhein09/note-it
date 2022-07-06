@@ -4,10 +4,13 @@ import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
 import { getBooks, getUser } from "../utils/fakeAPI";
 import { groupBy } from "lodash";
+import SidebarContainer from "../containers/sidebar-container";
 
 const Dashboard = () => {
   const userId = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
+  const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
+
   const [user, setUser] = useState(null);
   const [categories, setCatagories] = useState({});
 
@@ -30,14 +33,16 @@ const Dashboard = () => {
     })();
   }, [userId, startLoading, finishLoading]);
 
-  const renderCategories = () => {
+  const renderBooks = () => {
     let books = [];
     for (let category in categories) {
       books.push(
         <Fragment key={category}>
-          <>{category}</>
+          <p>{category}</p>
           {categories[category].map((book) => (
-            <Fragment key={book.id}>{book.title}</Fragment>
+            <Fragment key={book.id}>
+              <p onClick={openSidebar}>{book.title}</p>
+            </Fragment>
           ))}
         </Fragment>
       );
@@ -48,7 +53,8 @@ const Dashboard = () => {
   return (
     <>
       <>{loading ? <Loading /> : user.displayName}</>
-      <>{loading ? <Loading /> : <>{renderCategories()}</>}</>
+      <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
+      <>{sidebar && <SidebarContainer closeSidebar={closeSidebar} />}</>
     </>
   );
 };
