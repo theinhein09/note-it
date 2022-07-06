@@ -3,6 +3,23 @@ const user = {
   displayName: "Jane Doe",
   email: "janedoe@gmail.com",
   password: "qwe",
+  books: [
+    {
+      id: "book-1",
+      title: "History of Art",
+      category: "Arts",
+    },
+    {
+      id: "book-2",
+      title: "World's Most Famous Artists",
+      category: "Arts",
+    },
+    {
+      id: "book-3",
+      title: "Time Management",
+      category: "Self-Improvement",
+    },
+  ],
 };
 
 const createUser = (email, password) =>
@@ -28,4 +45,9 @@ const getUser = (userId) =>
     return setTimeout(() => resolve(user), 1000);
   });
 
-export { createUser, login, getUser };
+const getBooks = (userId) =>
+  new Promise((resolve, reject) => {
+    return setTimeout(() => resolve(user.books), 1000);
+  });
+
+export { createUser, login, getUser, getBooks };
