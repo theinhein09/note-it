@@ -10,9 +10,9 @@ const Dashboard = () => {
   const userId = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
-
   const [user, setUser] = useState(null);
   const [categories, setCatagories] = useState({});
+  const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -34,6 +34,11 @@ const Dashboard = () => {
   }, [userId, startLoading, finishLoading]);
 
   const renderBooks = () => {
+    const handleCLick = (book) => {
+      setSelectedBook(book);
+      openSidebar();
+    };
+
     let books = [];
     for (let category in categories) {
       books.push(
@@ -41,7 +46,7 @@ const Dashboard = () => {
           <p>{category}</p>
           {categories[category].map((book) => (
             <Fragment key={book.id}>
-              <p onClick={openSidebar}>{book.title}</p>
+              <p onClick={() => handleCLick(book)}>{book.title}</p>
             </Fragment>
           ))}
         </Fragment>
@@ -54,7 +59,14 @@ const Dashboard = () => {
     <>
       <>{loading ? <Loading /> : user.displayName}</>
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
-      <>{sidebar && <SidebarContainer closeSidebar={closeSidebar} />}</>
+      <>
+        {sidebar && (
+          <SidebarContainer
+            selectedBook={selectedBook}
+            closeSidebar={closeSidebar}
+          />
+        )}
+      </>
     </>
   );
 };
