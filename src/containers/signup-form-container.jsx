@@ -1,0 +1,38 @@
+import React from "react";
+import SignupForm from "../components/signup-form";
+
+let users = {
+  1: {
+    id: "1",
+    email: "thein.than.hein.th@gmail.com",
+    password: "qwe",
+  },
+  2: {
+    id: "2",
+    email: "theinthanhein0402@gmail.com",
+    password: "qwe",
+  },
+};
+
+const createUser = (email, password) =>
+  new Promise((resolve, reject) => {
+    if (email === users[1].email && password === users[1].password) {
+      return setTimeout(() => reject(new Error("User already exists.")), 1000);
+    }
+    setTimeout(() => resolve(Object.values({ email })), 1000);
+  });
+
+const SignupFormContainer = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const user = await createUser(email, password);
+    console.log(user);
+  };
+  return <SignupForm handleSubmit={handleSubmit} />;
+};
+
+export default SignupFormContainer;

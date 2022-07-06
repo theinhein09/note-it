@@ -1,13 +1,6 @@
-import LoginFormContainer from "../../containers/login-form-container";
-import SignupFormContainer from "../../containers/signup-form-container";
-
-const App = () => {
-  return (
-    <div>
-      <LoginFormContainer />
-      <SignupFormContainer />
-    </div>
-  );
+const App = (props) => {
+  const { children } = props;
+  return <>{children}</>;
 };
 
 export default App;
