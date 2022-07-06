@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
   const [user, setUser] = useState(null);
-  const [categories, setCatagories] = useState({});
+  const [categories, setCatagories] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
