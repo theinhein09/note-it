@@ -2,6 +2,7 @@ import users from "./fakeData.json";
 
 const createUser = (email, password) =>
   new Promise((resolve, reject) => {
+    if (!email || !password) throw new Error("Email and password required.");
     const foundUser = users.find(
       (user) => user.email === email && user.password === password
     );

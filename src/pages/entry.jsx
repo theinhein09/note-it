@@ -14,10 +14,13 @@ const Entry = () => {
 
   return (
     <>
+      <h1>noteIt</h1>
       <LoginFormContainer
         startLoading={startLoading}
         finishLoading={finishLoading}
       />
+      <p>Test Email: dyer_campbell@zomboid.ga</p>
+      <p>Test Password: q</p>
       <button onClick={openDialog}>Sign Up</button>
       <ErrorContainer />
       {dialog && (

@@ -57,7 +57,16 @@ const Dashboard = () => {
 
   return (
     <>
-      <>{loading ? <Loading /> : <h2>{user.displayName}</h2>}</>
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <h1>noteIt</h1>
+            <h2>{user.displayName}</h2>
+          </>
+        )}
+      </>
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
       <>
         {sidebar && (
