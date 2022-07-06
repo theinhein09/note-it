@@ -6,6 +6,7 @@ import LoginFormContainer from "./login-form-container";
 import SignupFormContainer from "./signup-form-container";
 import DialogContainer from "./dialog-container";
 import Loading from "../components/loading";
+import ErrorContainer from "../containers/error-container";
 
 const AppContainer = () => {
   const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
@@ -15,6 +16,7 @@ const AppContainer = () => {
     <App>
       <LoginFormContainer />
       <button onClick={openDialog}>Sign Up</button>
+      <ErrorContainer />
       {dialog && (
         <ModalContainer>
           <DialogContainer closeDialog={closeDialog}>

@@ -1,5 +1,6 @@
 import React from "react";
 import SignupForm from "../components/signup-form";
+import { useErrorContextUpdater } from "../contexts/error-context";
 
 let users = {
   1: {
@@ -24,16 +25,22 @@ const createUser = (email, password) =>
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading } = props;
+  const setError = useErrorContextUpdater();
 
   const handleSubmit = async (event) => {
     startLoading();
+    setError(null);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get("username");
     const email = formData.get("email");
     const password = formData.get("password");
-    const user = await createUser(email, password);
-    console.log(user);
+    try {
+      const user = await createUser(email, password);
+      console.log(user);
+    } catch (error) {
+      setError(error);
+    }
     finishLoading();
   };
   return <SignupForm handleSubmit={handleSubmit} />;

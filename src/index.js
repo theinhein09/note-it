@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import AppContainer from "./containers/app-container";
+import { ErrorContextProvider } from "./contexts/error-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppContainer />
+    <ErrorContextProvider>
+      <AppContainer />
+    </ErrorContextProvider>
   </React.StrictMode>
 );
 
