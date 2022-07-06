@@ -5,11 +5,18 @@ import useBoolean from "../hooks/useBoolean";
 import { getBook } from "../utils/fakeAPI";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { groupBy } from "lodash";
+import SidebarContainer from "../containers/sidebar-container";
+import { FaChevronRight } from "react-icons/fa";
 
 const Book = () => {
   const { userId, bookId } = useParams();
   const [sections, setSections] = useState(null);
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
+  const [
+    sidebar,
+    { toggle: toggleSidebar, on: openSidebar, off: closeSidebar },
+  ] = useBoolean();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,7 +53,20 @@ const Book = () => {
       <button onClick={() => navigate(`/${userId}`)}>
         <IoMdArrowRoundBack />
       </button>
-      {loading ? <Loading /> : <>{renderPages()}</>}
+      <button onClick={toggleSidebar}>
+        <FaChevronRight />
+      </button>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {sidebar && (
+            <SidebarContainer closeSidebar={closeSidebar}>
+              {renderPages()}
+            </SidebarContainer>
+          )}
+        </>
+      )}
     </>
   );
 };
