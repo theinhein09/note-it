@@ -1,4 +1,4 @@
-import users from "./fakeData.json";
+import users from "./mockData.json";
 
 const createUser = (email, password) =>
   new Promise((resolve, reject) => {

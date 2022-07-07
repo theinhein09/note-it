@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
-import { getBook } from "../utils/fakeAPI";
+import { getBook } from "../utils/mockAPI";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";

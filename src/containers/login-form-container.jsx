@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "../components/login-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
-import { login } from "../utils/fakeAPI";
+import { login } from "../utils/mockAPI";
 import { useNavigate } from "react-router-dom";
 import { useUserContextUpdater } from "../contexts/user-context";
 
