@@ -5,7 +5,11 @@ import InputContainer from "../../containers/input-container";
 const SignupForm = (props) => {
   const { handleSubmit } = props;
   return (
-    <form id="signup-form" onSubmit={handleSubmit}>
+    <form
+      id="signup-form"
+      onSubmit={handleSubmit}
+      className="border-black border max-w-xs flex flex-col p-1 gap-1"
+    >
       <InputContainer label="Username" name="username" id="signup-username" />
       <InputContainer
         label="Email"
@@ -19,6 +23,7 @@ const SignupForm = (props) => {
         name="password"
         id="signup-password"
       />
+      <br />
       <ButtonContainer label="Submit" type="submit" form="signup-form" />
     </form>
   );

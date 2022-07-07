@@ -12,6 +12,7 @@ const LoginFormContainer = (props) => {
   const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
+    console.log("SIGN IN");
     startLoading();
     setError(null);
     setUser(null);
@@ -31,7 +32,7 @@ const LoginFormContainer = (props) => {
       finishLoading();
     }
   };
-  return <LoginForm handleSignIn={handleSignIn} />;
+  return <LoginForm handleSignIn={handleSignIn} {...props} />;
 };
 
 export default LoginFormContainer;
