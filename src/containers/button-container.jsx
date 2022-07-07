@@ -4,13 +4,12 @@ import PropTypes from "prop-types";
 
 const ButtonContainer = (props) => {
   const { category } = props;
-  let className = "";
+  let className =
+    "hover:bg-black hover:text-white focus:bg-black focus:text-white";
 
   switch (category) {
-    case "primary":
-      className = "border-[1px] border-black";
-      break;
     default:
+      className += " border-[1px] border-black";
       break;
   }
 
@@ -19,11 +18,13 @@ const ButtonContainer = (props) => {
 
 ButtonContainer.defaultProps = {
   category: "primary",
+  type: "button",
 };
 
 ButtonContainer.propTypes = {
   category: PropTypes.oneOf(["primary"]),
   label: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["submit", "reset"]),
 };
 
 export default ButtonContainer;
