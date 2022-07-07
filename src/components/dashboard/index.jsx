@@ -27,21 +27,19 @@ const Dashboard = (props) => {
             />
           </h3>
           {categoriesMemo.categories[category].map((book) => (
-            <Fragment key={book.id}>
-              <h4 onClick={openBookPreview(book)}>
-                {book.title}
-                <ButtonContainer
-                  onClick={() => console.log("EDIT Book Title")}
-                  icon={<FaEdit />}
-                  category="icon-only"
-                />
-                <ButtonContainer
-                  onClick={() => console.log("DELETE Book Title")}
-                  icon={<RiDeleteBin6Line />}
-                  category="icon-only"
-                />
-              </h4>
-            </Fragment>
+            <h4 onClick={openBookPreview(book)} key={book.id}>
+              {book.title}
+              <ButtonContainer
+                onClick={() => console.log("EDIT Book Title")}
+                icon={<FaEdit />}
+                category="icon-only"
+              />
+              <ButtonContainer
+                onClick={() => console.log("DELETE Book Title")}
+                icon={<RiDeleteBin6Line />}
+                category="icon-only"
+              />
+            </h4>
           ))}
         </Fragment>
       );

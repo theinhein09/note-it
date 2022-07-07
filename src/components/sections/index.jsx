@@ -25,21 +25,19 @@ const Sections = (props) => {
             />
           </h3>
           {sections[section].map((page) => (
-            <Fragment key={page.id}>
-              <h4 onClick={openPage(page)}>
-                {page.title}
-                <ButtonContainer
-                  onClick={() => console.log("EDIT Page Title")}
-                  icon={<FaEdit />}
-                  category="icon-only"
-                />
-                <ButtonContainer
-                  onClick={() => console.log("DELETE Page Title")}
-                  icon={<RiDeleteBin6Line />}
-                  category="icon-only"
-                />
-              </h4>
-            </Fragment>
+            <h4 onClick={openPage(page)} key={page.id}>
+              {page.title}
+              <ButtonContainer
+                onClick={() => console.log("EDIT Page Title")}
+                icon={<FaEdit />}
+                category="icon-only"
+              />
+              <ButtonContainer
+                onClick={() => console.log("DELETE Page Title")}
+                icon={<RiDeleteBin6Line />}
+                category="icon-only"
+              />
+            </h4>
           ))}
           <ButtonContainer label="Add Page" />
         </Fragment>

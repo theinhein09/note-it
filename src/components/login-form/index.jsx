@@ -6,7 +6,11 @@ const LoginForm = (props) => {
   const { handleSignIn } = props;
 
   return (
-    <form id="login-form" onSubmit={handleSignIn}>
+    <form
+      id="login-form"
+      onSubmit={handleSignIn}
+      className="border-black border max-w-xs flex flex-col p-1"
+    >
       <InputContainer
         label="Email"
         type="email"

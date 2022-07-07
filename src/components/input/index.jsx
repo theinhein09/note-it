@@ -5,7 +5,9 @@ const Input = (props) => {
 
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="">
+        {label}
+      </label>
       <br />
       <input
         className={className}

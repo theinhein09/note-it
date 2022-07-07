@@ -18,13 +18,6 @@ const Entry = () => {
         startLoading={startLoading}
         finishLoading={finishLoading}
       />
-      <p>Existing User for Testing</p>
-      <p>Email: dyer_campbell@zomboid.ga</p>
-      <p>Password: q</p>
-      <p>Test Password: q</p>
-      <p>New User for Testing</p>
-      <p>Email: new_user@name.ad</p>
-      <p>Password: q</p>
       <DialogRenderButtonContainer
         buttonLabel="Sign Up"
         render={() => (
@@ -36,6 +29,13 @@ const Entry = () => {
         )}
       />
       <ErrorContainer />
+      <p>Existing User for Testing</p>
+      <p>Email: dyer_campbell@zomboid.ga</p>
+      <p>Password: q</p>
+      <p>Test Password: q</p>
+      <p>New User for Testing</p>
+      <p>Email: new_user@name.ad</p>
+      <p>Password: q</p>
       {loading && (
         <ModalContainer>
           <Loading />

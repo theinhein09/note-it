@@ -12,7 +12,7 @@ const ButtonContainer = (props) => {
       className += " w-6 h-6 grid place-content-center";
       break;
     default:
-      className += " border-[1px] border-black px-2 py-0.5";
+      className += " border border-black px-2 py-0.5";
       break;
   }
 
