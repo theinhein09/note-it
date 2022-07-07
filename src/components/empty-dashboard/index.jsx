@@ -1,10 +1,14 @@
 import React from "react";
+import DialogRenderButtonContainer from "../../containers/dialog-render-button-container";
+import DialogContainer from "../../containers/dialog-container";
 
 const EmptyDashboard = (props) => {
-  const { createBook } = props;
   return (
     <>
-      <button onClick={createBook}>Create New Book</button>
+      <DialogRenderButtonContainer
+        buttonLabel="Create New Book"
+        render={(off) => <DialogContainer closeDialog={off}> </DialogContainer>}
+      />
     </>
   );
 };
