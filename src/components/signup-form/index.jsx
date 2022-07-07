@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
+import { GoCheck } from "react-icons/go";
 
 const SignupForm = (props) => {
   const { handleSubmit } = props;
@@ -32,7 +33,12 @@ const SignupForm = (props) => {
         />
       </div>
       <br />
-      <ButtonContainer label="Submit" type="submit" form="signup-form" />
+      <ButtonContainer
+        label="Submit"
+        type="submit"
+        form="signup-form"
+        icon={<GoCheck />}
+      />
       <div
         role="presentation"
         className="min-h-[200px] border border-black p-1"

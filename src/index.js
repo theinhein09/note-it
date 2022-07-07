@@ -6,17 +6,20 @@ import App from "./components/app";
 import { ErrorContextProvider } from "./contexts/error-context";
 import { UserContextProvider } from "./contexts/user-context";
 import { SidebarContextProvider } from "./contexts/sidebar-context";
+import { IconContext } from "react-icons";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ErrorContextProvider>
-      <UserContextProvider>
-        <SidebarContextProvider>
-          <App />
-        </SidebarContextProvider>
-      </UserContextProvider>
-    </ErrorContextProvider>
+    <IconContext.Provider value={{ className: "align-middle" }}>
+      <ErrorContextProvider>
+        <UserContextProvider>
+          <SidebarContextProvider>
+            <App />
+          </SidebarContextProvider>
+        </UserContextProvider>
+      </ErrorContextProvider>
+    </IconContext.Provider>
   </React.StrictMode>
 );
 

@@ -5,7 +5,7 @@ import CreateBookFormContainer from "../../containers/create-book-form-container
 import DialogRenderButtonContainer from "../../containers/dialog-render-button-container";
 import SectionsContainer from "../../containers/sections-container";
 import UserSettingContainer from "../../containers/user-setting-container";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CgChevronLeft, CgChevronRight } from "react-icons/cg";
 import {
   useSidebarContextState,
   useSidebarContextUpdater,
@@ -37,7 +37,7 @@ const Sidebar = (props) => {
       )}
       <ButtonContainer
         onClick={toggleSidebar}
-        icon={sidebar ? <FaChevronLeft /> : <FaChevronRight />}
+        icon={sidebar ? <CgChevronLeft /> : <CgChevronRight />}
         category="icon-only"
       />
     </aside>

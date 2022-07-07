@@ -1,5 +1,5 @@
 import React from "react";
-import { GrSettingsOption } from "react-icons/gr";
+import { VscSettingsGear } from "react-icons/vsc";
 import ButtonContainer from "../../containers/button-container";
 
 const UserSetting = (props) => {
@@ -9,7 +9,7 @@ const UserSetting = (props) => {
     <>
       <ButtonContainer
         onClick={toggleUserSetting}
-        icon={<GrSettingsOption />}
+        icon={<VscSettingsGear />}
         category="icon-only"
       />
       {userSetting && (

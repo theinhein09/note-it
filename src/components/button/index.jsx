@@ -4,8 +4,8 @@ const Button = (props) => {
   const { className, label, type, icon, onClick, form } = props;
   return (
     <button className={className} type={type} onClick={onClick} form={form}>
-      {label}
-      {icon}
+      <span>{icon}</span>
+      <span>{label}</span>
     </button>
   );
 };

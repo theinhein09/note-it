@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category } = props;
   let className =
-    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display";
+    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display flex items-center gap-1";
 
   switch (category) {
     case "icon-only":
-      className += " w-6 h-6 grid place-content-center";
+      className += " w-8 h-8 justify-center";
       break;
     default:
       className += " border border-black px-2 py-0.5";

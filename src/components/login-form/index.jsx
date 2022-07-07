@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
+import { RiLoginBoxLine } from "react-icons/ri";
+import { CgUser } from "react-icons/cg";
 
 const LoginForm = (props) => {
   const { handleSignIn } = props;
@@ -34,8 +36,17 @@ const LoginForm = (props) => {
         />
       </div>
       <br />
-      <ButtonContainer label="Sign In" type="submit" form="login-form" />
-      <ButtonContainer label="Sign Up" onClick={() => navigate("sign-up")} />
+      <ButtonContainer
+        label="Sign In"
+        type="submit"
+        form="login-form"
+        icon={<RiLoginBoxLine />}
+      />
+      <ButtonContainer
+        label="Sign Up"
+        onClick={() => navigate("sign-up")}
+        icon={<CgUser />}
+      />
       <aside className="min-h-[200px] border border-black p-1 font-display">
         <h2 className="underline underline-offset-1">Testing</h2>
         <p>Existing User</p>
