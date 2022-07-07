@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonContainer from "../../containers/button-container";
 
 const LoginForm = (props) => {
   const { handleSignIn } = props;
@@ -14,6 +15,7 @@ const LoginForm = (props) => {
       <button type="submit" form="login-form">
         Sign In
       </button>
+      <ButtonContainer label="Sign In" />
     </form>
   );
 };
