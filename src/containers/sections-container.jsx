@@ -4,11 +4,11 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const SectionsContainer = (props) => {
-  const { sections } = props;
+  const { sections, setSelectedPage } = props;
 
   const openPage = (page) => (event) => {
     if (event.currentTarget === event.target) {
-      console.log(page);
+      setSelectedPage(page);
     }
   };
 

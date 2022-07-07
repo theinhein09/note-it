@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
@@ -12,6 +12,12 @@ const Book = () => {
   const { userId, bookId } = useParams();
   const [sections, setSections] = useState(null);
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
+  const [selectedPage, setSelectedPage] = useState(null);
+
+  const selectedPageMemo = useMemo(
+    () => ({ selectedPage, setSelectedPage }),
+    [selectedPage]
+  );
 
   const navigate = useNavigate();
 
@@ -27,11 +33,18 @@ const Book = () => {
   }, [userId, bookId, startLoading, finishLoading]);
 
   return (
-    <LayoutContainer sections={sections}>
+    <LayoutContainer
+      sections={sections}
+      setSelectedPage={selectedPageMemo.setSelectedPage}
+    >
       <button onClick={() => navigate(`/${userId}`)}>
         <IoMdArrowRoundBack />
       </button>
-      {loading ? <Loading /> : <TextEditorContainer />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <TextEditorContainer selectedPage={selectedPageMemo.selectedPage} />
+      )}
     </LayoutContainer>
   );
 };

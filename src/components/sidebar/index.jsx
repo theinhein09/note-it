@@ -6,7 +6,7 @@ import SectionsContainer from "../../containers/sections-container";
 import UserSettingContainer from "../../containers/user-setting-container";
 
 const Sidebar = (props) => {
-  const { selectedBook, sections } = props;
+  const { selectedBook, sections, setSelectedPage } = props;
   return (
     <>
       <h1>noteIt</h1>
@@ -18,7 +18,10 @@ const Sidebar = (props) => {
         )}
       />
       <BookPreviewContainer selectedBook={selectedBook} />
-      <SectionsContainer sections={sections} />
+      <SectionsContainer
+        sections={sections}
+        setSelectedPage={setSelectedPage}
+      />
     </>
   );
 };

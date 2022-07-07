@@ -10,6 +10,7 @@ const Layout = (props) => {
     toggleSidebar,
     sidebar,
     closeSidebar,
+    setSelectedPage,
   } = props;
 
   return (
@@ -22,6 +23,7 @@ const Layout = (props) => {
           closeSidebar={closeSidebar}
           selectedBook={selectedBook}
           sections={sections}
+          setSelectedPage={setSelectedPage}
         />
       )}
       {children}
