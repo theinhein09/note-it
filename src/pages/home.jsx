@@ -8,7 +8,7 @@ import UserContainer from "../containers/user-container";
 import LayoutContainer from "../containers/layout-container";
 import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 
-const Dashboard = () => {
+const Home = () => {
   const { userId } = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const { openSidebar } = useSidebarContextUpdater();
@@ -50,9 +50,9 @@ const Dashboard = () => {
   return (
     <LayoutContainer selectedBook={selectedBook}>
       <UserContainer />
-      <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
+      {loading ? <Loading /> : <>{renderBooks()}</>}
     </LayoutContainer>
   );
 };
 
-export default Dashboard;
+export default Home;

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Book from "../../pages/book";
-import Dashboard from "../../pages/dashboard";
+import Home from "../../pages/home";
 import Entry from "../../pages/entry";
 
 const App = (props) => {
@@ -10,7 +10,7 @@ const App = (props) => {
         <Route path="/">
           <Route index element={<Entry />} />
           <Route path=":userId">
-            <Route index element={<Dashboard />} />
+            <Route index element={<Home />} />
             <Route path=":bookId" element={<Book />} />
           </Route>
         </Route>

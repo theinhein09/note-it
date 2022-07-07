@@ -19,8 +19,13 @@ const Entry = () => {
         startLoading={startLoading}
         finishLoading={finishLoading}
       />
-      <p>Test Email: dyer_campbell@zomboid.ga</p>
+      <p>Existing User for Testing</p>
+      <p>Email: dyer_campbell@zomboid.ga</p>
+      <p>Password: q</p>
       <p>Test Password: q</p>
+      <p>New User for Testing</p>
+      <p>Email: new_user@name.ad</p>
+      <p>Password: q</p>
       <button onClick={openDialog}>Sign Up</button>
       <ErrorContainer />
       {dialog && (
