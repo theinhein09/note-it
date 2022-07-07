@@ -1,5 +1,5 @@
 import { groupBy } from "lodash";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import Dashboard from "../components/dashboard";
 import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
@@ -11,6 +11,11 @@ const DashboardContainer = (props) => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
 
   const [categories, setCatagories] = useState(null);
+
+  const categoriesMemo = useMemo(
+    () => ({ categories, setCatagories }),
+    [categories]
+  );
 
   useEffect(() => {
     (async () => {
@@ -29,11 +34,11 @@ const DashboardContainer = (props) => {
     };
 
     let books = [];
-    for (let category in categories) {
+    for (let category in categoriesMemo.categories) {
       books.push(
         <Fragment key={category}>
           <h3>{category}</h3>
-          {categories[category].map((book) => (
+          {categoriesMemo.categories[category].map((book) => (
             <Fragment key={book.id}>
               <h4 onClick={() => handleCLick(book)}>{book.title}</h4>
             </Fragment>

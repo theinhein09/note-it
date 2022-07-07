@@ -1,8 +1,9 @@
 import React from "react";
 import EmptyDashboard from "../components/empty-dashboard";
 
-const EmptyDashboardContainer = () => {
-  return <EmptyDashboard />;
+const EmptyDashboardContainer = (props) => {
+  const createBook = () => {};
+  return <EmptyDashboard {...props} createBook={createBook} />;
 };
 
 export default EmptyDashboardContainer;
