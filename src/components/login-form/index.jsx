@@ -12,7 +12,7 @@ const LoginForm = (props) => {
       <label htmlFor="login-password">Password</label>
       <input type="password" name="password" id="login-password" />
       <br />
-      <ButtonContainer label="Sign In" />
+      <ButtonContainer label="Sign In" type="submit" form="login-form" />
     </form>
   );
 };

@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
+import ButtonContainer from "../containers/button-container";
 
 const Book = () => {
   const { userId, bookId } = useParams();
@@ -37,9 +38,10 @@ const Book = () => {
       sections={sections}
       setSelectedPage={selectedPageMemo.setSelectedPage}
     >
-      <button onClick={() => navigate(`/${userId}`)}>
-        <IoMdArrowRoundBack />
-      </button>
+      <ButtonContainer
+        icon={<IoMdArrowRoundBack />}
+        onClick={() => navigate(`/${userId}`)}
+      />
       {loading ? (
         <Loading />
       ) : (

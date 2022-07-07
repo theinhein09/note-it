@@ -24,7 +24,7 @@ ButtonContainer.defaultProps = {
 ButtonContainer.propTypes = {
   category: PropTypes.oneOf(["primary"]),
   label: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["submit", "reset"]),
+  type: PropTypes.oneOf(["submit", "reset", "button"]),
 };
 
 export default ButtonContainer;

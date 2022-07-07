@@ -24,11 +24,12 @@ const LoginFormContainer = (props) => {
       user = await login(email, password);
       setUser(user);
       sessionStorage.setItem("user", JSON.stringify(user));
+      finishLoading();
+      navigate(`${user.id}`);
     } catch (error) {
       setError(error);
+      finishLoading();
     }
-    finishLoading();
-    navigate(`${user.id}`);
   };
   return <LoginForm handleSignIn={handleSignIn} />;
 };
