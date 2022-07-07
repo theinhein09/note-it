@@ -9,7 +9,7 @@ const UserSetting = (props) => {
     <>
       <ButtonContainer
         onClick={toggleUserSetting}
-        icon={<VscSettingsGear />}
+        icon={<VscSettingsGear title="User Settings" />}
         category="icon-only"
       />
       {userSetting && (

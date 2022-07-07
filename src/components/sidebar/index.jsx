@@ -21,6 +21,7 @@ const Sidebar = (props) => {
       {sidebar && (
         <aside className="min-h-screen min-w-[280px]  border-r border-black bg-white">
           <h1>noteIt</h1>
+
           <UserSettingContainer />
           <DialogRenderButtonContainer
             buttonLabel="Create Book"
