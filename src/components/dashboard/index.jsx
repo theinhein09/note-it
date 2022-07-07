@@ -13,39 +13,53 @@ const Dashboard = (props) => {
     let books = [];
     for (let category in categoriesMemo.categories) {
       books.push(
-        <Fragment key={category}>
-          <h3>
-            {category}
-            <ButtonContainer
-              onClick={() => console.log("EDIT Book Category")}
-              icon={<FaEdit />}
-              category="icon-only"
-            />
-            <ButtonContainer
-              onClick={() => console.log("DELETE Book Category")}
-              icon={<RiDeleteBin6Line />}
-              category="icon-only"
-            />
-          </h3>
-          {categoriesMemo.categories[category].map((book) => (
-            <Fragment key={book.id}>
-              <BookCover onClick={openBookPreview(book)} />
-              <h4 className="font-display">{book.title}</h4>
-              <div role="presentation" className="flex">
-                <ButtonContainer
-                  onClick={() => console.log("EDIT Book Title")}
-                  icon={<FaEdit />}
-                  category="icon-only"
-                />
-                <ButtonContainer
-                  onClick={() => console.log("DELETE Book Title")}
-                  icon={<RiDeleteBin6Line />}
-                  category="icon-only"
-                />
-              </div>
-            </Fragment>
-          ))}
-        </Fragment>
+        <div role="presentation" className="mx-5 my-2" key={category}>
+          <div role="presentation" className="flex items-center gap-2">
+            <h3 className="font-display text-xl">{category}</h3>
+            <div role="presentation" className="flex">
+              <ButtonContainer
+                onClick={() => console.log("EDIT Book Category")}
+                icon={<FaEdit />}
+                category="icon-only"
+              />
+              <ButtonContainer
+                onClick={() => console.log("DELETE Book Category")}
+                icon={<RiDeleteBin6Line />}
+                category="icon-only"
+              />
+            </div>
+          </div>
+          <div
+            role="presentation"
+            className="flex w-[280px] overflow-hidden border border-black py-2 px-4"
+          >
+            {categoriesMemo.categories[category].map((book, index) => (
+              <>
+                {index !== 0 && (
+                  <div className="mr-4 h-12 w-1 flex-none self-center bg-black" />
+                )}
+                <article key={book.id}>
+                  <div role="presentation" className="flex">
+                    <BookCover onClick={openBookPreview(book)} />
+                    <div role="presentation">
+                      <ButtonContainer
+                        onClick={() => console.log("EDIT Book Title")}
+                        icon={<FaEdit />}
+                        category="icon-only"
+                      />
+                      <ButtonContainer
+                        onClick={() => console.log("DELETE Book Title")}
+                        icon={<RiDeleteBin6Line />}
+                        category="icon-only"
+                      />
+                    </div>
+                  </div>
+                  <h4 className="font-display">{book.title}</h4>
+                </article>
+              </>
+            ))}
+          </div>
+        </div>
       );
     }
     return books;
@@ -58,7 +72,13 @@ const Dashboard = (props) => {
       {loading ? (
         <Loading />
       ) : (
-        <>{books.length === 0 ? <EmptyDashboardContainer /> : <>{books}</>}</>
+        <>
+          {books.length === 0 ? (
+            <EmptyDashboardContainer />
+          ) : (
+            <section className="flex flex-wrap">{books}</section>
+          )}
+        </>
       )}
     </>
   );
