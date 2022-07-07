@@ -3,21 +3,24 @@ import Button from "../components/button";
 import PropTypes from "prop-types";
 
 const ButtonContainer = (props) => {
-  const { category, className } = props;
-  let defaultClassName = `outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display flex items-center gap-1`;
+  const { category, className: customClassName } = props;
+  const defaultClassName =
+    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display flex items-center gap-1";
+
+  let categorizedClassName = "";
 
   switch (category) {
     case "icon-only":
-      defaultClassName += " w-8 h-8 justify-center";
+      categorizedClassName = " w-8 h-8 justify-center ";
       break;
     default:
-      defaultClassName += " border border-black px-2 py-0.5";
+      categorizedClassName = " border border-black px-2 py-0.5 ";
       break;
   }
 
-  const customClassName = defaultClassName + " " + className;
+  const className = defaultClassName + categorizedClassName + customClassName;
 
-  return <Button {...props} customClassName={customClassName} />;
+  return <Button {...props} className={className} />;
 };
 
 ButtonContainer.defaultProps = {
