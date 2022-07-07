@@ -6,6 +6,7 @@ const Input = (props) => {
   return (
     <>
       <label htmlFor={id}>{label}</label>
+      <br />
       <input
         className={className}
         type={type}
