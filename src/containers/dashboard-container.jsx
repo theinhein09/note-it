@@ -1,6 +1,7 @@
 import { groupBy } from "lodash";
 import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import Dashboard from "../components/dashboard";
 import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
@@ -40,13 +41,24 @@ const DashboardContainer = (props) => {
     for (let category in categoriesMemo.categories) {
       books.push(
         <Fragment key={category}>
-          <h3>{category}</h3>
+          <h3>
+            {category}
+            <button onClick={() => console.log("EDIT Book Category")}>
+              <FaEdit />
+            </button>
+            <button onClick={() => console.log("DELETE Book Category")}>
+              <RiDeleteBin6Line />
+            </button>
+          </h3>
           {categoriesMemo.categories[category].map((book) => (
             <Fragment key={book.id}>
               <h4 onClick={(event) => handleCLick(event, book)}>
                 {book.title}
-                <button onClick={() => console.log("EDIT")}>
+                <button onClick={() => console.log("EDIT Book Title")}>
                   <FaEdit />
+                </button>
+                <button onClick={() => console.log("DELETE Book Title")}>
+                  <RiDeleteBin6Line />
                 </button>
               </h4>
             </Fragment>
