@@ -9,7 +9,7 @@ const LoginForm = (props) => {
     <form
       id="login-form"
       onSubmit={handleSignIn}
-      className="border-black border max-w-xs flex flex-col p-1"
+      className="border-black border max-w-xs flex flex-col p-1 gap-1"
     >
       <InputContainer
         label="Email"
@@ -23,6 +23,7 @@ const LoginForm = (props) => {
         name="password"
         id="login-password"
       />
+      <br />
       <ButtonContainer label="Sign In" type="submit" form="login-form" />
     </form>
   );

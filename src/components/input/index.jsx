@@ -5,10 +5,9 @@ const Input = (props) => {
 
   return (
     <>
-      <label htmlFor={id} className="">
+      <label htmlFor={id} className="font-display">
         {label}
       </label>
-      <br />
       <input
         className={className}
         type={type}
@@ -16,7 +15,6 @@ const Input = (props) => {
         id={id}
         onChange={handleChange}
       />
-      <br />
     </>
   );
 };

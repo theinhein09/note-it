@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category } = props;
   let className =
-    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white";
+    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display";
 
   switch (category) {
     case "icon-only":

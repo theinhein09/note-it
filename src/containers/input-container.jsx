@@ -6,7 +6,7 @@ const InputContainer = (props) => {
   const { onChange, category } = props;
 
   let className =
-    "outline-none hover:border hover:border-black focus:border-[1px] focus:border-black px-1 border-[1px]";
+    "outline-none hover:border hover:border-black focus:border-[1px] focus:border-black px-1 border-[1px] font-mono";
 
   switch (category) {
     default:
