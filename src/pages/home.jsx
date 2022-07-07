@@ -1,56 +1,17 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../components/loading";
-import useBoolean from "../hooks/useBoolean";
-import { getBooks } from "../utils/mockAPI";
-import { groupBy } from "lodash";
 import UserContainer from "../containers/user-container";
 import LayoutContainer from "../containers/layout-container";
-import { useSidebarContextUpdater } from "../contexts/sidebar-context";
+import DashboardContainer from "../containers/dashboard-container";
 
 const Home = () => {
   const { userId } = useParams();
-  const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
-  const { openSidebar } = useSidebarContextUpdater();
-  const [categories, setCatagories] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      startLoading();
-      const books = await getBooks(userId);
-      const groupByCategory = groupBy(books, "category");
-      setCatagories(groupByCategory);
-      finishLoading();
-    })();
-  }, [userId, startLoading, finishLoading]);
-
-  const renderBooks = () => {
-    const handleCLick = (book) => {
-      setSelectedBook(book);
-      openSidebar();
-    };
-
-    let books = [];
-    for (let category in categories) {
-      books.push(
-        <Fragment key={category}>
-          <h3>{category}</h3>
-          {categories[category].map((book) => (
-            <Fragment key={book.id}>
-              <h4 onClick={() => handleCLick(book)}>{book.title}</h4>
-            </Fragment>
-          ))}
-        </Fragment>
-      );
-    }
-    return books;
-  };
 
   return (
     <LayoutContainer selectedBook={selectedBook}>
       <UserContainer />
-      {loading ? <Loading /> : <>{renderBooks()}</>}
+      <DashboardContainer userId={userId} setSelectedBook={setSelectedBook} />
     </LayoutContainer>
   );
 };
