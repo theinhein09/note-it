@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import useBoolean from "../hooks/useBoolean";
 import SignupFormContainer from "../containers/signup-form-container";
 import ErrorContainer from "../containers/error-container";
@@ -12,14 +11,15 @@ const SignUp = (props) => {
 
   return (
     <>
-      <main className="grid place-content-center min-h-screen">
-        <h1>noteIt</h1>
+      <main className="flex flex-col items-center min-h-screen justify-center">
+        <header className="w-full sm:max-w-md p-1 bg-black">
+          <h1 className="text-white">noteIt</h1>
+        </header>
         <SignupFormContainer
           startLoading={startLoading}
           finishLoading={finishLoading}
           setMessage={setMessage}
         />
-
         <ErrorContainer />
       </main>
       {loading && (
@@ -31,7 +31,5 @@ const SignUp = (props) => {
     </>
   );
 };
-
-SignUp.propTypes = {};
 
 export default SignUp;

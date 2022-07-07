@@ -10,23 +10,15 @@ const Entry = () => {
 
   return (
     <>
-      <main className="grid place-content-center min-h-screen">
-        <h1>noteIt</h1>
+      <main className="flex flex-col items-center justify-center min-h-screen">
+        <header className="w-full sm:max-w-md p-1 bg-black">
+          <h1 className="text-white">noteIt</h1>
+        </header>
         <LoginFormContainer
           startLoading={startLoading}
           finishLoading={finishLoading}
         />
-
         <ErrorContainer />
-        <aside className="border-black border p-1 font-display">
-          <h2 className="underline underline-offset-1">Testing</h2>
-          <p>Existing User</p>
-          <p>Email: dyer_campbell@zomboid.ga</p>
-          <p>Password: q</p>
-          <p>New User</p>
-          <p>Email: new_user@name.ad</p>
-          <p>Password: q</p>
-        </aside>
       </main>
       {loading && (
         <ModalContainer>
