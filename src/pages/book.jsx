@@ -9,6 +9,7 @@ import SidebarContainer from "../containers/sidebar-container";
 import { FaChevronRight } from "react-icons/fa";
 import SectionsContainer from "../containers/sections-container";
 import TextEditorContainer from "../containers/text-editor-container";
+import LayoutContainer from "../containers/layout-container";
 
 const Book = () => {
   const { userId, bookId } = useParams();
@@ -33,7 +34,7 @@ const Book = () => {
   }, [userId, bookId, startLoading, finishLoading]);
 
   return (
-    <>
+    <LayoutContainer sections={sections}>
       <button onClick={() => navigate(`/${userId}`)}>
         <IoMdArrowRoundBack />
       </button>
@@ -52,7 +53,7 @@ const Book = () => {
           <TextEditorContainer />
         </>
       )}
-    </>
+    </LayoutContainer>
   );
 };
 

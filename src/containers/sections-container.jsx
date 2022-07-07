@@ -22,7 +22,7 @@ const SectionsContainer = (props) => {
     return pages;
   };
 
-  return <Sections {...props} children={renderPages()} />;
+  return <>{sections && <Sections {...props} children={renderPages()} />}</>;
 };
 
 export default SectionsContainer;

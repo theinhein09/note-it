@@ -6,7 +6,7 @@ import {
 } from "../contexts/sidebar-context";
 
 const LayoutContainer = (props) => {
-  const { children, selectedBook } = props;
+  const { children, selectedBook, sections } = props;
   const sidebar = useSidebarContextState();
   const { toggleSidebar } = useSidebarContextUpdater();
 
@@ -17,6 +17,7 @@ const LayoutContainer = (props) => {
       children={children}
       toggleSidebar={toggleSidebar}
       selectedBook={selectedBook}
+      sections={sections}
     />
   );
 };

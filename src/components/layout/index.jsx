@@ -3,8 +3,14 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SidebarContainer from "../../containers/sidebar-container";
 
 const Layout = (props) => {
-  const { children, selectedBook, toggleSidebar, sidebar, closeSidebar } =
-    props;
+  const {
+    children,
+    selectedBook,
+    sections,
+    toggleSidebar,
+    sidebar,
+    closeSidebar,
+  } = props;
 
   return (
     <>
@@ -15,6 +21,7 @@ const Layout = (props) => {
         <SidebarContainer
           closeSidebar={closeSidebar}
           selectedBook={selectedBook}
+          sections={sections}
         />
       )}
       {children}
