@@ -11,10 +11,7 @@ const SignUp = (props) => {
 
   return (
     <>
-      <main className="flex flex-col items-center min-h-screen justify-center">
-        <header className="w-full sm:max-w-md p-1 bg-black">
-          <h1 className="text-white">noteIt</h1>
-        </header>
+      <main className="flex min-h-screen flex-col items-center justify-center">
         <SignupFormContainer
           startLoading={startLoading}
           finishLoading={finishLoading}

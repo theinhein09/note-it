@@ -11,9 +11,15 @@ const LoginForm = (props) => {
     <form
       id="login-form"
       onSubmit={handleSignIn}
-      className="flex w-full grow flex-col gap-1 border border-black p-1 sm:aspect-[3/5] sm:max-w-md sm:grow-0"
+      className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 sm:aspect-[3/5] sm:max-w-md sm:grow-0"
     >
-      <div role="presentation" className="flex grow flex-col justify-center">
+      <div role="presentation" className="mt-4 bg-black p-1 py-2 pl-4">
+        <h1 className="text-white">noteIt</h1>
+      </div>
+      <div
+        role="presentation"
+        className="flex grow flex-col justify-center gap-2 px-6"
+      >
         <InputContainer
           label="Email"
           type="email"
@@ -30,7 +36,7 @@ const LoginForm = (props) => {
       <br />
       <ButtonContainer label="Sign In" type="submit" form="login-form" />
       <ButtonContainer label="Sign Up" onClick={() => navigate("sign-up")} />
-      <aside className="border border-black p-1 font-display">
+      <aside className="min-h-[200px] border border-black p-1 font-display">
         <h2 className="underline underline-offset-1">Testing</h2>
         <p>Existing User</p>
         <p>Email: dyer_campbell@zomboid.ga</p>
