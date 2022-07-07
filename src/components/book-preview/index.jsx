@@ -11,7 +11,11 @@ const BookPreview = (props) => {
         <>
           <h3>{selectedBook.category}</h3>
           <h4>{selectedBook.title}</h4>
-          <ButtonContainer onClick={handleCLick} icon={<RiBookOpenFill />} />
+          <ButtonContainer
+            onClick={handleCLick}
+            icon={<RiBookOpenFill />}
+            category="icon-only"
+          />
         </>
       )}
     </>

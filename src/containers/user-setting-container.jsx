@@ -7,10 +7,7 @@ import { useUserContextUpdater } from "../contexts/user-context";
 const UserSettingContainer = (props) => {
   const navigate = useNavigate();
   const setUser = useUserContextUpdater();
-  const [
-    userSetting,
-    { toggle: toggleUserSetting, on: openUserSetting, off: closeUserSetting },
-  ] = useBoolean();
+  const [userSetting, { toggle: toggleUserSetting }] = useBoolean();
 
   const handleSignOut = () => {
     setUser(null);

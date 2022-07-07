@@ -10,6 +10,7 @@ const UserSetting = (props) => {
       <ButtonContainer
         onClick={toggleUserSetting}
         icon={<GrSettingsOption />}
+        category="icon-only"
       />
       {userSetting && (
         <>

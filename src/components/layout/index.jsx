@@ -19,6 +19,7 @@ const Layout = (props) => {
       <ButtonContainer
         onClick={toggleSidebar}
         icon={sidebar ? <FaChevronLeft /> : <FaChevronRight />}
+        category="icon-only"
       />
       {sidebar && (
         <SidebarContainer

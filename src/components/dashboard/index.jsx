@@ -18,10 +18,12 @@ const Dashboard = (props) => {
             <ButtonContainer
               onClick={() => console.log("EDIT Book Category")}
               icon={<FaEdit />}
+              category="icon-only"
             />
             <ButtonContainer
               onClick={() => console.log("DELETE Book Category")}
               icon={<RiDeleteBin6Line />}
+              category="icon-only"
             />
           </h3>
           {categoriesMemo.categories[category].map((book) => (
@@ -31,10 +33,12 @@ const Dashboard = (props) => {
                 <ButtonContainer
                   onClick={() => console.log("EDIT Book Title")}
                   icon={<FaEdit />}
+                  category="icon-only"
                 />
                 <ButtonContainer
                   onClick={() => console.log("DELETE Book Title")}
                   icon={<RiDeleteBin6Line />}
+                  category="icon-only"
                 />
               </h4>
             </Fragment>

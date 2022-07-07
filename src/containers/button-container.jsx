@@ -5,11 +5,14 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category } = props;
   let className =
-    "hover:bg-black hover:text-white focus:bg-black focus:text-white";
+    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white";
 
   switch (category) {
+    case "icon-only":
+      className += " w-6 h-6 grid place-content-center";
+      break;
     default:
-      className += " border-[1px] border-black";
+      className += " border-[1px] border-black px-2 py-0.5";
       break;
   }
 
@@ -22,7 +25,7 @@ ButtonContainer.defaultProps = {
 };
 
 ButtonContainer.propTypes = {
-  category: PropTypes.oneOf(["primary"]),
+  category: PropTypes.oneOf(["primary", "icon-only"]),
   label: PropTypes.string,
   icon: PropTypes.node,
   type: PropTypes.oneOf(["submit", "reset", "button"]),

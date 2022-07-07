@@ -16,10 +16,12 @@ const Sections = (props) => {
             <ButtonContainer
               onClick={() => console.log("EDIT Page Section")}
               icon={<FaEdit />}
+              category="icon-only"
             />
             <ButtonContainer
               onClick={() => console.log("DELETE Page Section")}
               icon={<RiDeleteBin6Line />}
+              category="icon-only"
             />
           </h3>
           {sections[section].map((page) => (
@@ -29,10 +31,12 @@ const Sections = (props) => {
                 <ButtonContainer
                   onClick={() => console.log("EDIT Page Title")}
                   icon={<FaEdit />}
+                  category="icon-only"
                 />
                 <ButtonContainer
                   onClick={() => console.log("DELETE Page Title")}
                   icon={<RiDeleteBin6Line />}
+                  category="icon-only"
                 />
               </h4>
             </Fragment>

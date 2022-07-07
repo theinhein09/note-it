@@ -8,7 +8,11 @@ const Dialog = (props) => {
     <>
       <>
         {top}
-        <ButtonContainer onClick={closeDialog} icon={<GrClose />} />
+        <ButtonContainer
+          onClick={closeDialog}
+          icon={<GrClose />}
+          category="icon-only"
+        />
       </>
       <>{children}</>
       <>{bot}</>
