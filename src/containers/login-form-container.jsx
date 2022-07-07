@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import LoginForm from "../components/login-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import { login } from "../utils/mockAPI";
@@ -33,6 +34,11 @@ const LoginFormContainer = (props) => {
     }
   };
   return <LoginForm handleSignIn={handleSignIn} {...props} />;
+};
+
+LoginFormContainer.propTypes = {
+  startLoading: PropTypes.func,
+  finishLoading: PropTypes.func,
 };
 
 export default LoginFormContainer;

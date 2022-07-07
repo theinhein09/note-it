@@ -5,7 +5,7 @@ import { useErrorContextUpdater } from "../contexts/error-context";
 import { createUser } from "../utils/mockAPI";
 
 const SignupFormContainer = (props) => {
-  const { startLoading, finishLoading, setMessage, closeDialog } = props;
+  const { startLoading, finishLoading, setMessage } = props;
   const setError = useErrorContextUpdater();
 
   const handleSubmit = async (event) => {
@@ -19,7 +19,6 @@ const SignupFormContainer = (props) => {
     const password = formData.get("password");
     try {
       await createUser(email, password);
-      closeDialog();
       finishLoading();
       setMessage(
         "Verification email sent. Please Verify your email to continue."

@@ -1,12 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../../containers/button-container";
-import DialogRenderButtonContainer from "../../containers/dialog-render-button-container";
 import InputContainer from "../../containers/input-container";
-import SignupFormContainer from "../../containers/signup-form-container";
 
 const LoginForm = (props) => {
-  const { handleSignIn, startLoading, finishLoading, setMessage } = props;
+  const { handleSignIn } = props;
 
+  const navigate = useNavigate();
   return (
     <form
       id="login-form"
@@ -26,18 +26,8 @@ const LoginForm = (props) => {
         id="login-password"
       />
       <br />
-      <ButtonContainer label="Sign In" type="submit" />
-      <DialogRenderButtonContainer
-        buttonLabel="Sign Up"
-        render={(closeDialog) => (
-          <SignupFormContainer
-            startLoading={startLoading}
-            finishLoading={finishLoading}
-            setMessage={setMessage}
-            closeDialog={closeDialog}
-          />
-        )}
-      />
+      <ButtonContainer label="Sign In" type="submit" form="login-form" />
+      <ButtonContainer label="Sign Up" onClick={() => navigate("sign-up")} />
     </form>
   );
 };
