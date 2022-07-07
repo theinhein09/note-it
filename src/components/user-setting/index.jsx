@@ -11,9 +11,9 @@ const UserSetting = (props) => {
       </button>
       {userSetting && (
         <>
-          <>Profile</>
-          <>Reset password</>
-          <>Delete account</>
+          <button>Profile</button>
+          <button>Reset password</button>
+          <button>Delete account</button>
           <button onClick={handleSignOut}>Sign out</button>
         </>
       )}

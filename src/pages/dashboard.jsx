@@ -4,14 +4,15 @@ import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
 import { getBooks } from "../utils/fakeAPI";
 import { groupBy } from "lodash";
-import SidebarContainer from "../containers/sidebar-container";
 import BookPreviewContainer from "../containers/book-preview-container";
 import UserContainer from "../containers/user-container";
+import LayoutContainer from "../containers/layout-container";
+import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 
 const Dashboard = () => {
   const { userId } = useParams();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
-  const [sidebar, { on: openSidebar, off: closeSidebar }] = useBoolean(false);
+  const { openSidebar } = useSidebarContextUpdater();
   const [categories, setCatagories] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
 
@@ -48,17 +49,14 @@ const Dashboard = () => {
   };
 
   return (
-    <>
+    <LayoutContainer
+      sidebarChildren={
+        selectedBook && <BookPreviewContainer selectedBook={selectedBook} />
+      }
+    >
       <UserContainer />
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
-      <>
-        {sidebar && (
-          <SidebarContainer closeSidebar={closeSidebar}>
-            <BookPreviewContainer selectedBook={selectedBook} />
-          </SidebarContainer>
-        )}
-      </>
-    </>
+    </LayoutContainer>
   );
 };
 
