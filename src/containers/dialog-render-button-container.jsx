@@ -1,5 +1,5 @@
 import React from "react";
-import DialogRenderButton from "../components/dialog-render-button.js";
+import DialogRenderButton from "../components/dialog-render-button";
 import useBoolean from "../hooks/useBoolean.js";
 import PropTypes from "prop-types";
 
