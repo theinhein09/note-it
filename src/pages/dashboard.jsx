@@ -49,11 +49,7 @@ const Dashboard = () => {
   };
 
   return (
-    <LayoutContainer
-      sidebarChildren={
-        selectedBook && <BookPreviewContainer selectedBook={selectedBook} />
-      }
-    >
+    <LayoutContainer selectedBook={selectedBook}>
       <UserContainer />
       <>{loading ? <Loading /> : <>{renderBooks()}</>}</>
     </LayoutContainer>
