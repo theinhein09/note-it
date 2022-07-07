@@ -1,11 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Sections from "../components/sections";
-import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import ButtonContainer from "./button-container";
+import PropTypes from "prop-types";
 
 const SectionsContainer = (props) => {
-  const { sections, setSelectedPage } = props;
+  const { setSelectedPage } = props;
 
   const openPage = (page) => (event) => {
     if (event.currentTarget === event.target) {
@@ -13,46 +11,13 @@ const SectionsContainer = (props) => {
     }
   };
 
-  const renderPages = () => {
-    let pages = [];
-    for (let section in sections) {
-      pages.push(
-        <Fragment key={section}>
-          <h3>
-            {section}
-            <ButtonContainer
-              onClick={() => console.log("EDIT Page Section")}
-              icon={<FaEdit />}
-            />
-            <ButtonContainer
-              onClick={() => console.log("DELETE Page Section")}
-              icon={<RiDeleteBin6Line />}
-            />
-          </h3>
-          {sections[section].map((page) => (
-            <Fragment key={page.id}>
-              <h4 onClick={openPage(page)}>
-                {page.title}
-                <ButtonContainer
-                  onClick={() => console.log("EDIT Page Title")}
-                  icon={<FaEdit />}
-                />
-                <ButtonContainer
-                  onClick={() => console.log("DELETE Page Title")}
-                  icon={<RiDeleteBin6Line />}
-                />
-              </h4>
-            </Fragment>
-          ))}
-          <ButtonContainer label="Add Page" />
-        </Fragment>
-      );
-    }
+  return <Sections {...props} openPage={openPage} />;
+};
 
-    return pages;
-  };
-
-  return <>{sections && <Sections {...props} children={renderPages()} />}</>;
+SectionsContainer.propTypes = {
+  sections: PropTypes.object,
+  openPage: PropTypes.func,
+  setSelectedPage: PropTypes.func,
 };
 
 export default SectionsContainer;
