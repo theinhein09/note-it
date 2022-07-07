@@ -1,5 +1,6 @@
 import React from "react";
 import { GrClose } from "react-icons/gr";
+import ButtonContainer from "../../containers/button-container";
 
 const Dialog = (props) => {
   const { top, children, bot, closeDialog } = props;
@@ -7,9 +8,7 @@ const Dialog = (props) => {
     <>
       <>
         {top}
-        <button onClick={closeDialog}>
-          <GrClose />
-        </button>
+        <ButtonContainer onClick={closeDialog} icon={<GrClose />} />
       </>
       <>{children}</>
       <>{bot}</>

@@ -1,5 +1,6 @@
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ButtonContainer from "../../containers/button-container";
 import SidebarContainer from "../../containers/sidebar-container";
 
 const Layout = (props) => {
@@ -15,9 +16,10 @@ const Layout = (props) => {
 
   return (
     <>
-      <button onClick={toggleSidebar}>
-        {sidebar ? <FaChevronLeft /> : <FaChevronRight />}
-      </button>
+      <ButtonContainer
+        onClick={toggleSidebar}
+        icon={sidebar ? <FaChevronLeft /> : <FaChevronRight />}
+      />
       {sidebar && (
         <SidebarContainer
           closeSidebar={closeSidebar}

@@ -1,20 +1,22 @@
 import React from "react";
 import { GrSettingsOption } from "react-icons/gr";
+import ButtonContainer from "../../containers/button-container";
 
 const UserSetting = (props) => {
   const { userSetting, toggleUserSetting, handleSignOut } = props;
 
   return (
     <>
-      <button onClick={toggleUserSetting}>
-        <GrSettingsOption />
-      </button>
+      <ButtonContainer
+        onClick={toggleUserSetting}
+        icon={<GrSettingsOption />}
+      />
       {userSetting && (
         <>
-          <button>Profile</button>
-          <button>Reset password</button>
-          <button>Delete account</button>
-          <button onClick={handleSignOut}>Sign out</button>
+          <ButtonContainer label="Profile" />
+          <ButtonContainer label="Reset password" />
+          <ButtonContainer label="Delete account" />
+          <ButtonContainer label="Sign out" onClick={handleSignOut} />
         </>
       )}
     </>

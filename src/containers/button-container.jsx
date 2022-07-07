@@ -23,7 +23,8 @@ ButtonContainer.defaultProps = {
 
 ButtonContainer.propTypes = {
   category: PropTypes.oneOf(["primary"]),
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  icon: PropTypes.node,
   type: PropTypes.oneOf(["submit", "reset", "button"]),
 };
 

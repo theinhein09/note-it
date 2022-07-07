@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonContainer from "../../containers/button-container";
 import ErrorContainer from "../../containers/error-container";
 
 const CreateBookForm = (props) => {
@@ -13,9 +14,7 @@ const CreateBookForm = (props) => {
       <input type="text" name="category" id="book-category" />
       <br />
       <ErrorContainer />
-      <button type="submit" form="create-book-form">
-        Create
-      </button>
+      <ButtonContainer label="Create" type="submit" form="create-book-form" />
     </form>
   );
 };

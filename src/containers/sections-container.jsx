@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Sections from "../components/sections";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import ButtonContainer from "./button-container";
 
 const SectionsContainer = (props) => {
   const { sections, setSelectedPage } = props;
@@ -19,27 +20,31 @@ const SectionsContainer = (props) => {
         <Fragment key={section}>
           <h3>
             {section}
-            <button onClick={() => console.log("EDIT Page Section")}>
-              <FaEdit />
-            </button>
-            <button onClick={() => console.log("DELETE Page Section")}>
-              <RiDeleteBin6Line />
-            </button>
+            <ButtonContainer
+              onClick={() => console.log("EDIT Page Section")}
+              icon={<FaEdit />}
+            />
+            <ButtonContainer
+              onClick={() => console.log("DELETE Page Section")}
+              icon={<RiDeleteBin6Line />}
+            />
           </h3>
           {sections[section].map((page) => (
             <Fragment key={page.id}>
               <h4 onClick={openPage(page)}>
                 {page.title}
-                <button onClick={() => console.log("EDIT Page Title")}>
-                  <FaEdit />
-                </button>
-                <button onClick={() => console.log("DELETE Page Title")}>
-                  <RiDeleteBin6Line />
-                </button>
+                <ButtonContainer
+                  onClick={() => console.log("EDIT Page Title")}
+                  icon={<FaEdit />}
+                />
+                <ButtonContainer
+                  onClick={() => console.log("DELETE Page Title")}
+                  icon={<RiDeleteBin6Line />}
+                />
               </h4>
             </Fragment>
           ))}
-          <button>Add Page</button>
+          <ButtonContainer label="Add Page" />
         </Fragment>
       );
     }
