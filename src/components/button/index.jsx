@@ -1,17 +1,17 @@
 import React from "react";
 
 const Button = (props) => {
-  const { className, label, type, icon, onClick, form, title } = props;
+  const { customClassName, label, type, icon, onClick, form, title } = props;
   return (
     <button
-      className={className}
+      className={customClassName}
       type={type}
       onClick={onClick}
       form={form}
       title={title}
     >
-      {icon && <span>{icon}</span>}
-      {label && <span>{label}</span>}
+      {icon && icon}
+      {label && label}
     </button>
   );
 };

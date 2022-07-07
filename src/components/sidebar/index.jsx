@@ -17,11 +17,13 @@ const Sidebar = (props) => {
   const { toggleSidebar } = useSidebarContextUpdater();
 
   return (
-    <aside role="presentation" className="fixed top-0 left-0 flex">
+    <aside className="fixed top-0 left-0 flex">
       {sidebar && (
-        <aside className="min-h-screen min-w-[280px]  border-r border-black bg-white">
+        <div
+          role="presentation"
+          className="min-h-screen min-w-[280px]  border-r border-black bg-white"
+        >
           <h1>noteIt</h1>
-
           <UserSettingContainer />
           <DialogRenderButtonContainer
             buttonLabel="Create Book"
@@ -34,7 +36,7 @@ const Sidebar = (props) => {
             sections={sections}
             setSelectedPage={setSelectedPage}
           />
-        </aside>
+        </div>
       )}
       <ButtonContainer
         onClick={toggleSidebar}

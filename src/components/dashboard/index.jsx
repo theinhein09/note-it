@@ -22,11 +22,13 @@ const Dashboard = (props) => {
                 onClick={() => console.log("EDIT Book Category")}
                 icon={<FaEdit />}
                 category="icon-only"
+                title="Edit Category Name"
               />
               <ButtonContainer
                 onClick={() => console.log("DELETE Book Category")}
                 icon={<RiDeleteBin6Line />}
                 category="icon-only"
+                title="Delete Category"
               />
             </div>
           </div>
