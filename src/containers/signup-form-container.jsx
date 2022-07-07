@@ -2,7 +2,7 @@ import React from "react";
 import SignupForm from "../components/signup-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 
-import { createUser } from "../utils/fakeAPI";
+import { createUser } from "../utils/mockAPI";
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading, setMessage } = props;
