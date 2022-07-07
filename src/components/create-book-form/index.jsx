@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorContainer from "../../containers/error-container";
 
 const CreateBookForm = (props) => {
   const { createBook } = props;
@@ -11,6 +12,7 @@ const CreateBookForm = (props) => {
       <label htmlFor="book-category">Category</label>
       <input type="text" name="category" id="book-category" />
       <br />
+      <ErrorContainer />
       <button type="submit" form="create-book-form">
         Create
       </button>

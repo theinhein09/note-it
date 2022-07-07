@@ -1,19 +1,28 @@
 import React from "react";
 import CreateBookForm from "../components/create-book-form";
+import { useErrorContextUpdater } from "../contexts/error-context";
 
 const CreateBookFormContainer = (props) => {
   const { closeDialog } = props;
+  const setError = useErrorContextUpdater();
 
   const createBook = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const bookTitle = formData.get("title");
-    const bookCategory = formData.get("category");
-    console.log(bookTitle, bookCategory);
-    // TODO SEND DATA TO FIRESTORE
-    event.target.reset();
-    closeDialog();
+    setError(null);
+    try {
+      const formData = new FormData(event.currentTarget);
+      const bookTitle = formData.get("title");
+      if (!bookTitle) throw new Error("Book title is required");
+      const bookCategory = formData.get("category") || "Default";
+      console.log(bookTitle, bookCategory);
+      // TODO SEND DATA TO FIRESTORE
+      event.target.reset();
+      closeDialog();
+    } catch (error) {
+      setError(error);
+    }
   };
+
   return <CreateBookForm {...props} createBook={createBook} />;
 };
 
