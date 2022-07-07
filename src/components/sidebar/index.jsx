@@ -17,11 +17,11 @@ const Sidebar = (props) => {
   const { toggleSidebar } = useSidebarContextUpdater();
 
   return (
-    <aside className="fixed top-0 left-0 flex">
+    <aside className="fixed top-0 left-0">
       {sidebar && (
         <div
           role="presentation"
-          className="min-h-screen min-w-[280px]  border-r border-black bg-white"
+          className="m-auto min-h-screen min-w-[280px] border-r border-black bg-white"
         >
           <h1>noteIt</h1>
           <UserSettingContainer />

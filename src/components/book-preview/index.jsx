@@ -9,16 +9,18 @@ const BookPreview = (props) => {
   return (
     <>
       {selectedBook && (
-        <>
+        <article className="m-auto w-fit p-5">
           <BookCover />
-          <h3>{selectedBook.category}</h3>
-          <h4>{selectedBook.title}</h4>
+          <br />
+          <h3 className="font-display">{selectedBook.category}</h3>
+          <h4 className="font-display">{selectedBook.title}</h4>
+          <br />
           <ButtonContainer
             onClick={handleCLick}
             icon={<RiBookOpenFill />}
             label="Open Book"
           />
-        </>
+        </article>
       )}
     </>
   );

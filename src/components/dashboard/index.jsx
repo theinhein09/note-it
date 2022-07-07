@@ -5,7 +5,7 @@ import Loading from "../loading";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa";
 
 const Dashboard = (props) => {
   const { loading, openBookPreview, categoriesMemo } = props;
@@ -47,7 +47,7 @@ const Dashboard = (props) => {
                     <div role="presentation">
                       <ButtonContainer
                         onClick={openBookPreview(book)}
-                        icon={<MdOutlineRemoveRedEye />}
+                        icon={<FaRegEye />}
                         category="icon-only"
                         title="Open Book in Preview"
                       />
