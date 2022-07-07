@@ -30,7 +30,7 @@ const DashboardContainer = (props) => {
   }, [userId, startLoading, finishLoading]);
 
   const renderBooks = () => {
-    const handleCLick = (event, book) => {
+    const openBookPreview = (book) => (event) => {
       if (event.currentTarget === event.target) {
         setSelectedBook(book);
         openSidebar();
@@ -52,7 +52,7 @@ const DashboardContainer = (props) => {
           </h3>
           {categoriesMemo.categories[category].map((book) => (
             <Fragment key={book.id}>
-              <h4 onClick={(event) => handleCLick(event, book)}>
+              <h4 onClick={openBookPreview(book)}>
                 {book.title}
                 <button onClick={() => console.log("EDIT Book Title")}>
                   <FaEdit />

@@ -6,6 +6,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 const SectionsContainer = (props) => {
   const { sections } = props;
 
+  const openPage = (page) => (event) => {
+    if (event.currentTarget === event.target) {
+      console.log(page);
+    }
+  };
+
   const renderPages = () => {
     let pages = [];
     for (let section in sections) {
@@ -22,7 +28,7 @@ const SectionsContainer = (props) => {
           </h3>
           {sections[section].map((page) => (
             <Fragment key={page.id}>
-              <h4>
+              <h4 onClick={openPage(page)}>
                 {page.title}
                 <button onClick={() => console.log("EDIT Page Title")}>
                   <FaEdit />
@@ -33,6 +39,7 @@ const SectionsContainer = (props) => {
               </h4>
             </Fragment>
           ))}
+          <button>Add Page</button>
         </Fragment>
       );
     }
