@@ -2,7 +2,7 @@ import React from "react";
 import { GrSettingsOption } from "react-icons/gr";
 
 const UserSetting = (props) => {
-  const { userSetting, toggleUserSetting } = props;
+  const { userSetting, toggleUserSetting, handleSignOut } = props;
 
   return (
     <>
@@ -14,7 +14,7 @@ const UserSetting = (props) => {
           <>Profile</>
           <>Reset password</>
           <>Delete account</>
-          <>Sign out</>
+          <button onClick={handleSignOut}>Sign out</button>
         </>
       )}
     </>

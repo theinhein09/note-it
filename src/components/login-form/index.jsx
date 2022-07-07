@@ -1,10 +1,10 @@
 import React from "react";
 
 const LoginForm = (props) => {
-  const { handleSubmit } = props;
+  const { handleSignIn } = props;
 
   return (
-    <form id="login-form" onSubmit={handleSubmit}>
+    <form id="login-form" onSubmit={handleSignIn}>
       <label htmlFor="login-email">Email</label>
       <input type="email" name="email" id="login-email" />
       <br />

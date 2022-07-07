@@ -11,7 +11,7 @@ const LoginFormContainer = (props) => {
   const setUser = useUserContextUpdater();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSignIn = async (event) => {
     startLoading();
     setError(null);
     setUser(null);
@@ -30,7 +30,7 @@ const LoginFormContainer = (props) => {
     finishLoading();
     navigate(`${user.id}`);
   };
-  return <LoginForm handleSubmit={handleSubmit} />;
+  return <LoginForm handleSignIn={handleSignIn} />;
 };
 
 export default LoginFormContainer;
