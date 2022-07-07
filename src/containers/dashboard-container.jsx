@@ -1,10 +1,10 @@
 import { groupBy } from "lodash";
 import React, { useEffect, useMemo, useState } from "react";
-
 import Dashboard from "../components/dashboard";
 import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
 import { getBooks } from "../utils/mockAPI";
+import PropTypes from "prop-types";
 
 const DashboardContainer = (props) => {
   const { setSelectedBook, userId } = props;
@@ -43,6 +43,11 @@ const DashboardContainer = (props) => {
       categoriesMemo={categoriesMemo}
     />
   );
+};
+
+DashboardContainer.propTypes = {
+  setSelectedBook: PropTypes.func,
+  userId: PropTypes.string,
 };
 
 export default DashboardContainer;
