@@ -8,9 +8,9 @@ const SignupForm = (props) => {
     <form
       id="signup-form"
       onSubmit={handleSubmit}
-      className="border-black border w-full grow sm:grow-0 sm:aspect-[3/5] sm:max-w-md flex flex-col p-1 gap-1"
+      className="flex w-full grow flex-col gap-1 border border-black p-1 sm:aspect-[3/5] sm:max-w-md sm:grow-0"
     >
-      <div role="presentation" className="grow flex flex-col justify-center">
+      <div role="presentation" className="flex grow flex-col justify-center">
         <InputContainer label="Username" name="username" id="signup-username" />
         <InputContainer
           label="Email"
