@@ -1,5 +1,6 @@
 import { groupBy } from "lodash";
 import React, { Fragment, useEffect, useMemo, useState } from "react";
+import { FaEdit } from "react-icons/fa";
 import Dashboard from "../components/dashboard";
 import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
@@ -28,9 +29,11 @@ const DashboardContainer = (props) => {
   }, [userId, startLoading, finishLoading]);
 
   const renderBooks = () => {
-    const handleCLick = (book) => {
-      setSelectedBook(book);
-      openSidebar();
+    const handleCLick = (event, book) => {
+      if (event.currentTarget === event.target) {
+        setSelectedBook(book);
+        openSidebar();
+      }
     };
 
     let books = [];
@@ -40,7 +43,12 @@ const DashboardContainer = (props) => {
           <h3>{category}</h3>
           {categoriesMemo.categories[category].map((book) => (
             <Fragment key={book.id}>
-              <h4 onClick={() => handleCLick(book)}>{book.title}</h4>
+              <h4 onClick={(event) => handleCLick(event, book)}>
+                {book.title}
+                <button onClick={() => console.log("EDIT")}>
+                  <FaEdit />
+                </button>
+              </h4>
             </Fragment>
           ))}
         </Fragment>
