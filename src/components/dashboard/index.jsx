@@ -34,40 +34,35 @@ const Dashboard = (props) => {
           </div>
           <div
             role="presentation"
-            className="flex w-[280px] overflow-hidden border border-black py-2 px-4"
+            className="flex w-[280px] divide-x-2 overflow-hidden border border-black py-2 px-4"
           >
-            {categoriesMemo.categories[category].map((book, index) => (
-              <Fragment key={book.id}>
-                {index !== 0 && (
-                  <div className="mr-4 ml-2 h-12 w-1 flex-none self-center bg-black" />
-                )}
-                <article key={book.id}>
-                  <div role="presentation" className="flex">
-                    <BookCover onClick={openBookPreview(book)} />
-                    <div role="presentation">
-                      <ButtonContainer
-                        onClick={openBookPreview(book)}
-                        icon={<FaRegEye />}
-                        category="icon-only"
-                        title="Open Book in Preview"
-                      />
-                      <ButtonContainer
-                        onClick={() => console.log("EDIT Book Title")}
-                        icon={<FaEdit />}
-                        category="icon-only"
-                        title="Edit Book Title"
-                      />
-                      <ButtonContainer
-                        onClick={() => console.log("DELETE Book Title")}
-                        icon={<RiDeleteBin6Line />}
-                        category="icon-only"
-                        title="Delete Book"
-                      />
-                    </div>
+            {categoriesMemo.categories[category].map((book) => (
+              <article key={book.id} className="px-4">
+                <div role="presentation" className="flex">
+                  <BookCover onClick={openBookPreview(book)} />
+                  <div role="presentation">
+                    <ButtonContainer
+                      onClick={openBookPreview(book)}
+                      icon={<FaRegEye />}
+                      category="icon-only"
+                      title="Open Book in Preview"
+                    />
+                    <ButtonContainer
+                      onClick={() => console.log("EDIT Book Title")}
+                      icon={<FaEdit />}
+                      category="icon-only"
+                      title="Edit Book Title"
+                    />
+                    <ButtonContainer
+                      onClick={() => console.log("DELETE Book Title")}
+                      icon={<RiDeleteBin6Line />}
+                      category="icon-only"
+                      title="Delete Book"
+                    />
                   </div>
-                  <h4 className="font-display">{book.title}</h4>
-                </article>
-              </Fragment>
+                </div>
+                <h4 className="font-display">{book.title}</h4>
+              </article>
             ))}
           </div>
         </div>

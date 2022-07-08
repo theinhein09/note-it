@@ -42,15 +42,23 @@ const Book = () => {
       setSelectedPage={selectedPageMemo.setSelectedPage}
     >
       <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
-        <div role="presentation" className="flex grow">
-          <span>{user.username}</span>
-          <div role="presentation" className="mx-4 h-6 w-[1px] bg-white" />
-          {loading ? <Loading /> : <span>Title: {selectedBook.title}</span>}
-          <div role="presentation" className="mx-4 h-6 w-[1px] bg-white" />
+        <div role="presentation" className="flex grow divide-x-2">
+          <span className="px-4">{user.username}</span>
           {loading ? (
             <Loading />
           ) : (
-            <span>Category: {selectedBook.category}</span>
+            <span className="px-4">Category: {selectedBook.category}</span>
+          )}
+          {loading ? (
+            <Loading />
+          ) : (
+            <span className="px-4">Title: {selectedBook.title}</span>
+          )}
+          {selectedPage && (
+            <>
+              <span className="px-4">Section: {selectedPage.section}</span>
+              <span className="px-4">Page: {selectedPage.title}</span>
+            </>
           )}
         </div>
         <ButtonContainer

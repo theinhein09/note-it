@@ -26,11 +26,7 @@ const Sections = (props) => {
             <ButtonContainer label="Add New Page" className="text-sm" />
           </header>
           {sections[section].map((page) => (
-            <article
-              onClick={openPage(page)}
-              key={page.id}
-              className="flex cursor-pointer items-center"
-            >
+            <article key={page.id} className="flex items-center">
               <div role="presentation" className="ml-4 h-5 w-0.5 bg-black" />
               <div role="presentation" className="h-0.5 w-2 bg-black" />
               <h4 className="grow overflow-hidden text-ellipsis px-2">
