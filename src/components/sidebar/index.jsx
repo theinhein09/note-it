@@ -17,20 +17,22 @@ const Sidebar = (props) => {
   const { toggleSidebar } = useSidebarContextUpdater();
 
   return (
-    <aside className="fixed top-0 left-0">
+    <aside className="fixed top-0 left-0 flex">
       {sidebar && (
         <div
           role="presentation"
           className="m-auto min-h-screen min-w-[280px] border-r border-black bg-white"
         >
-          <h1>noteIt</h1>
-          <UserSettingContainer />
-          <DialogRenderButtonContainer
-            buttonLabel="Create Book"
-            render={(closeDialog) => (
-              <CreateBookFormContainer closeDialog={closeDialog} />
-            )}
-          />
+          <header className="flex items-center bg-black px-1 text-white">
+            <h1 className="grow ">noteIt</h1>
+            <UserSettingContainer />
+            <DialogRenderButtonContainer
+              buttonLabel="Create Book"
+              render={(closeDialog) => (
+                <CreateBookFormContainer closeDialog={closeDialog} />
+              )}
+            />
+          </header>
           <BookPreviewContainer selectedBook={selectedBook} />
           <SectionsContainer
             sections={sections}
@@ -42,6 +44,7 @@ const Sidebar = (props) => {
         onClick={toggleSidebar}
         icon={sidebar ? <CgChevronLeft /> : <CgChevronRight />}
         category="icon-only"
+        className="bg-white"
       />
     </aside>
   );

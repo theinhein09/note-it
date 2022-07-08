@@ -11,7 +11,7 @@ const Layout = (props) => {
         sections={sections}
         setSelectedPage={setSelectedPage}
       />
-      <main className="pl-1 pt-8">{children}</main>
+      <main>{children}</main>
     </>
   );
 };

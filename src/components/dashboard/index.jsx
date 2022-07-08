@@ -37,7 +37,7 @@ const Dashboard = (props) => {
             className="flex w-[280px] overflow-hidden border border-black py-2 px-4"
           >
             {categoriesMemo.categories[category].map((book, index) => (
-              <>
+              <Fragment key={book.id}>
                 {index !== 0 && (
                   <div className="mr-4 ml-2 h-12 w-1 flex-none self-center bg-black" />
                 )}
@@ -67,7 +67,7 @@ const Dashboard = (props) => {
                   </div>
                   <h4 className="font-display">{book.title}</h4>
                 </article>
-              </>
+              </Fragment>
             ))}
           </div>
         </div>

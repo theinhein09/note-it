@@ -3,10 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import useBoolean from "../hooks/useBoolean";
 import { getBook } from "../utils/mockAPI";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
+import { IoMdClose } from "react-icons/io";
 import ButtonContainer from "../containers/button-container";
 
 const Book = () => {
@@ -14,18 +14,20 @@ const Book = () => {
   const [sections, setSections] = useState(null);
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const navigate = useNavigate();
 
   const selectedPageMemo = useMemo(
     () => ({ selectedPage, setSelectedPage }),
     [selectedPage]
   );
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     startLoading();
     (async () => {
       const book = await getBook(userId, bookId);
+      setSelectedBook(book);
       const pages = book.pages;
       const groupBySection = groupBy(pages, "section");
       setSections(groupBySection);
@@ -38,10 +40,22 @@ const Book = () => {
       sections={sections}
       setSelectedPage={selectedPageMemo.setSelectedPage}
     >
-      <ButtonContainer
-        icon={<IoMdArrowRoundBack />}
-        onClick={() => navigate(`/${userId}`)}
-      />
+      <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
+        <div role="presentation" className="flex grow">
+          {loading ? <Loading /> : <span>Title: {selectedBook.title}</span>}
+          <div role="presentation" className="mx-4 h-6 w-0.5 bg-white" />
+          {loading ? (
+            <Loading />
+          ) : (
+            <span>Category: {selectedBook.category}</span>
+          )}
+        </div>
+        <ButtonContainer
+          icon={<IoMdClose />}
+          category="icon-only"
+          onClick={() => navigate(`/${userId}`)}
+        />
+      </nav>
       {loading ? (
         <Loading />
       ) : (
