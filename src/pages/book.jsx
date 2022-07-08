@@ -8,6 +8,7 @@ import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
 import { IoMdClose } from "react-icons/io";
 import ButtonContainer from "../containers/button-container";
+import { useUserContextState } from "../contexts/user-context";
 
 const Book = () => {
   const { userId, bookId } = useParams();
@@ -15,7 +16,7 @@ const Book = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-
+  const user = useUserContextState();
   const navigate = useNavigate();
 
   const selectedPageMemo = useMemo(
@@ -42,6 +43,8 @@ const Book = () => {
     >
       <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
         <div role="presentation" className="flex grow">
+          <span>{user.username}</span>
+          <div role="presentation" className="mx-4 h-6 w-0.5 bg-white" />
           {loading ? <Loading /> : <span>Title: {selectedBook.title}</span>}
           <div role="presentation" className="mx-4 h-6 w-0.5 bg-white" />
           {loading ? (
