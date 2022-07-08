@@ -6,9 +6,7 @@ const SectionsContainer = (props) => {
   const { setSelectedPage } = props;
 
   const openPage = (page) => (event) => {
-    if (event.currentTarget === event.target) {
-      setSelectedPage(page);
-    }
+    setSelectedPage(page);
   };
 
   return <Sections {...props} openPage={openPage} />;

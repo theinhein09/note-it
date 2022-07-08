@@ -43,7 +43,7 @@ const Book = () => {
     >
       <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
         <div role="presentation" className="flex grow divide-x-2">
-          <span className="px-4">{user.username}</span>
+          <span className="px-4">{user.displayName}</span>
           {loading ? (
             <Loading />
           ) : (

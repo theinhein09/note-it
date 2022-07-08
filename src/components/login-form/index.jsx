@@ -48,14 +48,22 @@ const LoginForm = (props) => {
         onClick={() => navigate("sign-up")}
         icon={<CgUser />}
       />
-      <aside className="min-h-[200px] border border-black p-1 font-display">
-        <h2 className="underline underline-offset-1">Testing</h2>
-        <p>Existing User</p>
-        <p>Email: dyer_campbell@zomboid.ga</p>
-        <p>Password: q</p>
-        <p>New User</p>
-        <p>Email: new_user@name.ad</p>
-        <p>Password: q</p>
+      <aside className="min-h-[200px] border border-black p-1 text-right font-display">
+        <h2 className="underline underline-offset-1">Sample Test Accounts</h2>
+        <br />
+        <p>
+          Email: <em>dyer_campbell@zomboid.ga</em>
+        </p>
+        <p>
+          Password: <em>q</em>
+        </p>
+        <br />
+        <p>
+          Email: <em>new_user@name.ad</em>
+        </p>
+        <p>
+          Password: <em>q</em>
+        </p>
       </aside>
     </form>
   );

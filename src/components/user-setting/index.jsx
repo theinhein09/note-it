@@ -3,18 +3,12 @@ import { CgUser, CgUserRemove } from "react-icons/cg";
 import { RiLockPasswordLine, RiLogoutBoxLine } from "react-icons/ri";
 import { VscSettingsGear } from "react-icons/vsc";
 import ButtonContainer from "../../containers/button-container";
-import { useUserContextState } from "../../contexts/user-context";
 
 const UserSetting = (props) => {
   const { userSetting, toggleUserSetting, handleSignOut } = props;
-  const user = useUserContextState();
 
   return (
-    <div
-      className="relative flex items-center font-display"
-      role="presentation"
-    >
-      <span>{user.displayName}</span>
+    <div className="relative">
       <ButtonContainer
         onClick={toggleUserSetting}
         icon={<VscSettingsGear title="User Settings" />}
