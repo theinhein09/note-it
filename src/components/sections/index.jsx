@@ -62,7 +62,7 @@ const Sections = (props) => {
 };
 
 Sections.propTypes = {
-  sections: PropTypes.array,
+  sections: PropTypes.object,
   openPage: PropTypes.func,
 };
 

@@ -8,7 +8,7 @@ const SidebarContainer = (props) => {
 
 Sidebar.propTypes = {
   selectedBook: PropTypes.object,
-  sections: PropTypes.array,
+  sections: PropTypes.object,
   setSelectedPage: PropTypes.func,
 };
 

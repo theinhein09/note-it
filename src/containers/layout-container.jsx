@@ -9,7 +9,7 @@ const LayoutContainer = (props) => {
 LayoutContainer.propTypes = {
   children: PropTypes.node,
   selectedBook: PropTypes.object,
-  sections: PropTypes.array,
+  sections: PropTypes.object,
   setSelectedPage: PropTypes.func,
 };
 
