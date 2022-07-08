@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
@@ -67,6 +68,10 @@ const LoginForm = (props) => {
       </aside>
     </form>
   );
+};
+
+LoginForm.propTypes = {
+  handleSignIn: PropTypes.func,
 };
 
 export default LoginForm;

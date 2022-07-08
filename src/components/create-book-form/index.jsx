@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import ErrorContainer from "../../containers/error-container";
 import InputContainer from "../../containers/input-container";
@@ -14,6 +15,10 @@ const CreateBookForm = (props) => {
       <ButtonContainer label="Create" type="submit" form="create-book-form" />
     </form>
   );
+};
+
+CreateBookForm.propTypes = {
+  createBook: PropTypes.func,
 };
 
 export default CreateBookForm;

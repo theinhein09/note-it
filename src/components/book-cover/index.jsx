@@ -17,6 +17,8 @@ const BookCover = (props) => {
   );
 };
 
-BookCover.propTypes = {};
+BookCover.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default BookCover;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import CreateBookForm from "../components/create-book-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 
@@ -24,6 +25,10 @@ const CreateBookFormContainer = (props) => {
   };
 
   return <CreateBookForm {...props} createBook={createBook} />;
+};
+
+CreateBookFormContainer.propTypes = {
+  closeDialog: PropTypes.func,
 };
 
 export default CreateBookFormContainer;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BookPreviewContainer from "../../containers/book-preview-container";
 import ButtonContainer from "../../containers/button-container";
 import CreateBookFormContainer from "../../containers/create-book-form-container";
@@ -55,6 +56,12 @@ const Sidebar = (props) => {
       />
     </aside>
   );
+};
+
+Sidebar.propTypes = {
+  selectedBook: PropTypes.object,
+  sections: PropTypes.array,
+  setSelectedPage: PropTypes.func,
 };
 
 export default Sidebar;

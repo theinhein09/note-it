@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { CgUser, CgUserRemove } from "react-icons/cg";
 import { RiLockPasswordLine, RiLogoutBoxLine } from "react-icons/ri";
 import { VscSettingsGear } from "react-icons/vsc";
@@ -34,6 +35,12 @@ const UserSetting = (props) => {
       )}
     </div>
   );
+};
+
+UserSetting.propTypes = {
+  userSetting: PropTypes.bool,
+  toggleUserSetting: PropTypes.func,
+  handleSignOut: PropTypes.func,
 };
 
 export default UserSetting;

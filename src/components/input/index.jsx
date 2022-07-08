@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Input = (props) => {
   const { label, id, type, name, handleChange, className } = props;
@@ -17,6 +18,15 @@ const Input = (props) => {
       />
     </>
   );
+};
+
+Input.propTypes = {
+  label: PropTypes.string,
+  id: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  handleChange: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default Input;

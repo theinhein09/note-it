@@ -33,6 +33,9 @@ ButtonContainer.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.node,
   type: PropTypes.oneOf(["submit", "reset", "button"]),
+  onClick: PropTypes.func,
+  form: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default ButtonContainer;

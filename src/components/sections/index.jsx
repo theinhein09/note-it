@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import { FaEdit, FaRegEye } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -58,6 +59,11 @@ const Sections = (props) => {
   };
 
   return <>{sections && renderPages()}</>;
+};
+
+Sections.propTypes = {
+  sections: PropTypes.array,
+  openPage: PropTypes.func,
 };
 
 export default Sections;

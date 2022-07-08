@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SignupForm from "../components/signup-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 
@@ -29,6 +30,12 @@ const SignupFormContainer = (props) => {
     }
   };
   return <SignupForm handleSubmit={handleSubmit} />;
+};
+
+SignupFormContainer.propTypes = {
+  startLoading: PropTypes.func,
+  finishLoading: PropTypes.func,
+  setMessage: PropTypes.func,
 };
 
 export default SignupFormContainer;

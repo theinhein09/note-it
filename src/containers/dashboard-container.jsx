@@ -49,7 +49,6 @@ const DashboardContainer = (props) => {
 
 DashboardContainer.propTypes = {
   setSelectedBook: PropTypes.func,
-  userId: PropTypes.string,
 };
 
 export default DashboardContainer;

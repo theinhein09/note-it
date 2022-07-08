@@ -5,7 +5,7 @@ import ErrorContainer from "../containers/error-container";
 import ModalContainer from "../containers/modal-container";
 import Loading from "../components/loading";
 
-const SignUp = (props) => {
+const SignUp = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
   const [message, setMessage] = useState(null);
 

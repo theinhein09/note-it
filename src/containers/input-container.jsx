@@ -27,12 +27,12 @@ InputContainer.defaultProps = {
 };
 
 InputContainer.propTypes = {
-  id: PropTypes.string,
-  type: PropTypes.oneOf(["email", "text", "password"]),
-  label: PropTypes.string,
-  name: PropTypes.string,
   onChange: PropTypes.func,
   category: PropTypes.oneOf(["primary"]),
+  label: PropTypes.string,
+  id: PropTypes.string,
+  type: PropTypes.oneOf(["email", "text", "password"]),
+  name: PropTypes.string,
 };
 
 export default InputContainer;

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import EmptyDashboardContainer from "../../containers/empty-dashboard-container";
 import Loading from "../loading";
@@ -88,6 +89,12 @@ const Dashboard = (props) => {
       )}
     </>
   );
+};
+
+Dashboard.propTypes = {
+  loading: PropTypes.bool,
+  openBookPreview: PropTypes.func,
+  categoriesMemo: PropTypes.object,
 };
 
 export default Dashboard;

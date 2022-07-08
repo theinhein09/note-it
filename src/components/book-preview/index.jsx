@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { RiBookOpenFill } from "react-icons/ri";
 import ButtonContainer from "../../containers/button-container";
 import BookCover from "../book-cover";
@@ -24,6 +25,11 @@ const BookPreview = (props) => {
       )}
     </>
   );
+};
+
+BookPreview.propTypes = {
+  selectedBook: PropTypes.object,
+  handleCLick: PropTypes.func,
 };
 
 export default BookPreview;

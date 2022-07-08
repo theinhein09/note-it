@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
 import { GoCheck } from "react-icons/go";
@@ -45,6 +46,10 @@ const SignupForm = (props) => {
       />
     </form>
   );
+};
+
+SignupForm.propTypes = {
+  handleSubmit: PropTypes.func,
 };
 
 export default SignupForm;

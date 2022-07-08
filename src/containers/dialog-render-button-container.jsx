@@ -24,4 +24,5 @@ DialogRenderButtonContainer.propTypes = {
   buttonLabel: PropTypes.string,
   render: PropTypes.func,
 };
+
 export default DialogRenderButtonContainer;

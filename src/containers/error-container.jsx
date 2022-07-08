@@ -1,6 +1,7 @@
 import React from "react";
 import Error from "../components/error";
 import { useErrorContextState } from "../contexts/error-context";
+import PropTypes from "prop-types";
 
 const ErrorContainer = () => {
   const error = useErrorContextState();
@@ -32,6 +33,10 @@ const ErrorContainer = () => {
   let message = makeCustomMessage(error);
 
   return error && <Error>{message}</Error>;
+};
+
+Error.propTypes = {
+  children: PropTypes.node,
 };
 
 export default ErrorContainer;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SidebarContainer from "../../containers/sidebar-container";
 
 const Layout = (props) => {
@@ -14,6 +15,13 @@ const Layout = (props) => {
       <main>{children}</main>
     </>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  selectedBook: PropTypes.object,
+  sections: PropTypes.array,
+  setSelectedPage: PropTypes.func,
 };
 
 export default Layout;

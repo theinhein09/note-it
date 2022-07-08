@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Modal = (props) => {
   const { children } = props;
@@ -10,6 +11,10 @@ const Modal = (props) => {
       {children}
     </div>
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.node,
 };
 
 export default Modal;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { GrClose } from "react-icons/gr";
 import ButtonContainer from "../../containers/button-container";
 
@@ -18,6 +19,13 @@ const Dialog = (props) => {
       <>{bot}</>
     </>
   );
+};
+
+Dialog.propTypes = {
+  top: PropTypes.node,
+  children: PropTypes.node,
+  bot: PropTypes.node,
+  closeDialog: PropTypes.func,
 };
 
 export default Dialog;
