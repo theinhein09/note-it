@@ -11,12 +11,12 @@ import ButtonContainer from "../containers/button-container";
 import { useUserContextState } from "../contexts/user-context";
 
 const Book = () => {
-  const { userId, bookId } = useParams();
+  const { bookId } = useParams();
+  const user = useUserContextState();
   const [sections, setSections] = useState(null);
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-  const user = useUserContextState();
   const navigate = useNavigate();
 
   const selectedPageMemo = useMemo(
@@ -27,14 +27,14 @@ const Book = () => {
   useEffect(() => {
     startLoading();
     (async () => {
-      const book = await getBook(userId, bookId);
+      const book = await getBook(user.id, bookId);
       setSelectedBook(book);
       const pages = book.pages;
       const groupBySection = groupBy(pages, "section");
       setSections(groupBySection);
       finishLoading();
     })();
-  }, [userId, bookId, startLoading, finishLoading]);
+  }, [user.id, bookId, startLoading, finishLoading]);
 
   return (
     <LayoutContainer
@@ -44,9 +44,9 @@ const Book = () => {
       <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
         <div role="presentation" className="flex grow">
           <span>{user.username}</span>
-          <div role="presentation" className="mx-4 h-6 w-0.5 bg-white" />
+          <div role="presentation" className="mx-4 h-6 w-[1px] bg-white" />
           {loading ? <Loading /> : <span>Title: {selectedBook.title}</span>}
-          <div role="presentation" className="mx-4 h-6 w-0.5 bg-white" />
+          <div role="presentation" className="mx-4 h-6 w-[1px] bg-white" />
           {loading ? (
             <Loading />
           ) : (
@@ -56,7 +56,7 @@ const Book = () => {
         <ButtonContainer
           icon={<IoMdClose />}
           category="icon-only"
-          onClick={() => navigate(`/${userId}`)}
+          onClick={() => navigate(`/${user.id}`)}
         />
       </nav>
       {loading ? (

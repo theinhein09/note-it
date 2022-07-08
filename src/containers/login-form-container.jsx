@@ -13,7 +13,6 @@ const LoginFormContainer = (props) => {
   const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
-    console.log("SIGN IN");
     startLoading();
     setError(null);
     setUser(null);

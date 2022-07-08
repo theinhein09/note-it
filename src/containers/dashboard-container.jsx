@@ -5,9 +5,11 @@ import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
 import { getBooks } from "../utils/mockAPI";
 import PropTypes from "prop-types";
+import { useUserContextState } from "../contexts/user-context";
 
 const DashboardContainer = (props) => {
-  const { setSelectedBook, userId } = props;
+  const { setSelectedBook } = props;
+  const user = useUserContextState();
   const { openSidebar } = useSidebarContextUpdater();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
 
@@ -28,12 +30,12 @@ const DashboardContainer = (props) => {
   useEffect(() => {
     (async () => {
       startLoading();
-      const books = await getBooks(userId);
+      const books = await getBooks(user.id);
       const groupByCategory = groupBy(books, "category");
       setCatagories(groupByCategory);
       finishLoading();
     })();
-  }, [userId, startLoading, finishLoading]);
+  }, [user.id, startLoading, finishLoading]);
 
   return (
     <Dashboard
