@@ -22,7 +22,7 @@ const data = {
 };
 
 const TextEditor = (props) => {
-  const { setContentState } = props;
+  const { setCurrentContent } = props;
 
   const content = data && convertFromRaw(data);
   const [editorState, setEditorState] = useState(() =>
@@ -36,14 +36,14 @@ const TextEditor = (props) => {
       wrapperClassName="wrapperClassName"
       editorClassName="px-2"
       onEditorStateChange={setEditorState}
-      onContentStateChange={setContentState}
+      onContentStateChange={setCurrentContent}
       toolbar={toolbar}
     />
   );
 };
 
 TextEditor.propTypes = {
-  setContentState: PropTypes.func,
+  setCurrentContent: PropTypes.func,
 };
 
 export default TextEditor;
