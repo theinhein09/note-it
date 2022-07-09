@@ -35,7 +35,7 @@ const SignupFormContainer = (props) => {
       );
       setTimeout(() => {
         setMessage(null);
-        navigate("/");
+        navigate("login");
       }, 1000);
     } catch (error) {
       setError(error);

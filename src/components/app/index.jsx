@@ -9,12 +9,10 @@ const App = (props) => {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<Entry />} />
+          <Route index element={<Home />} />
           <Route path="sign-up" element={<SignUp />} />
-          <Route path=":userId">
-            <Route index element={<Home />} />
-            <Route path=":bookId" element={<Book />} />
-          </Route>
+          <Route path="login" element={<Entry />} />
+          <Route path=":bookId" element={<Book />} />
         </Route>
       </Routes>
     </BrowserRouter>
