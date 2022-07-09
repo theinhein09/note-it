@@ -1,14 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import LoginForm from "../components/login-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
-import { login } from "../utils/mockAPI";
 import { useNavigate } from "react-router-dom";
 import { useUserContextUpdater } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
+import useBoolean from "../hooks/useBoolean";
 
 const LoginFormContainer = (props) => {
-  const { startLoading, finishLoading } = props;
+  const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
   const setError = useErrorContextUpdater();
   const setUser = useUserContextUpdater();
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ const LoginFormContainer = (props) => {
         password
       );
       setUser(user);
-      sessionStorage.setItem("user", JSON.stringify(user));
       finishLoading();
       if (user.emailVerified) {
         navigate("/");
@@ -38,12 +36,7 @@ const LoginFormContainer = (props) => {
       finishLoading();
     }
   };
-  return <LoginForm handleSignIn={handleSignIn} {...props} />;
-};
-
-LoginFormContainer.propTypes = {
-  startLoading: PropTypes.func,
-  finishLoading: PropTypes.func,
+  return <LoginForm handleSignIn={handleSignIn} loading={loading} {...props} />;
 };
 
 export default LoginFormContainer;

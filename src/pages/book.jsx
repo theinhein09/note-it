@@ -12,7 +12,7 @@ import { useUserContextState } from "../contexts/user-context";
 
 const Book = () => {
   const { bookId } = useParams();
-  const user = useUserContextState();
+  const { user } = useUserContextState();
   const [sections, setSections] = useState(null);
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);

@@ -4,7 +4,7 @@ import DashboardContainer from "../containers/dashboard-container";
 import { useUserContextState } from "../contexts/user-context";
 
 const Home = () => {
-  const user = useUserContextState();
+  const { user } = useUserContextState();
   const [selectedBook, setSelectedBook] = useState(null);
 
   return (
