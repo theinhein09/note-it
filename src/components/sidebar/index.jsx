@@ -6,7 +6,7 @@ import CreateBookFormContainer from "../../containers/create-book-form-container
 import DialogRenderButtonContainer from "../../containers/dialog-render-button-container";
 import SectionsContainer from "../../containers/sections-container";
 import UserSettingContainer from "../../containers/user-setting-container";
-import { CgChevronLeft, CgChevronRight } from "react-icons/cg";
+import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import {
   useSidebarContextState,
   useSidebarContextUpdater,
@@ -26,7 +26,7 @@ const Sidebar = (props) => {
           role="presentation"
           className="m-auto flex min-h-screen min-w-[280px] flex-col border-r border-black bg-white"
         >
-          <header className="flex items-center bg-black px-1 text-white">
+          <header className="flex h-8 items-center bg-black px-1 text-white">
             <h1 className="grow ">noteIt</h1>
             <DialogRenderButtonContainer
               buttonLabel="Create New Book"
@@ -42,7 +42,7 @@ const Sidebar = (props) => {
               setSelectedPage={setSelectedPage}
             />
           </div>
-          <footer className="flex items-center bg-black font-display text-white">
+          <footer className="flex items-center gap-2 bg-black font-display text-white">
             <span className="grow text-right">{user.displayName}</span>
             <UserSettingContainer />
           </footer>
@@ -50,9 +50,9 @@ const Sidebar = (props) => {
       )}
       <ButtonContainer
         onClick={toggleSidebar}
-        icon={sidebar ? <CgChevronLeft /> : <CgChevronRight />}
+        icon={sidebar ? <TiChevronLeft /> : <TiChevronRight />}
         category="icon-only"
-        className="bg-white"
+        className="border border-l-0 border-black bg-black text-white"
       />
     </aside>
   );

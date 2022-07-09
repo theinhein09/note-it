@@ -5,6 +5,7 @@ import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
 import { RiLoginBoxLine } from "react-icons/ri";
 import { CgUser } from "react-icons/cg";
+import ErrorContainer from "../../containers/error-container";
 
 const LoginForm = (props) => {
   const { handleSignIn } = props;
@@ -14,7 +15,7 @@ const LoginForm = (props) => {
     <form
       id="login-form"
       onSubmit={handleSignIn}
-      className="relative flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 
+      className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 
       sm:aspect-[3/5] sm:max-w-md sm:grow-0"
     >
       <div role="presentation" className="mt-4 bg-black p-1 py-2 pl-4">
@@ -37,6 +38,7 @@ const LoginForm = (props) => {
           id="login-password"
         />
       </div>
+      <ErrorContainer />
       <br />
       <ButtonContainer
         label="Sign In"

@@ -1,30 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GrClose } from "react-icons/gr";
+import { IoMdClose } from "react-icons/io";
 import ButtonContainer from "../../containers/button-container";
 
 const Dialog = (props) => {
-  const { top, children, bot, closeDialog } = props;
+  const { children, closeDialog } = props;
   return (
-    <>
-      <>
-        {top}
+    <div role="presentation" className="flex flex-col">
+      <div role="presentation" className="mr-2 w-fit self-end bg-white">
         <ButtonContainer
           onClick={closeDialog}
-          icon={<GrClose />}
+          icon={<IoMdClose />}
           category="icon-only"
+          className="h-6 w-6"
         />
-      </>
+      </div>
       <>{children}</>
-      <>{bot}</>
-    </>
+    </div>
   );
 };
 
 Dialog.propTypes = {
-  top: PropTypes.node,
   children: PropTypes.node,
-  bot: PropTypes.node,
   closeDialog: PropTypes.func,
 };
 

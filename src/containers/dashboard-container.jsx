@@ -21,10 +21,8 @@ const DashboardContainer = (props) => {
   );
 
   const openBookPreview = (book) => (event) => {
-    if (event.currentTarget === event.target) {
-      setSelectedBook(book);
-      openSidebar();
-    }
+    setSelectedBook(book);
+    openSidebar();
   };
 
   useEffect(() => {

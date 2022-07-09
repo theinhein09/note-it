@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Input = (props) => {
-  const { label, id, type, name, handleChange, className } = props;
+  const { label, id, type, name, handleChange, className, value } = props;
 
   return (
     <>
@@ -10,6 +10,7 @@ const Input = (props) => {
         {label}
       </label>
       <input
+        value={value}
         className={className}
         type={type}
         name={name}
@@ -21,6 +22,7 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
+  value: PropTypes.string,
   label: PropTypes.string,
   id: PropTypes.string,
   type: PropTypes.string,

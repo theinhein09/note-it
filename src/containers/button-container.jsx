@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category, className: customClassName } = props;
   const defaultClassName =
-    "outline-none hover:bg-black hover:text-white focus:bg-black focus:text-white font-display flex items-center gap-1";
+    "outline-none hover:bg-gray-500 hover:text-white focus:bg-gray-500 focus:text-white font-display flex items-center gap-1";
 
   let categorizedClassName = "";
 

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import EmptyDashboardContainer from "../../containers/empty-dashboard-container";
 import Loading from "../loading";
-import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
 import { FaRegEye } from "react-icons/fa";
@@ -16,23 +15,7 @@ const Dashboard = (props) => {
     for (let category in categoriesMemo.categories) {
       books.push(
         <div role="presentation" className="mx-5 my-2" key={category}>
-          <div role="presentation" className="flex items-center gap-2">
-            <h3 className="font-display text-xl">{category}</h3>
-            <div role="presentation" className="flex">
-              <ButtonContainer
-                onClick={() => console.log("EDIT Book Category")}
-                icon={<FaEdit />}
-                category="icon-only"
-                title="Edit Category Name"
-              />
-              <ButtonContainer
-                onClick={() => console.log("DELETE Book Category")}
-                icon={<RiDeleteBin6Line />}
-                category="icon-only"
-                title="Delete Category"
-              />
-            </div>
-          </div>
+          <h3 className="font-display text-xl">{category}</h3>
           <div
             role="presentation"
             className="flex w-[280px] divide-x-2 overflow-hidden border border-black py-2 px-4"
@@ -47,12 +30,6 @@ const Dashboard = (props) => {
                       icon={<FaRegEye />}
                       category="icon-only"
                       title="Open Book in Preview"
-                    />
-                    <ButtonContainer
-                      onClick={() => console.log("EDIT Book Title")}
-                      icon={<FaEdit />}
-                      category="icon-only"
-                      title="Edit Book Title"
                     />
                     <ButtonContainer
                       onClick={() => console.log("DELETE Book Title")}

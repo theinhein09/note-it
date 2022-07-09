@@ -6,7 +6,7 @@ import { getBook } from "../utils/mockAPI";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
-import { IoMdClose } from "react-icons/io";
+import { VscChromeClose } from "react-icons/vsc";
 import ButtonContainer from "../containers/button-container";
 import { useUserContextState } from "../contexts/user-context";
 
@@ -17,6 +17,8 @@ const Book = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [currentContent, setCurrentContent] = useState();
+
   const navigate = useNavigate();
 
   const selectedPageMemo = useMemo(
@@ -35,6 +37,10 @@ const Book = () => {
       finishLoading();
     })();
   }, [user.id, bookId, startLoading, finishLoading]);
+
+  const savePage = () => {
+    console.log(currentContent);
+  };
 
   return (
     <LayoutContainer
@@ -61,16 +67,23 @@ const Book = () => {
             </>
           )}
         </div>
+        {currentContent && <ButtonContainer icon="Save" onClick={savePage} />}
         <ButtonContainer
-          icon={<IoMdClose />}
+          icon={<VscChromeClose />}
           category="icon-only"
           onClick={() => navigate(`/${user.id}`)}
+          className="text-white"
         />
       </nav>
       {loading ? (
         <Loading />
       ) : (
-        <TextEditorContainer selectedPage={selectedPageMemo.selectedPage} />
+        <>
+          <TextEditorContainer
+            selectedPage={selectedPageMemo.selectedPage}
+            setCurrentContent={setCurrentContent}
+          />
+        </>
       )}
     </LayoutContainer>
   );

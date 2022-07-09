@@ -32,7 +32,7 @@ const ErrorContainer = () => {
 
   let message = makeCustomMessage(error);
 
-  return error && <Error>{message}</Error>;
+  return <Error message={message} />;
 };
 
 Error.propTypes = {

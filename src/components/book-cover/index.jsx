@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const BookCover = (props) => {
   const { onClick } = props;
+
   return (
     <div
       onClick={onClick}
@@ -12,7 +13,7 @@ const BookCover = (props) => {
       <div
         role="presentation"
         className="aspect-[22/15] w-16 border border-black"
-      ></div>
+      />
     </div>
   );
 };
