@@ -17,6 +17,8 @@ const Book = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [contentState, setContentState] = useState();
+
   const navigate = useNavigate();
 
   const selectedPageMemo = useMemo(
@@ -35,6 +37,10 @@ const Book = () => {
       finishLoading();
     })();
   }, [user.id, bookId, startLoading, finishLoading]);
+
+  const savePage = () => {
+    console.log(contentState);
+  };
 
   return (
     <LayoutContainer
@@ -61,7 +67,7 @@ const Book = () => {
             </>
           )}
         </div>
-        <ButtonContainer icon="Save" onClick={() => console.log("SAVE PAGE")} />
+        <ButtonContainer icon="Save" onClick={savePage} />
         <ButtonContainer
           icon={<IoMdClose />}
           category="icon-only"
@@ -72,7 +78,10 @@ const Book = () => {
         <Loading />
       ) : (
         <>
-          <TextEditorContainer selectedPage={selectedPageMemo.selectedPage} />
+          <TextEditorContainer
+            selectedPage={selectedPageMemo.selectedPage}
+            setContentState={setContentState}
+          />
         </>
       )}
     </LayoutContainer>

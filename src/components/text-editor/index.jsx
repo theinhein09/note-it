@@ -22,6 +22,8 @@ const data = {
 };
 
 const TextEditor = (props) => {
+  const { setContentState } = props;
+
   const content = data && convertFromRaw(data);
   const [editorState, setEditorState] = useState(() =>
     content ? EditorState.createWithContent(content) : EditorState.createEmpty()
@@ -34,13 +36,14 @@ const TextEditor = (props) => {
       wrapperClassName="wrapperClassName"
       editorClassName="px-2"
       onEditorStateChange={setEditorState}
+      onContentStateChange={setContentState}
       toolbar={toolbar}
     />
   );
 };
 
 TextEditor.propTypes = {
-  selectedPage: PropTypes.object,
+  setContentState: PropTypes.func,
 };
 
 export default TextEditor;
