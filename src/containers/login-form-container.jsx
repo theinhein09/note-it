@@ -26,7 +26,7 @@ const LoginFormContainer = (props) => {
       setUser(user);
       sessionStorage.setItem("user", JSON.stringify(user));
       finishLoading();
-      navigate(`${user.id}`);
+      navigate("/");
     } catch (error) {
       setError(error);
       finishLoading();
