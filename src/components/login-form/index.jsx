@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
-import { RiLoginBoxLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiLoginBoxLine } from "react-icons/ri";
 import { CgUser } from "react-icons/cg";
 import ErrorContainer from "../../containers/error-container";
 import ModalContainer from "../../containers/modal-container";
 import Loading from "../loading";
 
 const LoginForm = (props) => {
-  const { onLogin, loading, email, password, onChange } = props;
+  const { onLogin, loading, email, password, onChange, onPasswordReset } =
+    props;
 
   const navigate = useNavigate();
   return (
@@ -54,6 +55,11 @@ const LoginForm = (props) => {
           label="Sign Up"
           onClick={() => navigate("sign-up")}
           icon={<CgUser />}
+        />
+        <ButtonContainer
+          label="Reset Password"
+          onClick={onPasswordReset}
+          icon={<RiLockPasswordLine />}
         />
         <aside className="min-h-[200px] border border-black p-1 text-right font-display">
           <h2 className="underline underline-offset-1">Sample Test Accounts</h2>

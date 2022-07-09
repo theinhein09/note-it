@@ -47,10 +47,23 @@ const LoginFormContainer = (props) => {
     }
   };
 
+  const handlePasswordReset = async (event) => {
+    startLoading();
+    setError(null);
+    try {
+      await Authenticator._sendPasswordResetEmail(email);
+      finishLoading();
+    } catch (error) {
+      setError(error);
+      finishLoading();
+    }
+  };
+
   return (
     <LoginForm
       onLogin={handleLogin}
       onChange={handleInputChange}
+      onPasswordReset={handlePasswordReset}
       email={email}
       password={password}
       loading={loading}
