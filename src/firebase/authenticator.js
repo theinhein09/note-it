@@ -8,6 +8,7 @@ import {
   browserSessionPersistence,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from ".";
 
@@ -64,7 +65,11 @@ class Authenticator {
   };
 
   static _signOut = async () => {
-    signOut(auth);
+    await signOut(auth);
+  };
+
+  static _sendPasswordResetEmail = async (email) => {
+    await sendPasswordResetEmail(auth, email);
   };
 }
 
