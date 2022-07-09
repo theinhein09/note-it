@@ -9,6 +9,8 @@ import {
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
+  updatePassword,
+  deleteUser,
 } from "firebase/auth";
 import app from ".";
 
@@ -70,6 +72,16 @@ class Authenticator {
 
   static _sendPasswordResetEmail = async (email) => {
     await sendPasswordResetEmail(auth, email);
+  };
+
+  static _updatePassword = async (password) => {
+    const user = auth.currentUser;
+    await updatePassword(user, password);
+  };
+
+  static _deleteUser = async () => {
+    const user = auth.currentUser;
+    await deleteUser(user);
   };
 }
 
