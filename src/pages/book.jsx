@@ -70,7 +70,9 @@ const Book = () => {
       {loading ? (
         <Loading />
       ) : (
-        <TextEditorContainer selectedPage={selectedPageMemo.selectedPage} />
+        <>
+          <TextEditorContainer selectedPage={selectedPageMemo.selectedPage} />
+        </>
       )}
     </LayoutContainer>
   );

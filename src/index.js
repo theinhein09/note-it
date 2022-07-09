@@ -10,17 +10,15 @@ import { IconContext } from "react-icons";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <IconContext.Provider value={{ className: "align-middle" }}>
-      <ErrorContextProvider>
-        <UserContextProvider>
-          <SidebarContextProvider>
-            <App />
-          </SidebarContextProvider>
-        </UserContextProvider>
-      </ErrorContextProvider>
-    </IconContext.Provider>
-  </React.StrictMode>
+  <IconContext.Provider value={{ className: "align-middle" }}>
+    <ErrorContextProvider>
+      <UserContextProvider>
+        <SidebarContextProvider>
+          <App />
+        </SidebarContextProvider>
+      </UserContextProvider>
+    </ErrorContextProvider>
+  </IconContext.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
