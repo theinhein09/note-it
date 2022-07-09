@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import SignupForm from "../components/signup-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
-
-import { createUser } from "../utils/mockAPI";
 import Authenticator from "../firebase/authenticator";
+import { useNavigate } from "react-router-dom";
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading, setMessage } = props;
   const setError = useErrorContextUpdater();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     startLoading();
@@ -19,13 +19,24 @@ const SignupFormContainer = (props) => {
     const username = formData.get("username");
     const email = formData.get("email");
     const password = formData.get("password");
+    const profile = {
+      displayName: username,
+    };
     try {
-      await Authenticator._createUserWithEmailAndPassword(email, password);
+      await Authenticator._createUserWithEmailAndPassword(
+        email,
+        password,
+        profile
+      );
       // await createUser(email, password);
       finishLoading();
       setMessage(
         "Verification email sent. Please Verify your email to continue."
       );
+      setTimeout(() => {
+        setMessage(null);
+        navigate("/");
+      }, 1000);
     } catch (error) {
       setError(error);
       finishLoading();
