@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import { FaRegEye } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AiOutlineFileAdd } from "react-icons/ai";
 import EditableInputContainer from "../../containers/editable-input-container";
 
 const Sections = (props) => {
@@ -17,18 +18,27 @@ const Sections = (props) => {
             <EditableInputContainer
               content={section}
               id={section}
-              customClassName="bg-black"
+              customClassName="bg-black flex-grow"
             />
             <ButtonContainer
               onClick={() => console.log("DELETE Page Section")}
               icon={<RiDeleteBin6Line />}
               category="icon-only"
             />
-            <ButtonContainer label="Add New Page" className="text-sm" />
+            <ButtonContainer
+              icon={<AiOutlineFileAdd title="Add New Page" />}
+              category="icon-only"
+            />
           </header>
-          {sections[section].map((page) => (
+          {sections[section].map((page, index) => (
             <article key={page.id} className="flex items-center">
-              <div role="presentation" className="ml-4 h-5 w-0.5 bg-black" />
+              <div
+                role="presentation"
+                className={`ml-4 h-5 w-0.5 bg-black  ${
+                  index === sections[section].length - 1 && "clip-path"
+                }`}
+              />
+
               <div role="presentation" className="h-0.5 w-2 bg-black" />
               <EditableInputContainer content={page.title} id={page.id} />
               <ButtonContainer

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import EmptyDashboardContainer from "../../containers/empty-dashboard-container";
 import Loading from "../loading";
-import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
 import { FaRegEye } from "react-icons/fa";
