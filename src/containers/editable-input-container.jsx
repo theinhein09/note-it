@@ -27,7 +27,7 @@ const initialState = {
 };
 
 const styles = {
-  default: "grow px-2 mr-2 rounded-none border border-transparent",
+  default: "px-2 mr-2 rounded-none border border-transparent font-display",
   readOnly: "overflow-hidden text-ellipsis outline-none",
   editing: "border-black outline-none",
 };
