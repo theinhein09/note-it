@@ -61,6 +61,7 @@ const Book = () => {
             </>
           )}
         </div>
+        <ButtonContainer icon="Save" onClick={() => console.log("SAVE PAGE")} />
         <ButtonContainer
           icon={<IoMdClose />}
           category="icon-only"

@@ -14,7 +14,7 @@ const LoginForm = (props) => {
     <form
       id="login-form"
       onSubmit={handleSignIn}
-      className="relative flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 
+      className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 
       sm:aspect-[3/5] sm:max-w-md sm:grow-0"
     >
       <div role="presentation" className="mt-4 bg-black p-1 py-2 pl-4">
