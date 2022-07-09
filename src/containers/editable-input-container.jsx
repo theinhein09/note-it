@@ -40,6 +40,10 @@ const EditableInputContainer = (props) => {
     inputRef.current.focus();
   };
 
+  const handleSave = () => {
+    // TODO save CONTENT to DB.
+  };
+
   return (
     <EditableInput
       ref={inputRef}
@@ -47,6 +51,7 @@ const EditableInputContainer = (props) => {
       editing={state}
       handleChange={handleChange}
       handleClick={handleClick}
+      handleSave={handleSave}
     />
   );
 };
