@@ -3,7 +3,7 @@ import User from "../components/user";
 import { useUserContextState } from "../contexts/user-context";
 
 const UserContainer = (props) => {
-  const user = useUserContextState();
+  const { user } = useUserContextState();
 
   return <User {...props} user={user} />;
 };

@@ -4,6 +4,8 @@ import {
   sendEmailVerification,
   updateProfile,
   signInWithEmailAndPassword,
+  setPersistence,
+  browserSessionPersistence,
   onAuthStateChanged,
 } from "firebase/auth";
 import app from ".";
@@ -33,6 +35,7 @@ class Authenticator {
   };
 
   static _signInWithEmailAndPassword = async (email, password) => {
+    await this._setPersistence(email, password);
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
@@ -42,9 +45,15 @@ class Authenticator {
     return user;
   };
 
-  static _onAuthStateChanged = (user, setUser, finishLoading) => {
+  static _setPersistence = async (email, password) => {
+    await setPersistence(auth, browserSessionPersistence);
+  };
+
+  static _onAuthStateChanged = (user, setUser, startLoading, finishLoading) => {
+    startLoading();
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user);
         setUser(user);
         finishLoading();
       } else {

@@ -17,7 +17,7 @@ const Sidebar = (props) => {
   const { selectedBook, sections, setSelectedPage } = props;
   const sidebar = useSidebarContextState();
   const { toggleSidebar } = useSidebarContextUpdater();
-  const user = useUserContextState();
+  const { user } = useUserContextState();
 
   return (
     <aside className="fixed top-0 left-0 z-10 flex">

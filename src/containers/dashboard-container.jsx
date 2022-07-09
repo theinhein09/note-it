@@ -9,7 +9,7 @@ import { useUserContextState } from "../contexts/user-context";
 
 const DashboardContainer = (props) => {
   const { setSelectedBook } = props;
-  const user = useUserContextState();
+  const { user } = useUserContextState();
   const { openSidebar } = useSidebarContextUpdater();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
 

@@ -1,12 +1,21 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useUserContextState } from "../../contexts/user-context";
+import Loading from "../loading";
 
 const PrivateRoute = (props) => {
   const { children } = props;
-  const user = useUserContextState();
+  const { user, loading } = useUserContextState();
 
-  return <>{!user ? <Navigate to="login" replace /> : <>{children}</>}</>;
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>{!user ? <Navigate to="login" replace /> : <>{children}</>}</>
+      )}
+    </>
+  );
 };
 
 export default PrivateRoute;
