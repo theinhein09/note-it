@@ -10,14 +10,12 @@ import ModalContainer from "../../containers/modal-container";
 import Loading from "../loading";
 
 const LoginForm = (props) => {
-  const { handleSignIn, loading, email, password, onChange } = props;
+  const { onLogin, loading, email, password, onChange } = props;
 
   const navigate = useNavigate();
   return (
     <>
       <form
-        id="login-form"
-        onSubmit={handleSignIn}
         className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 
       sm:aspect-[3/5] sm:max-w-md sm:grow-0"
       >
@@ -49,9 +47,8 @@ const LoginForm = (props) => {
         <br />
         <ButtonContainer
           label="Sign In"
-          type="submit"
-          form="login-form"
           icon={<RiLoginBoxLine />}
+          onClick={onLogin}
         />
         <ButtonContainer
           label="Sign Up"
@@ -86,7 +83,7 @@ const LoginForm = (props) => {
 };
 
 LoginForm.propTypes = {
-  handleSignIn: PropTypes.func,
+  onLogin: PropTypes.func,
   loading: PropTypes.bool,
   email: PropTypes.string,
   password: PropTypes.string,

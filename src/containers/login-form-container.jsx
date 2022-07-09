@@ -26,14 +26,10 @@ const LoginFormContainer = (props) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSignIn = async (event) => {
+  const handleLogin = async (event) => {
     startLoading();
     setError(null);
     setUser(null);
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
     try {
       const user = await Authenticator._signInWithEmailAndPassword(
         email,
@@ -53,7 +49,7 @@ const LoginFormContainer = (props) => {
 
   return (
     <LoginForm
-      handleSignIn={handleSignIn}
+      onLogin={handleLogin}
       onChange={handleInputChange}
       email={email}
       password={password}
