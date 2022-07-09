@@ -4,8 +4,9 @@ import ButtonContainer from "../../containers/button-container";
 import { FaEdit } from "react-icons/fa";
 
 const styles = {
-  default: "grow px-2 mr-2 rounded-none",
+  default: "grow px-2 mr-2 rounded-none border border-transparent",
   readOnly: "overflow-hidden text-ellipsis outline-none",
+  editing: "border-black outline-none",
 };
 
 const EditableInput = forwardRef((props, ref) => {
@@ -16,7 +17,7 @@ const EditableInput = forwardRef((props, ref) => {
       <input
         ref={ref}
         className={`${styles.default} ${
-          !editing.isEditing ? styles.readOnly : ""
+          !editing.isEditing ? styles.readOnly : styles.editing
         }`}
         value={editing.isEditing ? editing.editingContent : content}
         readOnly={!editing.isEditing}
