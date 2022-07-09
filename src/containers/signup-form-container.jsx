@@ -4,6 +4,7 @@ import SignupForm from "../components/signup-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 
 import { createUser } from "../utils/mockAPI";
+import Authenticator from "../firebase/authenticator";
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading, setMessage } = props;
@@ -19,7 +20,8 @@ const SignupFormContainer = (props) => {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      await createUser(email, password);
+      await Authenticator._createUserWithEmailAndPassword(email, password);
+      // await createUser(email, password);
       finishLoading();
       setMessage(
         "Verification email sent. Please Verify your email to continue."

@@ -25,6 +25,8 @@ const ErrorContainer = () => {
         return "Incorrect password.";
       case "auth/internal-error":
         return "Password is required.";
+      case "auth/weak-password":
+        return "Password should be at least 6 characters.";
       default:
         return error.message;
     }
