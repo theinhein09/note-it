@@ -27,6 +27,7 @@ InputContainer.defaultProps = {
 };
 
 InputContainer.propTypes = {
+  value: PropTypes.string,
   onChange: PropTypes.func,
   category: PropTypes.oneOf(["primary"]),
   label: PropTypes.string,
