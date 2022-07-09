@@ -26,7 +26,10 @@ const LoginFormContainer = (props) => {
       setUser(user);
       sessionStorage.setItem("user", JSON.stringify(user));
       finishLoading();
-      navigate("/");
+      if (user.emailVerified) {
+        navigate("/");
+      }
+      throw new Error("Please verify your email to continue");
     } catch (error) {
       setError(error);
       finishLoading();

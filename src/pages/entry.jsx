@@ -1,7 +1,6 @@
 import React from "react";
 import useBoolean from "../hooks/useBoolean";
 import LoginFormContainer from "../containers/login-form-container";
-import ErrorContainer from "../containers/error-container";
 import ModalContainer from "../containers/modal-container";
 import Loading from "../components/loading";
 
@@ -15,7 +14,6 @@ const Entry = () => {
           startLoading={startLoading}
           finishLoading={finishLoading}
         />
-        <ErrorContainer />
       </main>
       {loading && (
         <ModalContainer>
