@@ -6,7 +6,7 @@ import ButtonContainer from "../../containers/button-container";
 const Dialog = (props) => {
   const { children, closeDialog } = props;
   return (
-    <div role="presentation" class="flex flex-col">
+    <div role="presentation" className="flex flex-col">
       <div role="presentation" className="mr-2 w-fit self-end bg-white">
         <ButtonContainer
           onClick={closeDialog}

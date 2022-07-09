@@ -2,23 +2,17 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import { FaEdit, FaRegSave } from "react-icons/fa";
-
-const styles = {
-  default: "grow px-2 mr-2 rounded-none border border-transparent",
-  readOnly: "overflow-hidden text-ellipsis outline-none",
-  editing: "border-black outline-none",
-};
+import { MdClose } from "react-icons/md";
 
 const EditableInput = forwardRef((props, ref) => {
-  const { handleChange, handleClick, handleSave, content, editing } = props;
+  const { handleChange, handleClick, handleSave, content, editing, className } =
+    props;
 
   return (
     <>
       <input
         ref={ref}
-        className={`${styles.default} ${
-          !editing.isEditing ? styles.readOnly : styles.editing
-        }`}
+        className={className}
         value={editing.isEditing ? editing.editingContent : content}
         readOnly={!editing.isEditing}
         onChange={handleChange}
@@ -32,11 +26,19 @@ const EditableInput = forwardRef((props, ref) => {
       ) : (
         <div className="w-8 " />
       )}
-      <ButtonContainer
-        onClick={handleClick}
-        icon={<FaEdit />}
-        category="icon-only"
-      />
+      {editing.isEditing ? (
+        <ButtonContainer
+          onClick={handleClick}
+          icon={<MdClose />}
+          category="icon-only"
+        />
+      ) : (
+        <ButtonContainer
+          onClick={handleClick}
+          icon={<FaEdit />}
+          category="icon-only"
+        />
+      )}
     </>
   );
 });
@@ -47,6 +49,7 @@ EditableInput.propTypes = {
   handleClick: PropTypes.func,
   handleSave: PropTypes.func,
   editing: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default EditableInput;

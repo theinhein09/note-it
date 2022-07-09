@@ -26,10 +26,20 @@ const initialState = {
   editingId: "",
 };
 
+const styles = {
+  default: "grow px-2 mr-2 rounded-none border border-transparent",
+  readOnly: "overflow-hidden text-ellipsis outline-none",
+  editing: "border-black outline-none",
+};
+
 const EditableInputContainer = (props) => {
-  const { content, id } = props;
+  const { content, id, customClassName } = props;
   const inputRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const className = `${styles.default} ${customClassName} ${
+    !state.isEditing ? styles.readOnly : styles.editing
+  }`;
 
   const handleChange = (e) => {
     dispatch({ type: "onChange", payload: e.target.value });
@@ -52,6 +62,7 @@ const EditableInputContainer = (props) => {
       handleChange={handleChange}
       handleClick={handleClick}
       handleSave={handleSave}
+      className={className}
     />
   );
 };
@@ -59,6 +70,7 @@ const EditableInputContainer = (props) => {
 EditableInputContainer.propTypes = {
   id: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  customClassName: PropTypes.string,
 };
 
 export default EditableInputContainer;
