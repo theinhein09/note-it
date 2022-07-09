@@ -7,6 +7,7 @@ import {
   setPersistence,
   browserSessionPersistence,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import app from ".";
 
@@ -53,7 +54,6 @@ class Authenticator {
     startLoading();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUser(user);
         finishLoading();
       } else {
@@ -61,6 +61,10 @@ class Authenticator {
         finishLoading();
       }
     });
+  };
+
+  static _signOut = async () => {
+    signOut(auth);
   };
 }
 
