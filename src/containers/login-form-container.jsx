@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import LoginForm from "../components/login-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,20 @@ const LoginFormContainer = (props) => {
   const setError = useErrorContextUpdater();
   const setUser = useUserContextUpdater();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = useMemo(
+    () => ({ ...formData, setFormData }),
+    [formData]
+  );
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSignIn = async (event) => {
     startLoading();
@@ -36,7 +50,17 @@ const LoginFormContainer = (props) => {
       finishLoading();
     }
   };
-  return <LoginForm handleSignIn={handleSignIn} loading={loading} {...props} />;
+
+  return (
+    <LoginForm
+      handleSignIn={handleSignIn}
+      onChange={handleInputChange}
+      email={email}
+      password={password}
+      loading={loading}
+      {...props}
+    />
+  );
 };
 
 export default LoginFormContainer;

@@ -4,6 +4,7 @@ import Book from "../../pages/book";
 import Home from "../../pages/home";
 import Entry from "../../pages/entry";
 import SignUp from "../../pages/sign-up";
+import { StrictMode } from "react";
 
 const App = (props) => {
   return (
@@ -13,13 +14,29 @@ const App = (props) => {
           <Route
             index
             element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
+              <StrictMode>
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              </StrictMode>
             }
           />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="login" element={<Entry />} />
+          <Route
+            path="sign-up"
+            element={
+              <StrictMode>
+                <SignUp />
+              </StrictMode>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <StrictMode>
+                <Entry />
+              </StrictMode>
+            }
+          />
           <Route path=":bookId" element={<Book />} />
         </Route>
       </Routes>

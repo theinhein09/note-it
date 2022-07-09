@@ -10,7 +10,7 @@ import ModalContainer from "../../containers/modal-container";
 import Loading from "../loading";
 
 const LoginForm = (props) => {
-  const { handleSignIn, loading } = props;
+  const { handleSignIn, loading, email, password, onChange } = props;
 
   const navigate = useNavigate();
   return (
@@ -33,12 +33,16 @@ const LoginForm = (props) => {
             type="email"
             name="email"
             id="login-email"
+            value={email}
+            onChange={onChange}
           />
           <InputContainer
             label="Password"
             type="password"
             name="password"
             id="login-password"
+            value={password}
+            onChange={onChange}
           />
         </div>
         <ErrorContainer />
@@ -84,6 +88,9 @@ const LoginForm = (props) => {
 LoginForm.propTypes = {
   handleSignIn: PropTypes.func,
   loading: PropTypes.bool,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default LoginForm;
