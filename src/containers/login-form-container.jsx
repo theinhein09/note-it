@@ -28,7 +28,7 @@ const LoginFormContainer = (props) => {
       setUser(user);
       finishLoading();
       if (user.emailVerified) {
-        navigate("/");
+        return navigate("/");
       }
       throw new Error("Please verify your email to continue");
     } catch (error) {
