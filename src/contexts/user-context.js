@@ -1,4 +1,13 @@
-const { createContext, useState, useMemo, useContext } = require("react");
+import Loading from "../components/loading";
+import Authenticator from "../firebase/authenticator";
+import useBoolean from "../hooks/useBoolean";
+const {
+  createContext,
+  useState,
+  useMemo,
+  useContext,
+  useEffect,
+} = require("react");
 
 const UserContextState = createContext();
 const UserContextUpdater = createContext();
@@ -6,16 +15,29 @@ const UserContextUpdater = createContext();
 const UserContextProvider = (props) => {
   const { children } = props;
 
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+  const [user, setUser] = useState(null);
 
   const context = useMemo(() => ({ user, setUser }), [user]);
 
+  const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
+
+  useEffect(() => {
+    startLoading();
+    Authenticator._onAuthStateChanged(user, setUser, finishLoading);
+  }, [finishLoading, user, setUser, startLoading]);
+
   return (
-    <UserContextState.Provider value={context.user}>
-      <UserContextUpdater.Provider value={context.setUser}>
-        {children}
-      </UserContextUpdater.Provider>
-    </UserContextState.Provider>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <UserContextState.Provider value={context.user}>
+          <UserContextUpdater.Provider value={context.setUser}>
+            {children}
+          </UserContextUpdater.Provider>
+        </UserContextState.Provider>
+      )}
+    </>
   );
 };
 

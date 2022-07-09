@@ -3,6 +3,8 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   updateProfile,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import app from ".";
 
@@ -28,6 +30,28 @@ class Authenticator {
 
   static _updateProfile = async (user, profile) => {
     await updateProfile(user, profile);
+  };
+
+  static _signInWithEmailAndPassword = async (email, password) => {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    return user;
+  };
+
+  static _onAuthStateChanged = (user, setUser, finishLoading) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        finishLoading();
+      } else {
+        setUser(null);
+        finishLoading();
+      }
+    });
   };
 }
 
