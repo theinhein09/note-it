@@ -27,6 +27,8 @@ const ErrorContainer = () => {
         return "Password is required.";
       case "auth/weak-password":
         return "Password should be at least 6 characters.";
+      case "auth/missing-email":
+        return "Email is required.";
       default:
         return error.message;
     }
