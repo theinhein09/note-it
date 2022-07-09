@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Error = (props) => {
-  const { children } = props;
+  const { message } = props;
 
   return (
-    <div role="alert" className="text-red-600">
-      {children}
+    <div role="alert" className="font-display text-red-600">
+      {message && message}
     </div>
   );
 };
 
 Error.propTypes = {
-  children: PropTypes.node,
+  message: PropTypes.node,
 };
 
 export default Error;

@@ -5,6 +5,7 @@ import ButtonContainer from "../../containers/button-container";
 import InputContainer from "../../containers/input-container";
 import { RiLoginBoxLine } from "react-icons/ri";
 import { CgUser } from "react-icons/cg";
+import ErrorContainer from "../../containers/error-container";
 
 const LoginForm = (props) => {
   const { handleSignIn } = props;
@@ -37,6 +38,7 @@ const LoginForm = (props) => {
           id="login-password"
         />
       </div>
+      <ErrorContainer />
       <br />
       <ButtonContainer
         label="Sign In"

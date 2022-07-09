@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { EditorState } from "draft-js";
+import { EditorState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import toolbar from "./utils/toolbar";
 
+// TODO store data coming from DB.
+const data = {
+  entityMap: {},
+  blocks: [
+    {
+      key: "637gr",
+      text: "Initialized from content state.",
+      type: "unstyled",
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+  ],
+};
+
 const TextEditor = (props) => {
+  const content = data && convertFromRaw(data);
   const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
+    content ? EditorState.createWithContent(content) : EditorState.createEmpty()
   );
 
   return (
