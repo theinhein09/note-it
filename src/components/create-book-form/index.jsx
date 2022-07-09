@@ -19,8 +19,9 @@ const CreateBookForm = (props) => {
       <br />
       <InputContainer id="book-title" label="Title" name="title" />
       <InputContainer id="book-category" label="Category" name="category" />
-      <ErrorContainer />
-      <br />
+      <div className="my-2 flex min-h-[32px] items-center">
+        <ErrorContainer />
+      </div>
       <ButtonContainer label="Create" type="submit" form="create-book-form" />
       <div className="mt-2 min-h-[80px] border border-black" />
     </form>
