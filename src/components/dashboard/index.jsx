@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 import EmptyDashboardContainer from "../../containers/empty-dashboard-container";
@@ -10,7 +10,15 @@ import ModalContainer from "../../containers/modal-container";
 import DialogContainer from "../../containers/dialog-container";
 
 const Dashboard = (props) => {
-  const { loading, openBookPreview, categoriesMemo } = props;
+  const {
+    loading,
+    openBookPreview,
+    categoriesMemo,
+    dialog,
+    closeDialog,
+    onDelete,
+    onConfirm,
+  } = props;
 
   const renderBooks = () => {
     let books = [];
@@ -34,7 +42,7 @@ const Dashboard = (props) => {
                       title="Open Book in Preview"
                     />
                     <ButtonContainer
-                      onClick={() => console.log("DELETE Book Title")}
+                      onClick={() => onDelete(book.id)}
                       icon={<RiDeleteBin6Line />}
                       category="icon-only"
                       title="Delete Book"
@@ -66,20 +74,22 @@ const Dashboard = (props) => {
           )}
         </>
       )}
-      <ModalContainer>
-        <DialogContainer hideButton={true}>
-          <div className="bg-white font-display">
-            <div className="bg-black p-1 text-white">Confirm</div>
-            <div className="flex h-20 items-center justify-center p-2">
-              Are you sure you want to delete this book?
+      {dialog && (
+        <ModalContainer>
+          <DialogContainer hideButton={true}>
+            <div className="bg-white font-display">
+              <div className="bg-black p-1 text-white">Confirm</div>
+              <div className="flex h-20 items-center justify-center p-2">
+                Are you sure you want to delete this book?
+              </div>
+              <div className="flex justify-between p-1">
+                <ButtonContainer label="Confirm" onClick={onConfirm} />
+                <ButtonContainer label="Cancel" onClick={closeDialog} />
+              </div>
             </div>
-            <div className="flex justify-between p-1">
-              <ButtonContainer label="Confirm" />
-              <ButtonContainer label="Cancel" />
-            </div>
-          </div>
-        </DialogContainer>
-      </ModalContainer>
+          </DialogContainer>
+        </ModalContainer>
+      )}
     </>
   );
 };
@@ -88,6 +98,10 @@ Dashboard.propTypes = {
   loading: PropTypes.bool,
   openBookPreview: PropTypes.func,
   categoriesMemo: PropTypes.object,
+  dialog: PropTypes.bool,
+  closeDialog: PropTypes.func,
+  onDelete: PropTypes.func,
+  onConfirm: PropTypes.func,
 };
 
 export default Dashboard;

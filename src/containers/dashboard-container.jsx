@@ -6,12 +6,15 @@ import useBoolean from "../hooks/useBoolean";
 import PropTypes from "prop-types";
 import { useUserContextState } from "../contexts/user-context";
 import useOnSnapshot from "../hooks/useOnSnapshot";
+import FireStore from "../firebase/firestore";
 
 const DashboardContainer = (props) => {
   const { setSelectedBook } = props;
   const { user } = useUserContextState();
   const { openSidebar } = useSidebarContextUpdater();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
+  const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
+  const [toDeleteBookId, setToDeleteBookId] = useState(null);
 
   const [categories, setCatagories] = useState(null);
   const books = useOnSnapshot(`users/${user.uid}/books`);
@@ -26,6 +29,17 @@ const DashboardContainer = (props) => {
     openSidebar();
   };
 
+  const handleDelete = (id) => {
+    setToDeleteBookId(id);
+    openDialog();
+  };
+
+  const handleConfirm = () => {
+    const booksFS = new FireStore(`users/${user.uid}/books`);
+    booksFS.deleteDoc(toDeleteBookId);
+    closeDialog();
+  };
+
   useEffect(() => {
     startLoading();
     const groupByCategory = groupBy(books, "category");
@@ -36,6 +50,11 @@ const DashboardContainer = (props) => {
   return (
     <Dashboard
       {...props}
+      dialog={dialog}
+      openDialog={openDialog}
+      closeDialog={closeDialog}
+      onDelete={handleDelete}
+      onConfirm={handleConfirm}
       openBookPreview={openBookPreview}
       loading={loading}
       categoriesMemo={categoriesMemo}
