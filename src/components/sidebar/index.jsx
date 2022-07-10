@@ -20,14 +20,11 @@ const Sidebar = (props) => {
   const { user } = useUserContextState();
 
   return (
-    <aside className="fixed top-0 left-0 z-10 flex">
+    <aside className="fixed top-0 left-0 z-10 flex min-h-screen  flex-col border-r  border-black">
       {sidebar && (
-        <div
-          role="presentation"
-          className="m-auto flex min-h-screen min-w-[280px] flex-col border-r border-black bg-white"
-        >
+        <div role="presentation" className="min-w-[280px] grow">
           <header className="flex h-8 items-center bg-black px-1 text-white">
-            <h1 className="grow ">noteIt</h1>
+            <h1 className="grow">noteIt</h1>
             <DialogRenderButtonContainer
               buttonLabel="Create New Book"
               render={(closeDialog) => (
@@ -35,14 +32,14 @@ const Sidebar = (props) => {
               )}
             />
           </header>
-          <div role="presentation" className="grow">
+          <div role="presentation" className="">
             <BookPreviewContainer selectedBook={selectedBook} />
             <SectionsContainer
               sections={sections}
               setSelectedPage={setSelectedPage}
             />
           </div>
-          <footer className="flex items-center gap-2 bg-black font-display text-white">
+          <footer className="fixed bottom-0 flex min-w-[280px] items-center gap-2 self-end bg-black font-display text-white">
             <span className="grow text-right">{user.displayName}</span>
             <UserSettingContainer />
           </footer>
@@ -52,7 +49,7 @@ const Sidebar = (props) => {
         onClick={toggleSidebar}
         icon={sidebar ? <TiChevronLeft /> : <TiChevronRight />}
         category="icon-only"
-        className="border border-l-0 border-black bg-black text-white"
+        className="absolute top-0 -right-8 border border-l-0 border-black bg-black text-white"
       />
     </aside>
   );

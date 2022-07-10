@@ -35,7 +35,6 @@ const SignupFormContainer = (props) => {
         password,
         profile
       );
-      console.log(user);
       const usersFS = new FireStore("users");
       await usersFS.setDoc({ email, username }, user.uid);
       finishLoading();
