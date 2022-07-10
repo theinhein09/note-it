@@ -31,8 +31,13 @@ class FireStore {
 
   onSnapshot = (set) => {
     const q = query(collection(db, this.collection));
+    console.log("RUN");
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = querySnapshot.map((doc) => ({ id: doc.id, ...doc.data() }));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(data);
       set(data);
     });
     return unsubscribe;
