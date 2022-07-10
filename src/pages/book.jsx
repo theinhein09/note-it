@@ -71,7 +71,7 @@ const Book = () => {
         <ButtonContainer
           icon={<VscChromeClose />}
           category="icon-only"
-          onClick={() => navigate(`/${user.id}`)}
+          onClick={() => navigate("/")}
           className="text-white"
         />
       </nav>
