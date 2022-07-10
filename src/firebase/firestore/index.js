@@ -10,8 +10,8 @@ class FireStore {
     this.collection = collection;
   }
 
-  setWithConverter = async (data, converter, id) => {
-    const ref = doc(db, this.collection, id).withConverter(converter);
+  setDoc = async (data, id) => {
+    const ref = doc(db, this.collection, id);
     await setDoc(ref, data);
   };
 }

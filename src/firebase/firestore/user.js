@@ -22,4 +22,4 @@ const userConverter = {
   },
 };
 
-export default userConverter;
+export { userConverter, User };

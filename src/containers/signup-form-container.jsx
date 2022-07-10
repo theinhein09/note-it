@@ -4,6 +4,7 @@ import SignupForm from "../components/signup-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import Authenticator from "../firebase/authenticator";
 import { useNavigate } from "react-router-dom";
+import FireStore from "../firebase/firestore";
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading, setMessage } = props;
@@ -23,19 +24,21 @@ const SignupFormContainer = (props) => {
       displayName: username,
     };
     try {
-      await Authenticator._createUserWithEmailAndPassword(
+      const user = await Authenticator._createUserWithEmailAndPassword(
         email,
         password,
         profile
       );
-      // await createUser(email, password);
+      console.log(user);
+      const usersFS = new FireStore("users");
+      await usersFS.setDoc({ email, username }, user.uid);
       finishLoading();
       setMessage(
         "Verification email sent. Please Verify your email to continue."
       );
       setTimeout(() => {
         setMessage(null);
-        navigate("login");
+        navigate("/login");
       }, 1000);
     } catch (error) {
       setError(error);

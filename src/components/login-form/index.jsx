@@ -53,7 +53,7 @@ const LoginForm = (props) => {
         />
         <ButtonContainer
           label="Sign Up"
-          onClick={() => navigate("sign-up")}
+          onClick={() => navigate("/sign-up")}
           icon={<CgUser />}
         />
         <ButtonContainer
