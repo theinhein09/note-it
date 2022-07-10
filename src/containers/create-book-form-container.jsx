@@ -2,29 +2,40 @@ import React from "react";
 import PropTypes from "prop-types";
 import CreateBookForm from "../components/create-book-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
+import useFormData from "../hooks/useFormData";
 
 const CreateBookFormContainer = (props) => {
   const { closeDialog } = props;
   const setError = useErrorContextUpdater();
+  const [{ title, category }, handleInputChange, handleResetForm] = useFormData(
+    {
+      title: "",
+      category: "",
+    }
+  );
 
-  const createBook = (event) => {
-    event.preventDefault();
+  const handleCreateBook = (event) => {
     setError(null);
     try {
-      const formData = new FormData(event.currentTarget);
-      const bookTitle = formData.get("title");
-      if (!bookTitle) throw new Error("Book title is required");
-      const bookCategory = formData.get("category") || "Default";
-      console.log(bookTitle, bookCategory);
+      if (title === "") throw new Error("Book title is required");
+      const book = { title, category: category === "" ? "Default" : category };
       // TODO SEND DATA TO FIRESTORE
-      event.target.reset();
+      handleResetForm();
       closeDialog();
     } catch (error) {
       setError(error);
     }
   };
 
-  return <CreateBookForm {...props} createBook={createBook} />;
+  return (
+    <CreateBookForm
+      {...props}
+      title={title}
+      onChange={handleInputChange}
+      category={category}
+      onCreateBook={handleCreateBook}
+    />
+  );
 };
 
 CreateBookFormContainer.propTypes = {
