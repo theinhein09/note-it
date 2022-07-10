@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { CgUser, CgUserRemove } from "react-icons/cg";
-import { RiLockPasswordLine, RiLogoutBoxLine } from "react-icons/ri";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { VscSettingsGear } from "react-icons/vsc";
 import ButtonContainer from "../../containers/button-container";
 
 const UserSetting = (props) => {
-  const { userSetting, toggleUserSetting, handleSignOut } = props;
+  const { userSetting, toggleUserSetting, onSignOut } = props;
 
   return (
     <div className="relative">
@@ -21,14 +21,10 @@ const UserSetting = (props) => {
           role="presentation"
         >
           <ButtonContainer label="Profile" icon={<CgUser />} />
-          <ButtonContainer
-            label="Reset password"
-            icon={<RiLockPasswordLine />}
-          />
           <ButtonContainer label="Delete account" icon={<CgUserRemove />} />
           <ButtonContainer
             label="Sign out"
-            onClick={handleSignOut}
+            onClick={onSignOut}
             icon={<RiLogoutBoxLine />}
           />
         </div>
@@ -40,7 +36,7 @@ const UserSetting = (props) => {
 UserSetting.propTypes = {
   userSetting: PropTypes.bool,
   toggleUserSetting: PropTypes.func,
-  handleSignOut: PropTypes.func,
+  onSignOut: PropTypes.func,
 };
 
 export default UserSetting;

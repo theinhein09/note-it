@@ -21,7 +21,7 @@ const UserSettingContainer = (props) => {
       {...props}
       toggleUserSetting={toggleUserSetting}
       userSetting={userSetting}
-      handleSignOut={handleSignOut}
+      onSignOut={handleSignOut}
     />
   );
 };
