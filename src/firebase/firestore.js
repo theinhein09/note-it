@@ -25,7 +25,7 @@ class FireStore {
 
   setDoc = async (data, id) => {
     const ref = doc(db, this.collection, id);
-    await setDoc(ref, data);
+    await setDoc(ref, data, { merge: true });
   };
 
   addDoc = async (data) => {
