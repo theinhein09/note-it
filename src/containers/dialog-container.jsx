@@ -6,10 +6,8 @@ const DialogContainer = (props) => {
   return <Dialog {...props} />;
 };
 
-Dialog.propTypes = {
-  top: PropTypes.node,
+DialogContainer.propTypes = {
   children: PropTypes.node,
-  bot: PropTypes.node,
   closeDialog: PropTypes.func,
 };
 
