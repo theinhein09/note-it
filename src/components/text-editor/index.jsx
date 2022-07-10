@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { EditorState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
@@ -23,12 +23,23 @@ const data = {
 };
 
 const TextEditor = (props) => {
-  const { setCurrentContent } = props;
-
-  const content = data && convertFromRaw(data);
+  const { selectedPage, setCurrentContent } = props;
   const [editorState, setEditorState] = useState(() =>
-    content ? EditorState.createWithContent(content) : EditorState.createEmpty()
+    EditorState.createEmpty()
   );
+
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    if (!selectedPage) return;
+    const data = JSON.parse(selectedPage.content);
+    setContent(convertFromRaw(data));
+  }, [selectedPage]);
+
+  useEffect(() => {
+    if (!content) return;
+    setEditorState(() => EditorState.createWithContent(content));
+  }, [content]);
 
   return (
     <Editor
@@ -44,6 +55,7 @@ const TextEditor = (props) => {
 };
 
 TextEditor.propTypes = {
+  selectedPage: PropTypes.object,
   setCurrentContent: PropTypes.func,
 };
 
