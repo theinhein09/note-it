@@ -6,6 +6,7 @@ import {
   addDoc,
   query,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 
 import app from ".";
@@ -39,6 +40,10 @@ class FireStore {
       set(data);
     });
     return unsubscribe;
+  };
+
+  deleteDoc = async (id) => {
+    await deleteDoc(doc(db, this.collection, id));
   };
 }
 
