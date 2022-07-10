@@ -10,6 +10,7 @@ import {
   updateDoc,
   where,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 
 import app from ".";
@@ -71,6 +72,15 @@ class FireStore {
       id: doc.id,
     }));
     return data;
+  };
+
+  getDoc = async (id) => {
+    const ref = doc(db, this.collection, id);
+    const docSnap = await getDoc(ref);
+
+    if (docSnap.exists()) {
+      return docSnap;
+    }
   };
 }
 

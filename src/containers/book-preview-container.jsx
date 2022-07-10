@@ -22,7 +22,6 @@ const BookPreviewContainer = (props) => {
 
   const handleCategorySave = async (data) => {
     const { content: category, id } = data;
-    console.log(data);
     const booksFS = new FireStore(`/users/${user.uid}/books`);
     const docs = await booksFS.getDocs("category", "==", id);
     for (let doc of docs) {
