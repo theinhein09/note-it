@@ -5,7 +5,7 @@ import { FaEdit, FaRegSave } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 
 const EditableInput = forwardRef((props, ref) => {
-  const { handleChange, handleClick, handleSave, content, editing, className } =
+  const { onChange, onCancel, onEdit, onSave, content, editing, className } =
     props;
 
   return (
@@ -15,12 +15,12 @@ const EditableInput = forwardRef((props, ref) => {
         className={className}
         value={editing.isEditing ? editing.editingContent : content}
         readOnly={!editing.isEditing}
-        onChange={handleChange}
+        onChange={onChange}
       />
       {editing.isEditing ? (
         <ButtonContainer
-          onClick={handleSave}
-          icon={<FaRegSave />}
+          onClick={onSave}
+          icon={<FaRegSave title="Save" />}
           category="icon-only"
         />
       ) : (
@@ -28,14 +28,14 @@ const EditableInput = forwardRef((props, ref) => {
       )}
       {editing.isEditing ? (
         <ButtonContainer
-          onClick={handleClick}
-          icon={<MdClose />}
+          onClick={onCancel}
+          icon={<MdClose title="Cancel Edit" />}
           category="icon-only"
         />
       ) : (
         <ButtonContainer
-          onClick={handleClick}
-          icon={<FaEdit />}
+          onClick={onEdit}
+          icon={<FaEdit title="Edit" />}
           category="icon-only"
         />
       )}
@@ -45,9 +45,10 @@ const EditableInput = forwardRef((props, ref) => {
 
 EditableInput.propTypes = {
   content: PropTypes.string.isRequired,
-  handleChange: PropTypes.func,
-  handleClick: PropTypes.func,
-  handleSave: PropTypes.func,
+  onChange: PropTypes.func,
+  onCancel: PropTypes.func,
+  onSave: PropTypes.func,
+  onEdit: PropTypes.func,
   editing: PropTypes.object,
   className: PropTypes.string,
 };
