@@ -34,9 +34,9 @@ const DashboardContainer = (props) => {
     openDialog();
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const booksFS = new FireStore(`users/${user.uid}/books`);
-    booksFS.deleteDoc(toDeleteBookId);
+    await booksFS.deleteDoc(toDeleteBookId);
     closeDialog();
   };
 

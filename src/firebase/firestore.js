@@ -7,6 +7,7 @@ import {
   query,
   onSnapshot,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 import app from ".";
@@ -43,7 +44,13 @@ class FireStore {
   };
 
   deleteDoc = async (id) => {
-    await deleteDoc(doc(db, this.collection, id));
+    const ref = doc(db, this.collection, id);
+    await deleteDoc(ref);
+  };
+
+  updateDoc = async (data, id) => {
+    const ref = doc(db, this.collection, id);
+    await updateDoc(ref, data);
   };
 }
 
