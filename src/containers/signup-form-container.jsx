@@ -21,11 +21,6 @@ const SignupFormContainer = (props) => {
     startLoading();
     setError(null);
     setMessage(null);
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get("username");
-    const email = formData.get("email");
-    const password = formData.get("password");
     const profile = {
       displayName: username,
     };

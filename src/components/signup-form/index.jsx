@@ -7,10 +7,7 @@ import { GoCheck } from "react-icons/go";
 const SignupForm = (props) => {
   const { onSubmit, onChange, email, username, password } = props;
   return (
-    <form
-      id="signup-form"
-      className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 sm:aspect-[3/5] sm:max-w-md sm:grow-0"
-    >
+    <form className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black p-1 sm:aspect-[3/5] sm:max-w-md sm:grow-0">
       <div role="presentation" className="mt-4 bg-black p-1 py-2 pl-4">
         <h1 className="text-white">noteIt</h1>
       </div>
@@ -43,12 +40,7 @@ const SignupForm = (props) => {
         />
       </div>
       <br />
-      <ButtonContainer
-        label="Submit"
-        form="signup-form"
-        icon={<GoCheck />}
-        onClick={onSubmit}
-      />
+      <ButtonContainer label="Submit" icon={<GoCheck />} onClick={onSubmit} />
       <div
         role="presentation"
         className="min-h-[200px] border border-black p-1"
