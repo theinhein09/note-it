@@ -6,6 +6,8 @@ import Loading from "../loading";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
 import { FaRegEye } from "react-icons/fa";
+import ModalContainer from "../../containers/modal-container";
+import DialogContainer from "../../containers/dialog-container";
 
 const Dashboard = (props) => {
   const { loading, openBookPreview, categoriesMemo } = props;
@@ -64,6 +66,20 @@ const Dashboard = (props) => {
           )}
         </>
       )}
+      <ModalContainer>
+        <DialogContainer>
+          <div className="bg-white font-display">
+            <div className="bg-black p-1 text-white">Confirm</div>
+            <div className="flex h-20 items-center justify-center p-2">
+              Are you sure you want to delete this book?
+            </div>
+            <div className="flex justify-between p-1">
+              <ButtonContainer label="Confirm" />
+              <ButtonContainer label="Cancel" />
+            </div>
+          </div>
+        </DialogContainer>
+      </ModalContainer>
     </>
   );
 };

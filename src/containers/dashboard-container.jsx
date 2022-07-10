@@ -5,7 +5,6 @@ import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 import useBoolean from "../hooks/useBoolean";
 import PropTypes from "prop-types";
 import { useUserContextState } from "../contexts/user-context";
-import FireStore from "../firebase/firestore";
 import useOnSnapshot from "../hooks/useOnSnapshot";
 
 const DashboardContainer = (props) => {
