@@ -6,7 +6,7 @@ import BookCover from "../book-cover";
 import EditableInputContainer from "../../containers/editable-input-container";
 
 const BookPreview = (props) => {
-  const { selectedBook, handleCLick } = props;
+  const { selectedBook, onOpen } = props;
 
   return (
     <>
@@ -33,7 +33,7 @@ const BookPreview = (props) => {
           </div>
           <br />
           <ButtonContainer
-            onClick={handleCLick}
+            onClick={onOpen}
             icon={<RiBookOpenFill />}
             label="Open Book"
           />
@@ -45,7 +45,7 @@ const BookPreview = (props) => {
 
 BookPreview.propTypes = {
   selectedBook: PropTypes.object,
-  handleCLick: PropTypes.func,
+  onOpen: PropTypes.func,
 };
 
 export default BookPreview;

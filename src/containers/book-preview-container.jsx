@@ -7,11 +7,11 @@ const BookPreviewContainer = (props) => {
   const { selectedBook } = props;
   const navigate = useNavigate();
 
-  const handleCLick = () => {
+  const handleOpen = () => {
     navigate(`${selectedBook.id}`);
   };
 
-  return <BookPreview {...props} handleCLick={handleCLick} />;
+  return <BookPreview {...props} onOpen={handleOpen} />;
 };
 
 BookPreviewContainer.propTypes = {
