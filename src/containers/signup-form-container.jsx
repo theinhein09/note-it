@@ -5,11 +5,17 @@ import { useErrorContextUpdater } from "../contexts/error-context";
 import Authenticator from "../firebase/authenticator";
 import { useNavigate } from "react-router-dom";
 import FireStore from "../firebase/firestore";
+import useFormData from "../hooks/useFormData";
 
 const SignupFormContainer = (props) => {
   const { startLoading, finishLoading, setMessage } = props;
   const setError = useErrorContextUpdater();
   const navigate = useNavigate();
+  const [{ username, email, password }, handleInputChange] = useFormData({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (event) => {
     startLoading();
@@ -45,7 +51,15 @@ const SignupFormContainer = (props) => {
       finishLoading();
     }
   };
-  return <SignupForm handleSubmit={handleSubmit} />;
+  return (
+    <SignupForm
+      onSubmit={handleSubmit}
+      onChange={handleInputChange}
+      email={email}
+      username={username}
+      password={password}
+    />
+  );
 };
 
 SignupFormContainer.propTypes = {
