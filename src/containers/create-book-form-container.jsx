@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import CreateBookForm from "../components/create-book-form";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import useFormData from "../hooks/useFormData";
+import FireStore from "../firebase/firestore";
+import { useUserContextState } from "../contexts/user-context";
 
 const CreateBookFormContainer = (props) => {
   const { closeDialog } = props;
@@ -13,13 +15,17 @@ const CreateBookFormContainer = (props) => {
       category: "",
     }
   );
+  const { user } = useUserContextState();
 
-  const handleCreateBook = (event) => {
+  const handleCreateBook = async (event) => {
     setError(null);
     try {
       if (title === "") throw new Error("Book title is required");
       const book = { title, category: category === "" ? "Default" : category };
       // TODO SEND DATA TO FIRESTORE
+      const booksFS = new FireStore(`users/${user.uid}/books`);
+      const doc = await booksFS.addDoc(book);
+      console.log(doc);
       handleResetForm();
       closeDialog();
     } catch (error) {

@@ -20,7 +20,7 @@ const Sidebar = (props) => {
   const { user } = useUserContextState();
 
   return (
-    <aside className="fixed top-0 left-0 z-10 flex min-h-screen  flex-col border-r  border-black">
+    <aside className="fixed top-0 left-0 z-10 flex min-h-screen  flex-col border-r  border-black bg-white">
       {sidebar && (
         <div role="presentation" className="min-w-[280px] grow">
           <header className="flex h-8 items-center bg-black px-1 text-white">

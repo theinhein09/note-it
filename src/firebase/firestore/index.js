@@ -1,4 +1,10 @@
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 
 import app from "..";
 
@@ -13,6 +19,12 @@ class FireStore {
   setDoc = async (data, id) => {
     const ref = doc(db, this.collection, id);
     await setDoc(ref, data);
+  };
+
+  addDoc = async (data) => {
+    const ref = collection(db, this.collection);
+    const doc = await addDoc(ref, data);
+    return doc;
   };
 }
 
