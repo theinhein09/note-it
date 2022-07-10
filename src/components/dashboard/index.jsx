@@ -67,7 +67,7 @@ const Dashboard = (props) => {
         </>
       )}
       <ModalContainer>
-        <DialogContainer>
+        <DialogContainer hideButton={true}>
           <div className="bg-white font-display">
             <div className="bg-black p-1 text-white">Confirm</div>
             <div className="flex h-20 items-center justify-center p-2">

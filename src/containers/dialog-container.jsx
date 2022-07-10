@@ -9,6 +9,7 @@ const DialogContainer = (props) => {
 DialogContainer.propTypes = {
   children: PropTypes.node,
   closeDialog: PropTypes.func,
+  hideButton: PropTypes.bool,
 };
 
 export default DialogContainer;
