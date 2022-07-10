@@ -6,6 +6,7 @@ import useBoolean from "../hooks/useBoolean";
 import PropTypes from "prop-types";
 import { useUserContextState } from "../contexts/user-context";
 import FireStore from "../firebase/firestore";
+import useOnSnapshot from "../hooks/useOnSnapshot";
 
 const DashboardContainer = (props) => {
   const { setSelectedBook } = props;
@@ -13,9 +14,8 @@ const DashboardContainer = (props) => {
   const { openSidebar } = useSidebarContextUpdater();
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
 
-  const [books, setBooks] = useState([]);
-
   const [categories, setCatagories] = useState(null);
+  const books = useOnSnapshot(`users/${user.uid}/books`);
 
   const categoriesMemo = useMemo(
     () => ({ categories, setCatagories }),
@@ -26,16 +26,6 @@ const DashboardContainer = (props) => {
     setSelectedBook(book);
     openSidebar();
   };
-
-  useEffect(() => {
-    (async () => {
-      startLoading();
-      const booksFS = new FireStore(`users/${user.uid}/books`);
-      booksFS.onSnapshot(setBooks);
-
-      finishLoading();
-    })();
-  }, [user.uid, startLoading, finishLoading]);
 
   useEffect(() => {
     startLoading();

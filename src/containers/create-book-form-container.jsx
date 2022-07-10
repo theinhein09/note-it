@@ -22,10 +22,8 @@ const CreateBookFormContainer = (props) => {
     try {
       if (title === "") throw new Error("Book title is required");
       const book = { title, category: category === "" ? "Default" : category };
-      // TODO SEND DATA TO FIRESTORE
       const booksFS = new FireStore(`users/${user.uid}/books`);
-      const doc = await booksFS.addDoc(book);
-      console.log(doc);
+      await booksFS.addDoc(book);
       handleResetForm();
       closeDialog();
     } catch (error) {
