@@ -69,7 +69,7 @@ const Book = () => {
         </div>
         {currentContent && <ButtonContainer icon="Save" onClick={savePage} />}
         <ButtonContainer
-          icon={<VscChromeClose />}
+          icon={<VscChromeClose title="close book" />}
           category="icon-only"
           onClick={() => navigate("/")}
           className="text-white"
