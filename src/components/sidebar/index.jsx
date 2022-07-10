@@ -32,7 +32,7 @@ const Sidebar = (props) => {
               )}
             />
           </header>
-          <div role="presentation" className="">
+          <div role="presentation">
             <BookPreviewContainer selectedBook={selectedBook} />
             <SectionsContainer
               sections={sections}
