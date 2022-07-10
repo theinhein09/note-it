@@ -9,11 +9,11 @@ const EditableInput = forwardRef((props, ref) => {
     props;
 
   return (
-    <>
+    <div role="presentation" className="flex">
       <input
         ref={ref}
         className={className}
-        value={editing.isEditing ? editing.editingContent : content}
+        value={editing.isEditing ? editing.content : content}
         readOnly={!editing.isEditing}
         onChange={onChange}
       />
@@ -39,7 +39,7 @@ const EditableInput = forwardRef((props, ref) => {
           category="icon-only"
         />
       )}
-    </>
+    </div>
   );
 });
 
