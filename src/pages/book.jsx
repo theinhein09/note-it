@@ -1,20 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/loading";
-import useBoolean from "../hooks/useBoolean";
-import { getBook } from "../utils/mockAPI";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
 import { VscChromeClose } from "react-icons/vsc";
 import ButtonContainer from "../containers/button-container";
 import { useUserContextState } from "../contexts/user-context";
+import FireStore from "../firebase/firestore";
+import useOnSnapshot from "../hooks/useOnSnapshot";
 
 const Book = () => {
   const { bookId } = useParams();
   const { user } = useUserContextState();
   const [sections, setSections] = useState(null);
-  const [loading, { on: startLoading, off: finishLoading }] = useBoolean(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentContent, setCurrentContent] = useState();
@@ -26,17 +25,21 @@ const Book = () => {
     [selectedPage]
   );
 
+  const pages = useOnSnapshot(`books/${bookId}/pages`);
+
   useEffect(() => {
-    startLoading();
+    if (!user) return;
     (async () => {
-      const book = await getBook(user.id, bookId);
+      const booksFS = new FireStore(`users/${user.uid}/books`);
+      const book = await booksFS.getDoc(bookId);
       setSelectedBook(book);
-      const pages = book.pages;
-      const groupBySection = groupBy(pages, "section");
-      setSections(groupBySection);
-      finishLoading();
     })();
-  }, [user.id, bookId, startLoading, finishLoading]);
+  }, [user, bookId]);
+
+  useEffect(() => {
+    const groupBySection = groupBy(pages, "section");
+    setSections(groupBySection);
+  }, [pages]);
 
   const savePage = () => {
     console.log(currentContent);
@@ -49,16 +52,18 @@ const Book = () => {
     >
       <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
         <div role="presentation" className="flex grow divide-x-2">
-          <span className="px-4">{user.displayName}</span>
-          {loading ? (
+          {!user ? (
             <Loading />
           ) : (
-            <span className="px-4">Category: {selectedBook.category}</span>
+            <span className="px-4">{user.displayName}</span>
           )}
-          {loading ? (
+          {!selectedBook ? (
             <Loading />
           ) : (
-            <span className="px-4">Title: {selectedBook.title}</span>
+            <>
+              <span className="px-4">Category: {selectedBook.category}</span>
+              <span className="px-4">Title: {selectedBook.title}</span>
+            </>
           )}
           {selectedPage && (
             <>
@@ -75,16 +80,10 @@ const Book = () => {
           className="text-white"
         />
       </nav>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <TextEditorContainer
-            selectedPage={selectedPageMemo.selectedPage}
-            setCurrentContent={setCurrentContent}
-          />
-        </>
-      )}
+      <TextEditorContainer
+        selectedPage={selectedPageMemo.selectedPage}
+        setCurrentContent={setCurrentContent}
+      />
     </LayoutContainer>
   );
 };

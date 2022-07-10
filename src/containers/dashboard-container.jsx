@@ -17,7 +17,8 @@ const DashboardContainer = (props) => {
   const [toDeleteBookId, setToDeleteBookId] = useState(null);
 
   const [categories, setCatagories] = useState(null);
-  const books = useOnSnapshot(`users/${user.uid}/books`);
+
+  const books = useOnSnapshot(`books`);
 
   const categoriesMemo = useMemo(
     () => ({ categories, setCatagories }),

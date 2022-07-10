@@ -79,7 +79,7 @@ class FireStore {
     const docSnap = await getDoc(ref);
 
     if (docSnap.exists()) {
-      return docSnap;
+      return { id: docSnap.id, ...docSnap.data() };
     }
   };
 }
