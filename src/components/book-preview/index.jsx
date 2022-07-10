@@ -6,7 +6,7 @@ import BookCover from "../book-cover";
 import EditableInputContainer from "../../containers/editable-input-container";
 
 const BookPreview = (props) => {
-  const { selectedBook, onOpen, onSave } = props;
+  const { selectedBook, onOpen, onTitleSave, onCategorySave } = props;
 
   return (
     <>
@@ -18,7 +18,7 @@ const BookPreview = (props) => {
             <div>Title: </div>
             <EditableInputContainer
               content={selectedBook.title}
-              onSave={onSave}
+              onSave={onTitleSave}
               id={selectedBook.id}
               customClassName="max-w-[100px]"
             />
@@ -28,7 +28,7 @@ const BookPreview = (props) => {
             <div>Category: </div>
             <EditableInputContainer
               content={selectedBook.category}
-              onSave={onSave}
+              onSave={onCategorySave}
               id={selectedBook.category}
               customClassName="max-w-[100px]"
             />
@@ -48,7 +48,8 @@ const BookPreview = (props) => {
 BookPreview.propTypes = {
   selectedBook: PropTypes.object,
   onOpen: PropTypes.func,
-  onSave: PropTypes.func,
+  onTitleSave: PropTypes.func,
+  onCategorySave: PropTypes.func,
 };
 
 export default BookPreview;

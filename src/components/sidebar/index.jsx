@@ -14,7 +14,7 @@ import {
 import { useUserContextState } from "../../contexts/user-context";
 
 const Sidebar = (props) => {
-  const { selectedBook, sections, setSelectedPage } = props;
+  const { selectedBook, setSelectedBook, sections, setSelectedPage } = props;
   const sidebar = useSidebarContextState();
   const { toggleSidebar } = useSidebarContextUpdater();
   const { user } = useUserContextState();
@@ -33,7 +33,10 @@ const Sidebar = (props) => {
             />
           </header>
           <div role="presentation">
-            <BookPreviewContainer selectedBook={selectedBook} />
+            <BookPreviewContainer
+              selectedBook={selectedBook}
+              setSelectedBook={setSelectedBook}
+            />
             <SectionsContainer
               sections={sections}
               setSelectedPage={setSelectedPage}
@@ -59,6 +62,7 @@ Sidebar.propTypes = {
   selectedBook: PropTypes.object,
   sections: PropTypes.object,
   setSelectedPage: PropTypes.func,
+  setSelectedBook: PropTypes.func,
 };
 
 export default Sidebar;

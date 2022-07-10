@@ -8,6 +8,8 @@ import {
   onSnapshot,
   deleteDoc,
   updateDoc,
+  where,
+  getDocs,
 } from "firebase/firestore";
 
 import app from ".";
@@ -32,7 +34,7 @@ class FireStore {
   };
 
   onSnapshot = (set) => {
-    const q = query(collection(db, this.collection));
+    const q = this.query();
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -51,6 +53,24 @@ class FireStore {
   updateDoc = async (data, id) => {
     const ref = doc(db, this.collection, id);
     await updateDoc(ref, data);
+  };
+
+  query = (prop = null, operator = null, value = null) => {
+    const ref = collection(db, this.collection);
+    if (prop && operator && value)
+      return query(ref, where(prop, operator, value));
+    return query(ref);
+  };
+
+  getDocs = async (prop, operator, value) => {
+    const q = this.query(prop, operator, value);
+    const querySnapshot = await getDocs(q);
+
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return data;
   };
 }
 
