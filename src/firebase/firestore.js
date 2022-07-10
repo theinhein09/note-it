@@ -4,6 +4,8 @@ import {
   setDoc,
   collection,
   addDoc,
+  query,
+  onSnapshot,
 } from "firebase/firestore";
 
 import app from ".";
@@ -25,6 +27,15 @@ class FireStore {
     const ref = collection(db, this.collection);
     const doc = await addDoc(ref, data);
     return doc;
+  };
+
+  onSnapshot = (set) => {
+    const q = query(collection(db, this.collection));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = querySnapshot.map((doc) => ({ id: doc.id, ...doc.data() }));
+      set(data);
+    });
+    return unsubscribe;
   };
 }
 
