@@ -31,7 +31,9 @@ const TextEditor = (props) => {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
-    if (!selectedPage) return;
+    if (!selectedPage) {
+      return setEditorState(() => EditorState.createEmpty());
+    }
     const data = JSON.parse(selectedPage.content);
     setContent(convertFromRaw(data));
   }, [selectedPage]);
