@@ -13,6 +13,10 @@ const TextEditor = (props) => {
 
   const [content, setContent] = useState(null);
 
+  const setEditorRef = (ref) => {
+    ref && ref.focus();
+  };
+
   useEffect(() => {
     if (!selectedPage) {
       return setEditorState(() => EditorState.createEmpty());
@@ -28,6 +32,7 @@ const TextEditor = (props) => {
 
   return (
     <Editor
+      editorRef={setEditorRef}
       editorState={editorState}
       toolbarClassName="font-display"
       wrapperClassName="wrapperClassName"
