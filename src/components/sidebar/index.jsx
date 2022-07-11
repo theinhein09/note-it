@@ -12,8 +12,10 @@ import {
   useSidebarContextUpdater,
 } from "../../contexts/sidebar-context";
 import { useUserContextState } from "../../contexts/user-context";
+import { useParams } from "react-router-dom";
 
 const Sidebar = (props) => {
+  const { bookId } = useParams();
   const { selectedBook, setSelectedBook, sections, setSelectedPage } = props;
   const sidebar = useSidebarContextState();
   const { toggleSidebar } = useSidebarContextUpdater();
@@ -25,13 +27,14 @@ const Sidebar = (props) => {
         <div role="presentation" className="min-w-[280px] grow">
           <header className="flex h-8 items-center bg-black px-1 text-white">
             <h1 className="grow">noteIt</h1>
-            <DialogRenderButtonContainer
-              buttonLabel="Create New Book"
-              render={(closeDialog) => (
-                <CreateBookFormContainer closeDialog={closeDialog} />
-              )}
-            />
-            {selectedBook && (
+            {!bookId ? (
+              <DialogRenderButtonContainer
+                buttonLabel="Create New Book"
+                render={(closeDialog) => (
+                  <CreateBookFormContainer closeDialog={closeDialog} />
+                )}
+              />
+            ) : (
               <ButtonContainer
                 label="Add New Page"
                 onClick={() => setSelectedPage(null)}
