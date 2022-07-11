@@ -4,23 +4,6 @@ import { EditorState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import toolbar from "./utils/toolbar";
-import "./styles.css";
-
-// TODO store data coming from DB.
-const data = {
-  entityMap: {},
-  blocks: [
-    {
-      key: "637gr",
-      text: "Initialized from content state.",
-      type: "unstyled",
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [],
-      data: {},
-    },
-  ],
-};
 
 const TextEditor = (props) => {
   const { selectedPage, setCurrentContent } = props;

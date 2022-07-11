@@ -3,7 +3,31 @@
 @tailwind utilities;
 
 @layer utilities {
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: none;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: none;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
+
+@layer utilities {
   .clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 52%, 0 52%);
+  }
+  .rdw-option-active {
+    border: 1px solid black;
   }
 }
