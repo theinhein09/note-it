@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useBoolean from "../hooks/useBoolean";
 import SignupFormContainer from "../containers/signup-form-container";
-import ErrorContainer from "../containers/error-container";
 import ModalContainer from "../containers/modal-container";
 import Loading from "../components/loading";
 
@@ -17,14 +16,22 @@ const SignUp = () => {
           finishLoading={finishLoading}
           setMessage={setMessage}
         />
-        <ErrorContainer />
       </main>
       {loading && (
         <ModalContainer>
           <Loading />
         </ModalContainer>
       )}
-      {message && <ModalContainer>{message}</ModalContainer>}
+      {message && (
+        <ModalContainer>
+          <div
+            role="alert"
+            className="max-w-prose font-display text-xl text-white"
+          >
+            {message}
+          </div>
+        </ModalContainer>
+      )}
     </>
   );
 };

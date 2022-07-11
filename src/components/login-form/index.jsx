@@ -43,8 +43,8 @@ const LoginForm = (props) => {
             value={password}
             onChange={onChange}
           />
+          <ErrorContainer />
         </div>
-        <ErrorContainer />
         <br />
         <ButtonContainer
           label="Sign In"
