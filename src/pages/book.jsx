@@ -63,6 +63,7 @@ const Book = () => {
     const data = { content, ...page };
     const pagesFS = new FireStore(`users/${user.uid}/books/${bookId}/pages`);
     await pagesFS.addDoc(data);
+    setPage({ title: "", section: "" });
     closeDialog();
   };
 
