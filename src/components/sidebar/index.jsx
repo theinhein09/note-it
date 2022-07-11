@@ -31,10 +31,12 @@ const Sidebar = (props) => {
                 <CreateBookFormContainer closeDialog={closeDialog} />
               )}
             />
-            <ButtonContainer
-              label="Add New Page"
-              onClick={() => setSelectedPage(null)}
-            />
+            {selectedBook && (
+              <ButtonContainer
+                label="Add New Page"
+                onClick={() => setSelectedPage(null)}
+              />
+            )}
           </header>
           <div role="presentation">
             <BookPreviewContainer
