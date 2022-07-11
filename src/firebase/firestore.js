@@ -81,6 +81,8 @@ class FireStore {
     if (docSnap.exists()) {
       return { id: docSnap.id, ...docSnap.data() };
     }
+
+    return null;
   };
 }
 

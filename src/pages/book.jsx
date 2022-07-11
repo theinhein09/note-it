@@ -50,12 +50,26 @@ const Book = () => {
     setSections(groupBySection);
   }, [pages]);
 
-  const handleSave = () => {
+  const onSave = async () => {
+    if (selectedPageMemo.selectedPage === null) {
+      openDialog();
+    } else {
+      await handleUpdate();
+    }
+  };
+
+  const handleSave = async () => {
     const content = JSON.stringify(currentContent);
     const data = { content, ...page };
     const pagesFS = new FireStore(`users/${user.uid}/books/${bookId}/pages`);
-    pagesFS.addDoc(data);
+    await pagesFS.addDoc(data);
     closeDialog();
+  };
+
+  const handleUpdate = async () => {
+    const content = JSON.stringify(currentContent);
+    const pagesFS = new FireStore(`users/${user.uid}/books/${bookId}/pages`);
+    await pagesFS.updateDoc({ content }, selectedPageMemo.selectedPage.id);
   };
 
   const handleInputChange = (event) => {
@@ -91,9 +105,7 @@ const Book = () => {
               </>
             )}
           </div>
-          {currentContent && (
-            <ButtonContainer icon="Save" onClick={() => openDialog()} />
-          )}
+          {currentContent && <ButtonContainer icon="Save" onClick={onSave} />}
           <ButtonContainer
             icon={<VscChromeClose title="close book" />}
             category="icon-only"
