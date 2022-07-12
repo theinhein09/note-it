@@ -29,12 +29,19 @@ const SectionsContainer = (props) => {
     }
   };
 
+  const handlePageTitleSave = async (data) => {
+    const { content: title, id } = data;
+    const pagesFS = new FireStore(`/users/${user.uid}/books/${bookId}/pages`);
+    await pagesFS.updateDoc({ title }, id);
+  };
+
   return (
     <Sections
       {...props}
       openPage={openPage}
       onPageDelete={handlePageDelete}
       onSectionDelete={handleSectionDelete}
+      onPageTitleSave={handlePageTitleSave}
     />
   );
 };

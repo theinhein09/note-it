@@ -7,7 +7,8 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 import EditableInputContainer from "../../containers/editable-input-container";
 
 const Sections = (props) => {
-  const { sections, openPage, onPageDelete, onSectionDelete } = props;
+  const { sections, openPage, onPageDelete, onSectionDelete, onPageTitleSave } =
+    props;
 
   const renderPages = () => {
     let pages = [];
@@ -40,7 +41,11 @@ const Sections = (props) => {
               />
 
               <div role="presentation" className="h-0.5 w-2 bg-black" />
-              <EditableInputContainer content={page.title} id={page.id} />
+              <EditableInputContainer
+                content={page.title}
+                id={page.id}
+                onSave={onPageTitleSave}
+              />
               <ButtonContainer
                 icon={<FaRegEye />}
                 onClick={openPage(page)}
@@ -69,6 +74,7 @@ Sections.propTypes = {
   openPage: PropTypes.func,
   onPageDelete: PropTypes.func,
   onSectionDelete: PropTypes.func,
+  onPageTitleSave: PropTypes.func,
 };
 
 export default Sections;
