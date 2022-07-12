@@ -4,6 +4,7 @@ import Book from "../../pages/book";
 import Home from "../../pages/home";
 import Entry from "../../pages/entry";
 import SignUp from "../../pages/sign-up";
+import Profile from "../../pages/profile";
 import { StrictMode } from "react";
 
 const App = (props) => {
@@ -21,6 +22,7 @@ const App = (props) => {
               </StrictMode>
             }
           />
+
           <Route
             path="sign-up"
             element={
@@ -34,6 +36,16 @@ const App = (props) => {
             element={
               <StrictMode>
                 <Entry />
+              </StrictMode>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <StrictMode>
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
               </StrictMode>
             }
           />

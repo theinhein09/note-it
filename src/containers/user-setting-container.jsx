@@ -16,12 +16,17 @@ const UserSettingContainer = (props) => {
     navigate("/");
   };
 
+  const handleProfileOpen = () => {
+    navigate("/profile");
+  };
+
   return (
     <UserSetting
       {...props}
       toggleUserSetting={toggleUserSetting}
       userSetting={userSetting}
       onSignOut={handleSignOut}
+      onProfileOpen={handleProfileOpen}
     />
   );
 };
