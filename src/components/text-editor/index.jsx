@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { EditorState, convertFromRaw } from "draft-js";
+import { EditorState, convertFromRaw, Modifier } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import toolbar from "./utils/toolbar";
@@ -13,9 +13,9 @@ const TextEditor = (props) => {
 
   const [content, setContent] = useState(null);
 
-  const setEditorRef = (ref) => {
-    ref && ref.focus();
-  };
+  // const setEditorRef = (ref) => {
+  //   ref && ref.focus();
+  // };
 
   useEffect(() => {
     if (!selectedPage) {
@@ -32,7 +32,7 @@ const TextEditor = (props) => {
 
   return (
     <Editor
-      editorRef={setEditorRef}
+      // editorRef={setEditorRef}
       editorState={editorState}
       toolbarClassName="font-display"
       wrapperClassName="wrapperClassName"
@@ -40,6 +40,7 @@ const TextEditor = (props) => {
       onEditorStateChange={setEditorState}
       onContentStateChange={setCurrentContent}
       toolbar={toolbar}
+      handlePastedText={() => false}
     />
   );
 };
