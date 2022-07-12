@@ -73,7 +73,10 @@ const Profile = (props) => {
                 <td className="border border-black">
                   {book.pages.length !== 0 &&
                     book.pages.map((page) => (
-                      <div className=" border-t border-black px-4 py-1 first:block first:border-none">
+                      <div
+                        key={page.id}
+                        className=" border-t border-black px-4 py-1 first:block first:border-none"
+                      >
                         {page.section}
                       </div>
                     ))}
@@ -81,7 +84,10 @@ const Profile = (props) => {
                 <td className="border border-black">
                   {book.pages.length !== 0 &&
                     book.pages.map((page) => (
-                      <div className=" border-t border-black px-4 py-1 first:block first:border-none">
+                      <div
+                        key={page.id}
+                        className=" border-t border-black px-4 py-1 first:block first:border-none"
+                      >
                         {page.title}
                       </div>
                     ))}
