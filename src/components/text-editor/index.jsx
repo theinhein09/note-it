@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { EditorState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import toolbar from "./utils/toolbar";
+import { useSidebarContextUpdater } from "../../contexts/sidebar-context";
 
 const TextEditor = (props) => {
   const { selectedPage, setCurrentContent } = props;
@@ -13,6 +14,7 @@ const TextEditor = (props) => {
   const [editorRef, setEditorRef] = useState(null);
 
   const [content, setContent] = useState(null);
+  const { closeSidebar } = useSidebarContextUpdater();
 
   useEffect(() => {
     if (!selectedPage) {
@@ -29,6 +31,7 @@ const TextEditor = (props) => {
 
   const setEditorOnFocus = () => {
     editorRef.focus();
+    closeSidebar();
   };
 
   return (

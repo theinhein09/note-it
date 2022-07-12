@@ -16,7 +16,13 @@ import { useParams } from "react-router-dom";
 
 const Sidebar = (props) => {
   const { bookId } = useParams();
-  const { selectedBook, setSelectedBook, sections, setSelectedPage } = props;
+  const {
+    selectedBook,
+    setSelectedBook,
+    sections,
+    setSelectedPage,
+    onAddPage,
+  } = props;
   const sidebar = useSidebarContextState();
   const { toggleSidebar } = useSidebarContextUpdater();
   const { user } = useUserContextState();
@@ -35,10 +41,7 @@ const Sidebar = (props) => {
                 )}
               />
             ) : (
-              <ButtonContainer
-                label="Add New Page"
-                onClick={() => setSelectedPage(null)}
-              />
+              <ButtonContainer label="Add New Page" onClick={onAddPage} />
             )}
           </header>
           <div role="presentation">
