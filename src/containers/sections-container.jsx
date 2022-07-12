@@ -35,6 +35,15 @@ const SectionsContainer = (props) => {
     await pagesFS.updateDoc({ title }, id);
   };
 
+  const handleSectionSave = async (data) => {
+    const { content: section, id } = data;
+    const pagesFS = new FireStore(`/users/${user.uid}/books/${bookId}/pages`);
+    const docs = await pagesFS.getDocs("section", "==", id);
+    for (let doc of docs) {
+      pagesFS.updateDoc({ section }, doc.id);
+    }
+  };
+
   return (
     <Sections
       {...props}
@@ -42,6 +51,7 @@ const SectionsContainer = (props) => {
       onPageDelete={handlePageDelete}
       onSectionDelete={handleSectionDelete}
       onPageTitleSave={handlePageTitleSave}
+      onSectionSave={handleSectionSave}
     />
   );
 };
