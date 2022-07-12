@@ -49,7 +49,7 @@ const Profile = (props) => {
       {books.length !== 0 && (
         <table className="border-collapse">
           <caption className="text-left">All Books</caption>
-          <thead>
+          <thead className="bg-black text-white">
             <tr>
               <th className="border border-black px-4 py-1">No</th>
               <th className="border border-black px-4 py-1">Books</th>
