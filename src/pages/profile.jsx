@@ -47,10 +47,10 @@ const Profile = (props) => {
       <h2>{user.displayName}</h2>
       <p>Email: {user.email}</p>
       {books.length !== 0 && (
-        <table>
+        <table className="border-collapse">
           <caption className="text-left">All Books</caption>
-          <thead className="border border-black">
-            <tr className="border border-black">
+          <thead>
+            <tr>
               <th className="border border-black px-4 py-1">No</th>
               <th className="border border-black px-4 py-1">Books</th>
               <th className="border border-black px-4 py-1">Categories</th>
@@ -60,19 +60,31 @@ const Profile = (props) => {
           </thead>
           <tbody>
             {books.map((book, i) => (
-              <tr key={book.id} className="border border-black">
-                <td className="border border-black px-4 py-1">{i + 1}</td>
-                <td className="border border-black px-4 py-1">{book.title}</td>
-                <td className="border border-black px-4 py-1">
+              <tr key={book.id}>
+                <td className="border border-black px-4 py-1 align-top">
+                  {i + 1}
+                </td>
+                <td className="border border-black px-4 py-1 align-top">
+                  {book.title}
+                </td>
+                <td className="border border-black px-4 py-1 align-top">
                   {book.category}
                 </td>
-                <td className="overflow-hidden border border-black px-4 py-1">
+                <td className="border border-black">
                   {book.pages.length !== 0 &&
-                    book.pages.map((page) => <p>{page.section}</p>)}
+                    book.pages.map((page) => (
+                      <div className=" border-t border-black px-4 py-1 first:block first:border-none">
+                        {page.section}
+                      </div>
+                    ))}
                 </td>
-                <td className="border border-black px-4 py-1">
+                <td className="border border-black">
                   {book.pages.length !== 0 &&
-                    book.pages.map((page) => <p>{page.title}</p>)}
+                    book.pages.map((page) => (
+                      <div className=" border-t border-black px-4 py-1 first:block first:border-none">
+                        {page.title}
+                      </div>
+                    ))}
                 </td>
               </tr>
             ))}
