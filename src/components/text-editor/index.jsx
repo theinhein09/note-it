@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { EditorState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
@@ -10,6 +10,7 @@ const TextEditor = (props) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+  const [editorRef, setEditorRef] = useState(null);
 
   const [content, setContent] = useState(null);
 
@@ -26,17 +27,24 @@ const TextEditor = (props) => {
     setEditorState(() => EditorState.createWithContent(content));
   }, [content]);
 
+  const setEditorOnFocus = () => {
+    editorRef.focus();
+  };
+
   return (
-    <Editor
-      editorState={editorState}
-      toolbarClassName="font-display"
-      wrapperClassName="wrapperClassName"
-      editorClassName="px-2"
-      onEditorStateChange={setEditorState}
-      onContentStateChange={setCurrentContent}
-      toolbar={toolbar}
-      handlePastedText={() => false}
-    />
+    <div onClick={setEditorOnFocus} className="min-h-screen">
+      <Editor
+        editorRef={setEditorRef}
+        editorState={editorState}
+        toolbarClassName="font-display"
+        wrapperClassName="wrapperClassName"
+        editorClassName="px-2"
+        onEditorStateChange={setEditorState}
+        onContentStateChange={setCurrentContent}
+        toolbar={toolbar}
+        handlePastedText={() => false}
+      />
+    </div>
   );
 };
 
