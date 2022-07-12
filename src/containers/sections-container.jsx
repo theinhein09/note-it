@@ -21,8 +21,21 @@ const SectionsContainer = (props) => {
     await pagesFS.deleteDoc(pageId);
   };
 
+  const handleSectionDelete = async (section) => {
+    const pagesFS = new FireStore(`users/${user.uid}/books/${bookId}/pages`);
+    const pages = await pagesFS.getDocs("section", "==", section);
+    for (let page of pages) {
+      await pagesFS.deleteDoc(page.id);
+    }
+  };
+
   return (
-    <Sections {...props} openPage={openPage} onPageDelete={handlePageDelete} />
+    <Sections
+      {...props}
+      openPage={openPage}
+      onPageDelete={handlePageDelete}
+      onSectionDelete={handleSectionDelete}
+    />
   );
 };
 

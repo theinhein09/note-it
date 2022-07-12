@@ -7,7 +7,7 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 import EditableInputContainer from "../../containers/editable-input-container";
 
 const Sections = (props) => {
-  const { sections, openPage, onPageDelete } = props;
+  const { sections, openPage, onPageDelete, onSectionDelete } = props;
 
   const renderPages = () => {
     let pages = [];
@@ -21,7 +21,7 @@ const Sections = (props) => {
               customClassName="bg-black flex-grow"
             />
             <ButtonContainer
-              onClick={() => console.log("DELETE Page Section")}
+              onClick={() => onSectionDelete(section)}
               icon={<RiDeleteBin6Line />}
               category="icon-only"
             />
@@ -68,6 +68,7 @@ Sections.propTypes = {
   sections: PropTypes.object,
   openPage: PropTypes.func,
   onPageDelete: PropTypes.func,
+  onSectionDelete: PropTypes.func,
 };
 
 export default Sections;
