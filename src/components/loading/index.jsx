@@ -1,7 +1,8 @@
 import React from "react";
+import { ReactComponent as Spinner } from "../../assets/images/spinner.svg";
 
 const Loading = () => {
-  return <div className="p-5 font-display text-xl text-white">Loading...</div>;
+  return <Spinner />;
 };
 
 export default Loading;
