@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { Children, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import ButtonContainer from "../../containers/button-container";
 
 const Carousel = (props) => {
-  const { children, slideWidth = 128 } = props;
+  const { children } = props;
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState(1);
+  const slideRef = useRef(null);
+
+  useEffect(() => {
+    setWidth(slideRef.current.children[0].offsetWidth);
+  }, []);
+
   return (
     <>
-      <div className="max-w-[280px] overflow-hidden">
+      <div className="max-w-full overflow-hidden">
         <div
-          className={`whitespace-nowrap bg-orange-500`}
-          style={{ transform: `translateX(${-index * slideWidth}rem)` }}
+          className="whitespace-nowrap"
+          style={{ transform: `translateX(${-index * width}px)` }}
         >
-          {children}
+          <div ref={slideRef}>
+            {Children.map(children, (child) => (
+              <div className="inline-block w-fit">{child}</div>
+            ))}
+          </div>
         </div>
       </div>
-      <div>
-        <button onClick={() => setIndex((prev) => (prev -= 1))}>Prev</button>
-        <button onClick={() => setIndex((prev) => (prev += 1))}>Next</button>
+      <div className="flex gap-2">
+        <ButtonContainer
+          label="PREV"
+          onClick={() => setIndex((prev) => (prev -= 1))}
+        />
+        <ButtonContainer
+          label="NEXT"
+          onClick={() => setIndex((prev) => (prev += 1))}
+        />
       </div>
     </>
   );
@@ -24,7 +42,6 @@ const Carousel = (props) => {
 
 Carousel.propTypes = {
   children: PropTypes.node,
-  slideWidthInRem: PropTypes.number,
 };
 
 export default Carousel;
