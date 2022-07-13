@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useRef, useState } from "react";
+import React, { Children, useEffect, useMemo, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
 
@@ -8,18 +8,23 @@ const Carousel = (props) => {
   const [width, setWidth] = useState(1);
   const slideRef = useRef(null);
 
+  const memo = useMemo(
+    () => ({ index, width, setIndex, setWidth }),
+    [index, width]
+  );
+
   useEffect(() => {
-    setWidth(slideRef.current.children[0].offsetWidth);
+    memo.setWidth(slideRef.current.children[0].offsetWidth);
   }, []);
 
   const handlePrev = () => {
-    if (index <= 0) return;
-    setIndex((prev) => (prev -= 1));
+    if (memo.index <= 0) return;
+    memo.setIndex((prev) => (prev -= 1));
   };
 
   const handleNext = () => {
-    if (index >= children.length - 1) return;
-    setIndex((prev) => (prev += 1));
+    if (memo.index >= children.length - 1) return;
+    memo.setIndex((prev) => (prev += 1));
   };
 
   return (
@@ -27,7 +32,7 @@ const Carousel = (props) => {
       <div className="max-w-full overflow-hidden">
         <div
           className="whitespace-nowrap"
-          style={{ transform: `translateX(${-index * width}px)` }}
+          style={{ transform: `translateX(${-memo.index * memo.width}px)` }}
         >
           <div ref={slideRef}>
             {Children.map(children, (child) => (
@@ -37,18 +42,18 @@ const Carousel = (props) => {
         </div>
       </div>
       <div className="flex gap-2">
-        {index > 0 ? (
+        {memo.index > 0 ? (
           <ButtonContainer
             label="PREV"
             onClick={handlePrev}
-            disabled={index <= 0}
+            disabled={memo.index <= 0}
           />
         ) : (
           <ButtonContainer className="invisible" label="PREV" />
         )}
-        {index < children.length - 1 ? (
+        {memo.index < children.length - 1 ? (
           <ButtonContainer
-            disabled={index >= children.length - 1}
+            disabled={memo.index >= children.length - 1}
             label="NEXT"
             onClick={handleNext}
           />
