@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category, className: customClassName } = props;
   const defaultClassName =
-    "outline-none hover:bg-gray-500 hover:text-white focus:bg-gray-500 focus:text-white font-display flex items-center gap-1";
+    "outline-none hover:bg-gray-500 hover:text-white focus:bg-gray-500 focus:text-white font-display flex items-center gap-1 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-black";
 
   let categorizedClassName = "";
 
@@ -36,6 +36,7 @@ ButtonContainer.propTypes = {
   onClick: PropTypes.func,
   form: PropTypes.string,
   title: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default ButtonContainer;

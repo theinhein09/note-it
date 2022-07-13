@@ -12,6 +12,16 @@ const Carousel = (props) => {
     setWidth(slideRef.current.children[0].offsetWidth);
   }, []);
 
+  const handlePrev = () => {
+    if (index <= 0) return;
+    setIndex((prev) => (prev -= 1));
+  };
+
+  const handleNext = () => {
+    if (index >= children.length - 1) return;
+    setIndex((prev) => (prev += 1));
+  };
+
   return (
     <>
       <div className="max-w-full overflow-hidden">
@@ -27,14 +37,24 @@ const Carousel = (props) => {
         </div>
       </div>
       <div className="flex gap-2">
-        <ButtonContainer
-          label="PREV"
-          onClick={() => setIndex((prev) => (prev -= 1))}
-        />
-        <ButtonContainer
-          label="NEXT"
-          onClick={() => setIndex((prev) => (prev += 1))}
-        />
+        {index > 0 ? (
+          <ButtonContainer
+            label="PREV"
+            onClick={handlePrev}
+            disabled={index <= 0}
+          />
+        ) : (
+          <ButtonContainer className="invisible" label="PREV" />
+        )}
+        {index < children.length - 1 ? (
+          <ButtonContainer
+            disabled={index >= children.length - 1}
+            label="NEXT"
+            onClick={handleNext}
+          />
+        ) : (
+          <ButtonContainer className="invisible" label="NEXT" />
+        )}
       </div>
     </>
   );

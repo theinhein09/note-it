@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Button = (props) => {
-  const { className, label, type, icon, onClick, form, title } = props;
+  const { className, label, type, icon, onClick, form, title, disabled } =
+    props;
 
   return (
     <button
@@ -11,11 +12,16 @@ const Button = (props) => {
       onClick={onClick}
       form={form}
       title={title}
+      disabled={disabled}
     >
       {icon && icon}
       {label && label}
     </button>
   );
+};
+
+Button.defaultProps = {
+  disabled: false,
 };
 
 Button.propTypes = {
@@ -26,6 +32,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   form: PropTypes.string,
   title: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;
