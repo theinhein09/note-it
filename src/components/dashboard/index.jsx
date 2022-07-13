@@ -8,6 +8,7 @@ import BookCover from "../book-cover";
 import { FaRegEye } from "react-icons/fa";
 import ModalContainer from "../../containers/modal-container";
 import DialogContainer from "../../containers/dialog-container";
+import Carousel from "../carousel";
 
 const Dashboard = (props) => {
   const {
@@ -60,9 +61,19 @@ const Dashboard = (props) => {
   };
 
   const books = renderBooks();
-
+  const arr = Array.from({ length: 20 }, (_, i) => i + 1);
   return (
     <>
+      <Carousel>
+        {arr.map((ele) => (
+          <div
+            key={ele}
+            className="inline-block h-52 w-32 border border-black bg-orange-300"
+          >
+            {ele}
+          </div>
+        ))}
+      </Carousel>
       {loading ? (
         <Loading />
       ) : (
