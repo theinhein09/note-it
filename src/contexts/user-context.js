@@ -14,8 +14,8 @@ const UserContextProvider = (props) => {
   const context = useMemo(() => ({ user, loading, setUser }), [user, loading]);
 
   useEffect(() => {
-    Authenticator._onAuthStateChanged(user, setUser, on, off);
-  }, [user, setUser, on, off]);
+    Authenticator._onAuthStateChanged(setUser, on, off);
+  }, [setUser, on, off]);
 
   return (
     <UserContextState.Provider

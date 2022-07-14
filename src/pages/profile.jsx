@@ -7,7 +7,6 @@ import { useUserContextState } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
 import FireStore from "../firebase/firestore";
 import ErrorContainer from "../containers/error-container";
-import { async } from "@firebase/util";
 import ConfirmationDialog from "../components/dialog/confirmatiion-dialog";
 import useBoolean from "../hooks/useBoolean";
 
@@ -89,7 +88,7 @@ const Profile = (props) => {
     <>
       <div role="presentation" className="p-2 font-display">
         <ButtonContainer label="Back" onClick={() => navigate(-1)} />
-        <table className="text-left">
+        <table className="my-10 text-left">
           <caption className="text-left">Profile</caption>
           <tbody>
             <tr>
@@ -126,12 +125,14 @@ const Profile = (props) => {
                 />
               </td>
             </tr>
+          </tbody>
+          <tfoot className="my-5">
             <tr>
               <td>
                 <ButtonContainer label="Delete Account" onClick={openDialog} />
               </td>
             </tr>
-          </tbody>
+          </tfoot>
         </table>
         <ErrorContainer />
         {books.length !== 0 && (
