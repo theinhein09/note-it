@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { StrictMode, useState } from "react";
 import useBoolean from "../hooks/useBoolean";
 import SignupFormContainer from "../containers/signup-form-container";
 import ModalContainer from "../containers/modal-container";
@@ -9,7 +9,7 @@ const SignUp = () => {
   const [message, setMessage] = useState(null);
 
   return (
-    <>
+    <StrictMode>
       <main className="flex min-h-screen flex-col items-center justify-center">
         <SignupFormContainer
           startLoading={startLoading}
@@ -32,7 +32,7 @@ const SignUp = () => {
           </div>
         </ModalContainer>
       )}
-    </>
+    </StrictMode>
   );
 };
 
