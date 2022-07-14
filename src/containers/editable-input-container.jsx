@@ -77,11 +77,16 @@ const EditableInputContainer = (props) => {
   );
 };
 
+EditableInputContainer.defaultProps = {
+  customClassName: "",
+};
+
 EditableInputContainer.propTypes = {
   id: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   customClassName: PropTypes.string,
   onSave: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default EditableInputContainer;

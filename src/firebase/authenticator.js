@@ -11,6 +11,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   deleteUser,
+  updateEmail,
 } from "firebase/auth";
 import app from ".";
 
@@ -39,7 +40,7 @@ class Authenticator {
   };
 
   static _signInWithEmailAndPassword = async (email, password) => {
-    await this._setPersistence(email, password);
+    await this._setPersistence();
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
@@ -49,11 +50,11 @@ class Authenticator {
     return user;
   };
 
-  static _setPersistence = async (email, password) => {
+  static _setPersistence = async () => {
     await setPersistence(auth, browserSessionPersistence);
   };
 
-  static _onAuthStateChanged = (user, setUser, startLoading, finishLoading) => {
+  static _onAuthStateChanged = (setUser, startLoading, finishLoading) => {
     startLoading();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -75,13 +76,15 @@ class Authenticator {
   };
 
   static _updatePassword = async (password) => {
-    const user = auth.currentUser;
-    await updatePassword(user, password);
+    await updatePassword(auth.currentUser, password);
   };
 
   static _deleteUser = async () => {
-    const user = auth.currentUser;
-    await deleteUser(user);
+    await deleteUser(auth.currentUser);
+  };
+
+  static _updateEmail = async (email) => {
+    await updateEmail(auth.currentUser, email);
   };
 }
 

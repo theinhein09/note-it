@@ -5,8 +5,16 @@ import { FaEdit, FaRegSave } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 
 const EditableInput = forwardRef((props, ref) => {
-  const { onChange, onCancel, onEdit, onSave, content, editing, className } =
-    props;
+  const {
+    onChange,
+    onCancel,
+    onEdit,
+    onSave,
+    content,
+    editing,
+    className,
+    type,
+  } = props;
 
   return (
     <div role="presentation" className="flex">
@@ -16,6 +24,7 @@ const EditableInput = forwardRef((props, ref) => {
         value={editing.isEditing ? editing.content : content}
         readOnly={!editing.isEditing}
         onChange={onChange}
+        type={type}
       />
       {editing.isEditing ? (
         <ButtonContainer
@@ -42,6 +51,10 @@ const EditableInput = forwardRef((props, ref) => {
     </div>
   );
 });
+
+EditableInput.defaultProps = {
+  type: "text",
+};
 
 EditableInput.propTypes = {
   content: PropTypes.string.isRequired,

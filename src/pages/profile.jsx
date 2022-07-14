@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../containers/button-container";
+import EditableInputContainer from "../containers/editable-input-container";
 import { useUserContextState } from "../contexts/user-context";
+import Authenticator from "../firebase/authenticator";
 import FireStore from "../firebase/firestore";
 
 const Profile = (props) => {
@@ -41,11 +43,60 @@ const Profile = (props) => {
     getBooks();
   }, [getBooks]);
 
+  const onNameSave = async ({ content }) => {
+    await Authenticator._updateProfile(user, { displayName: content });
+  };
+
+  const onEmailSave = async ({ content }) => {
+    await Authenticator._updateEmail(content);
+  };
+
+  const onPasswordSave = async ({ content }) => {
+    await Authenticator._updatePassword(content);
+  };
+
   return (
-    <div role="presentation" className="font-display">
+    <div role="presentation" className="p-2 font-display">
       <ButtonContainer label="Back" onClick={() => navigate(-1)} />
-      <h2>{user.displayName}</h2>
-      <p>Email: {user.email}</p>
+      <table className="text-left">
+        <caption className="text-left">Profile</caption>
+        <tbody>
+          <tr>
+            <th className="pr-8">Username</th>
+            <td>
+              <EditableInputContainer
+                content={user.displayName}
+                onSave={onNameSave}
+                id={user.uid}
+                customClassName="min-w-full"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>
+              <EditableInputContainer
+                content={user.email}
+                onSave={onEmailSave}
+                id={user.uid}
+                customClassName="min-w-full"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Change Password</th>
+            <td>
+              <EditableInputContainer
+                onSave={onPasswordSave}
+                content=""
+                id={user.uid}
+                customClassName="min-w-full"
+                type="password"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       {books.length !== 0 && (
         <table className="border-collapse">
           <caption className="text-left">All Books</caption>
