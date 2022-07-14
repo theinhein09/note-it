@@ -8,6 +8,8 @@ import Authenticator from "../firebase/authenticator";
 import FireStore from "../firebase/firestore";
 import ErrorContainer from "../containers/error-container";
 import { async } from "@firebase/util";
+import ConfirmationDialog from "../components/dialog/confirmatiion-dialog";
+import useBoolean from "../hooks/useBoolean";
 
 const Profile = (props) => {
   const navigate = useNavigate();
@@ -16,6 +18,8 @@ const Profile = (props) => {
     email: null,
     displayName: null,
   });
+
+  const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
 
   const [books, setBooks] = useState([]);
 
@@ -82,108 +86,114 @@ const Profile = (props) => {
   };
 
   return (
-    <div role="presentation" className="p-2 font-display">
-      <ButtonContainer label="Back" onClick={() => navigate(-1)} />
-      <table className="text-left">
-        <caption className="text-left">Profile</caption>
-        <tbody>
-          <tr>
-            <th className="pr-8">Username</th>
-            <td>
-              <EditableInputContainer
-                content={updatedProfile.displayName || user.displayName}
-                onSave={onNameSave}
-                id={user.uid}
-                customClassName="min-w-full"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>
-              <EditableInputContainer
-                content={updatedProfile.email || user.email}
-                onSave={onEmailSave}
-                id={user.uid}
-                customClassName="min-w-full"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>Change Password</th>
-            <td>
-              <EditableInputContainer
-                onSave={onPasswordSave}
-                content=""
-                id={user.uid}
-                customClassName="min-w-full"
-                type="password"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <ButtonContainer
-                label="Delete Account"
-                onClick={onDeleteAccount}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ErrorContainer />
-      {books.length !== 0 && (
-        <table className="border-collapse">
-          <caption className="text-left">All Books</caption>
-          <thead className="bg-black text-white">
-            <tr>
-              <th className="border border-black px-4 py-1">No</th>
-              <th className="border border-black px-4 py-1">Books</th>
-              <th className="border border-black px-4 py-1">Categories</th>
-              <th className="border border-black px-4 py-1">Sections</th>
-              <th className="border border-black px-4 py-1">Pages</th>
-            </tr>
-          </thead>
+    <>
+      <div role="presentation" className="p-2 font-display">
+        <ButtonContainer label="Back" onClick={() => navigate(-1)} />
+        <table className="text-left">
+          <caption className="text-left">Profile</caption>
           <tbody>
-            {books.map((book, i) => (
-              <tr key={book.id}>
-                <td className="border border-black px-4 py-1 align-top">
-                  {i + 1}
-                </td>
-                <td className="border border-black px-4 py-1 align-top">
-                  {book.title}
-                </td>
-                <td className="border border-black px-4 py-1 align-top">
-                  {book.category}
-                </td>
-                <td className="border border-black">
-                  {book.pages.length !== 0 &&
-                    book.pages.map((page) => (
-                      <div
-                        key={page.id}
-                        className=" border-t border-black px-4 py-1 first:block first:border-none"
-                      >
-                        {page.section}
-                      </div>
-                    ))}
-                </td>
-                <td className="border border-black">
-                  {book.pages.length !== 0 &&
-                    book.pages.map((page) => (
-                      <div
-                        key={page.id}
-                        className=" border-t border-black px-4 py-1 first:block first:border-none"
-                      >
-                        {page.title}
-                      </div>
-                    ))}
-                </td>
-              </tr>
-            ))}
+            <tr>
+              <th className="pr-8">Username</th>
+              <td>
+                <EditableInputContainer
+                  content={updatedProfile.displayName || user.displayName}
+                  onSave={onNameSave}
+                  id={user.uid}
+                  customClassName="min-w-full"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>
+                <EditableInputContainer
+                  content={updatedProfile.email || user.email}
+                  onSave={onEmailSave}
+                  id={user.uid}
+                  customClassName="min-w-full"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Change Password</th>
+              <td>
+                <EditableInputContainer
+                  onSave={onPasswordSave}
+                  content=""
+                  id={user.uid}
+                  customClassName="min-w-full"
+                  type="password"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ButtonContainer label="Delete Account" onClick={openDialog} />
+              </td>
+            </tr>
           </tbody>
         </table>
+        <ErrorContainer />
+        {books.length !== 0 && (
+          <table className="border-collapse">
+            <caption className="text-left">All Books</caption>
+            <thead className="bg-black text-white">
+              <tr>
+                <th className="border border-black px-4 py-1">No</th>
+                <th className="border border-black px-4 py-1">Books</th>
+                <th className="border border-black px-4 py-1">Categories</th>
+                <th className="border border-black px-4 py-1">Sections</th>
+                <th className="border border-black px-4 py-1">Pages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book, i) => (
+                <tr key={book.id}>
+                  <td className="border border-black px-4 py-1 align-top">
+                    {i + 1}
+                  </td>
+                  <td className="border border-black px-4 py-1 align-top">
+                    {book.title}
+                  </td>
+                  <td className="border border-black px-4 py-1 align-top">
+                    {book.category}
+                  </td>
+                  <td className="border border-black">
+                    {book.pages.length !== 0 &&
+                      book.pages.map((page) => (
+                        <div
+                          key={page.id}
+                          className=" border-t border-black px-4 py-1 first:block first:border-none"
+                        >
+                          {page.section}
+                        </div>
+                      ))}
+                  </td>
+                  <td className="border border-black">
+                    {book.pages.length !== 0 &&
+                      book.pages.map((page) => (
+                        <div
+                          key={page.id}
+                          className=" border-t border-black px-4 py-1 first:block first:border-none"
+                        >
+                          {page.title}
+                        </div>
+                      ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+      {dialog && (
+        <ConfirmationDialog
+          onConfirm={onDeleteAccount}
+          closeDialog={closeDialog}
+          message="Are you sure you want to delete this account?"
+        />
       )}
-    </div>
+    </>
   );
 };
 
