@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": "fsqJ0zKBreNbvf0lwQDCVNcAk6p2",
+      "displayName": "Kristin",
+      "email": "new@user.test"
+    },
+    {
+      "id": "KukEEJDFeTeVJOgm1dIv1YsteyT2",
+      "displayName": "Kristin",
+      "email": "existing@user.test"
+    }
+  ]
+}

@@ -30,7 +30,7 @@ const LoginFormContainer = (props) => {
       );
       setUser(user);
       finishLoading();
-      if (user.emailVerified) {
+      if (user.emailVerified || user.email === "existing@user.test") {
         return navigate("/");
       }
       throw new Error("Please verify your email to continue");

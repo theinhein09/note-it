@@ -57,7 +57,10 @@ const Profile = (props) => {
   const onNameSave = async ({ content }) => {
     try {
       await Authenticator._updateProfile(user, { displayName: content });
-      setUpdatedProfile((prev) => ({ ...prev, displayName: content }));
+      setUpdatedProfile((prev) => ({
+        ...prev,
+        displayName: content,
+      }));
     } catch (e) {
       setError(e);
     }
