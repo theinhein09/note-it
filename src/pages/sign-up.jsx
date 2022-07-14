@@ -10,7 +10,7 @@ const SignUp = () => {
 
   return (
     <StrictMode>
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[url('/src/assets/images/entry-bg.svg')] bg-cover bg-repeat">
         <SignupFormContainer
           startLoading={startLoading}
           finishLoading={finishLoading}
