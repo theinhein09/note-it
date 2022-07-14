@@ -130,7 +130,7 @@ const Profile = (props) => {
               </td>
             </tr>
           </tbody>
-          <tfoot className="my-5">
+          <tfoot className="my-5 flex">
             <tr>
               <td>
                 <ButtonContainer
