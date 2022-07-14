@@ -9,6 +9,7 @@ import { FaRegEye } from "react-icons/fa";
 import ModalContainer from "../../containers/modal-container";
 import DialogContainer from "../../containers/dialog-container";
 import Carousel from "../carousel";
+import ConfirmationDialog from "../dialog/confirmatiion-dialog";
 
 const Dashboard = (props) => {
   const {
@@ -76,21 +77,13 @@ const Dashboard = (props) => {
           )}
         </>
       )}
+
       {dialog && (
-        <ModalContainer>
-          <DialogContainer hideButton={true}>
-            <div className="bg-white font-display">
-              <div className="bg-black p-1 text-white">Confirm</div>
-              <div className="flex h-20 items-center justify-center p-2">
-                Are you sure you want to delete this book?
-              </div>
-              <div className="flex justify-between p-1">
-                <ButtonContainer label="Confirm" onClick={onConfirm} />
-                <ButtonContainer label="Cancel" onClick={closeDialog} />
-              </div>
-            </div>
-          </DialogContainer>
-        </ModalContainer>
+        <ConfirmationDialog
+          onConfirm={onConfirm}
+          closeDialog={closeDialog}
+          message="Are you sure you want to delete this book?"
+        />
       )}
     </>
   );
