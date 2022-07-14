@@ -7,7 +7,7 @@ import Authenticator from "../firebase/authenticator";
 import useBoolean from "../hooks/useBoolean";
 import useFormData from "../hooks/useFormData";
 
-const LoginFormContainer = (props) => {
+const LoginFormContainer = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
   const setError = useErrorContextUpdater();
   const setUser = useUserContextUpdater();
@@ -19,7 +19,7 @@ const LoginFormContainer = (props) => {
     }
   );
 
-  const handleLogin = async (event) => {
+  const handleLogin = async () => {
     startLoading();
     setError(null);
     setUser(null);
@@ -45,7 +45,7 @@ const LoginFormContainer = (props) => {
     }
   };
 
-  const handlePasswordReset = async (event) => {
+  const handlePasswordReset = async () => {
     startLoading();
     setError(null);
     try {
@@ -66,7 +66,6 @@ const LoginFormContainer = (props) => {
       email={email}
       password={password}
       loading={loading}
-      {...props}
     />
   );
 };

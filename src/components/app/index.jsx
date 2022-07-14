@@ -5,7 +5,7 @@ import Entry from "../../pages/entry";
 import SignUp from "../../pages/sign-up";
 import Profile from "../../pages/profile";
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
