@@ -6,6 +6,7 @@ import { useUserContextUpdater } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
 import useBoolean from "../hooks/useBoolean";
 import useFormData from "../hooks/useFormData";
+import testUsers from "../test-users.json";
 
 const LoginFormContainer = () => {
   const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
@@ -30,11 +31,7 @@ const LoginFormContainer = () => {
       );
       setUser(user);
       finishLoading();
-      if (
-        user.emailVerified ||
-        user.email === "existing@user.test" ||
-        user.email === "new@user.test"
-      ) {
+      if (user.emailVerified || testUsers.includes(user.email)) {
         return navigate("/");
       }
       throw new Error("Please verify your email to continue");
