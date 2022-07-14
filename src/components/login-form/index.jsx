@@ -61,22 +61,38 @@ const LoginForm = (props) => {
           onClick={onPasswordReset}
           icon={<RiLockPasswordLine />}
         />
-        <aside className="min-h-[200px] border border-black p-1 text-right font-display">
-          <h2 className="underline underline-offset-1">Sample Test Accounts</h2>
-          <br />
-          <p>
-            Email: <em>dyer_campbell@zomboid.ga</em>
-          </p>
-          <p>
-            Password: <em>q</em>
-          </p>
-          <br />
-          <p>
-            Email: <em>new_user@name.ad</em>
-          </p>
-          <p>
-            Password: <em>q</em>
-          </p>
+        <aside className="flex min-h-[200px] border border-black p-1 text-right font-display">
+          <div role="presentation" className="w-full" />
+          <table>
+            <caption className="text-right underline underline-offset-1">
+              Sample Test Accounts
+            </caption>
+            <tr>
+              <th className="pr-3">Email</th>
+              <td>
+                <em>existing@user.test</em>
+              </td>
+            </tr>
+            <tr>
+              <th className="pr-3">Password</th>
+              <td>
+                <em>existing</em>
+              </td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <th className="pr-3">Email</th>
+              <td>
+                <em>new@user.test</em>
+              </td>
+            </tr>
+            <tr>
+              <th className="pr-3">Password</th>
+              <td>
+                <em>newuser</em>
+              </td>
+            </tr>
+          </table>
         </aside>
       </form>
       {loading && (
