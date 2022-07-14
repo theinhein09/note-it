@@ -2,15 +2,24 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../containers/button-container";
 import EditableInputContainer from "../containers/editable-input-container";
+import { useErrorContextUpdater } from "../contexts/error-context";
 import { useUserContextState } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
 import FireStore from "../firebase/firestore";
+import ErrorContainer from "../containers/error-container";
+import { async } from "@firebase/util";
 
 const Profile = (props) => {
   const navigate = useNavigate();
   const { user } = useUserContextState();
+  const [updatedProfile, setUpdatedProfile] = useState({
+    email: null,
+    displayName: null,
+  });
 
   const [books, setBooks] = useState([]);
+
+  const setError = useErrorContextUpdater();
 
   const getPages = useCallback(
     async (bookId) => {
@@ -35,7 +44,6 @@ const Profile = (props) => {
       });
       return Promise.all(promises);
     })();
-
     setBooks(books);
   }, [user.uid, getPages]);
 
@@ -44,15 +52,33 @@ const Profile = (props) => {
   }, [getBooks]);
 
   const onNameSave = async ({ content }) => {
-    await Authenticator._updateProfile(user, { displayName: content });
+    try {
+      await Authenticator._updateProfile(user, { displayName: content });
+      setUpdatedProfile((prev) => ({ ...prev, displayName: content }));
+    } catch (e) {
+      setError(e);
+    }
   };
 
   const onEmailSave = async ({ content }) => {
-    await Authenticator._updateEmail(content);
+    try {
+      await Authenticator._updateEmail(content);
+      setUpdatedProfile((prev) => ({ ...prev, email: content }));
+    } catch (e) {
+      setError(e);
+    }
   };
 
   const onPasswordSave = async ({ content }) => {
-    await Authenticator._updatePassword(content);
+    try {
+      await Authenticator._updatePassword(content);
+    } catch (e) {
+      setError(e);
+    }
+  };
+
+  const onDeleteAccount = async () => {
+    await Authenticator._deleteUser();
   };
 
   return (
@@ -65,7 +91,7 @@ const Profile = (props) => {
             <th className="pr-8">Username</th>
             <td>
               <EditableInputContainer
-                content={user.displayName}
+                content={updatedProfile.displayName || user.displayName}
                 onSave={onNameSave}
                 id={user.uid}
                 customClassName="min-w-full"
@@ -76,7 +102,7 @@ const Profile = (props) => {
             <th>Email</th>
             <td>
               <EditableInputContainer
-                content={user.email}
+                content={updatedProfile.email || user.email}
                 onSave={onEmailSave}
                 id={user.uid}
                 customClassName="min-w-full"
@@ -95,8 +121,17 @@ const Profile = (props) => {
               />
             </td>
           </tr>
+          <tr>
+            <td>
+              <ButtonContainer
+                label="Delete Account"
+                onClick={onDeleteAccount}
+              />
+            </td>
+          </tr>
         </tbody>
       </table>
+      <ErrorContainer />
       {books.length !== 0 && (
         <table className="border-collapse">
           <caption className="text-left">All Books</caption>
