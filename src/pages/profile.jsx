@@ -9,6 +9,7 @@ import FireStore from "../firebase/firestore";
 import ErrorContainer from "../containers/error-container";
 import ConfirmationDialog from "../components/dialog/confirmatiion-dialog";
 import useBoolean from "../hooks/useBoolean";
+import { CgUserRemove } from "react-icons/cg";
 
 const Profile = (props) => {
   const navigate = useNavigate();
@@ -132,7 +133,11 @@ const Profile = (props) => {
           <tfoot className="my-5">
             <tr>
               <td>
-                <ButtonContainer label="Delete Account" onClick={openDialog} />
+                <ButtonContainer
+                  label="Delete Account"
+                  icon={<CgUserRemove />}
+                  onClick={openDialog}
+                />
               </td>
             </tr>
           </tfoot>
