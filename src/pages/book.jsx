@@ -82,7 +82,7 @@ const Book = () => {
         sections={sections}
         setSelectedPage={selectedPageMemo.setSelectedPage}
       >
-        <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
+        <div className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
           <div role="presentation" className="flex grow divide-x-2">
             {!selectedBook ? (
               <Loading />
@@ -106,7 +106,7 @@ const Book = () => {
             onClick={() => navigate("/")}
             className="text-white"
           />
-        </nav>
+        </div>
         <TextEditorContainer
           selectedPage={selectedPageMemo.selectedPage}
           setCurrentContent={setCurrentContent}
