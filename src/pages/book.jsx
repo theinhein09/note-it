@@ -9,10 +9,8 @@ import ButtonContainer from "../containers/button-container";
 import { useUserContextState } from "../contexts/user-context";
 import FireStore from "../firebase/firestore";
 import useOnSnapshot from "../hooks/useOnSnapshot";
-import ModalContainer from "../containers/modal-container";
-import DialogContainer from "../containers/dialog-container";
-import InputContainer from "../containers/input-container";
 import useBoolean from "../hooks/useBoolean";
+import SavePageDialog from "../components/dialog/save-page-dialog";
 
 const Book = () => {
   const { bookId } = useParams();
@@ -86,11 +84,6 @@ const Book = () => {
       >
         <nav className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
           <div role="presentation" className="flex grow divide-x-2">
-            {!user ? (
-              <Loading />
-            ) : (
-              <span className="px-4">{user.displayName}</span>
-            )}
             {!selectedBook ? (
               <Loading />
             ) : (
@@ -120,34 +113,12 @@ const Book = () => {
         />
       </LayoutContainer>
       {dialog && (
-        <ModalContainer>
-          <DialogContainer hideButton={true}>
-            <div role="presentation" className="bg-white font-display">
-              <p className="bg-black p-1 text-white">Save Page</p>
-              <div
-                role="presentation"
-                className="flex flex-col gap-2 px-1 py-3"
-              >
-                <InputContainer
-                  label="Title"
-                  value={page.title}
-                  name="title"
-                  onChange={handleInputChange}
-                />
-                <InputContainer
-                  label="Section"
-                  value={page.section}
-                  name="section"
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div role="presentation" className="flex justify-between p-1">
-                <ButtonContainer label="Save" onClick={handleSave} />
-                <ButtonContainer label="Cancel" onClick={() => closeDialog()} />
-              </div>
-            </div>
-          </DialogContainer>
-        </ModalContainer>
+        <SavePageDialog
+          handleInputChange={handleInputChange}
+          handleSave={handleSave}
+          closeDialog={closeDialog}
+          page={page}
+        />
       )}
     </>
   );
