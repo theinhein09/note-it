@@ -15,9 +15,11 @@ const Home = () => {
           selectedBook={selectedBook}
           setSelectedBook={setSelectedBook}
         >
-          <h2 className="ml-8 flex h-8 max-h-8 grow items-center bg-black px-1 font-display text-white">
-            {user.displayName}
-          </h2>
+          {user && (
+            <h2 className="ml-8 flex h-8 max-h-8 grow items-center bg-black px-1 font-display text-white">
+              {user.displayName}
+            </h2>
+          )}
           <DashboardContainer setSelectedBook={setSelectedBook} />
         </LayoutContainer>
       </PrivateRoute>
