@@ -35,7 +35,11 @@ const TextEditor = (props) => {
   };
 
   return (
-    <div onClick={setEditorOnFocus} className="mx-9 min-h-screen">
+    <div
+      role="presentation"
+      onClick={setEditorOnFocus}
+      className="mx-9 min-h-screen"
+    >
       <Editor
         editorRef={setEditorRef}
         editorState={editorState}
