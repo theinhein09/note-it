@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { groupBy } from "lodash";
-import TextEditorContainer from "../containers/text-editor-container";
-import LayoutContainer from "../containers/layout-container";
+import TextEditor from "../components/text-editor";
+import Layout from "../components/layout";
 import { VscChromeClose } from "react-icons/vsc";
 import ButtonContainer from "../containers/button-container";
 import { useUserContextState } from "../contexts/user-context";
@@ -68,7 +68,7 @@ const Book = () => {
 
   return (
     <>
-      <LayoutContainer
+      <Layout
         sections={sections}
         setSelectedPage={selectedPageMemo.setSelectedPage}
       >
@@ -88,11 +88,11 @@ const Book = () => {
             className="bg-black text-white"
           />
         </div>
-        <TextEditorContainer
+        <TextEditor
           selectedPage={selectedPageMemo.selectedPage}
           setCurrentContent={setCurrentContent}
         />
-      </LayoutContainer>
+      </Layout>
       {dialog && (
         <SavePageDialog
           handleInputChange={handleInputChange}

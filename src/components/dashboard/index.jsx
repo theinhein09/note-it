@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "../../containers/button-container";
-import EmptyDashboardContainer from "../../containers/empty-dashboard-container";
+import EmptyDashboard from "../../components/empty-dashboard";
 import Loading from "../loading";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
@@ -73,7 +73,7 @@ const Dashboard = (props) => {
       ) : (
         <>
           {books.length === 0 ? (
-            <EmptyDashboardContainer />
+            <EmptyDashboard />
           ) : (
             <section className="flex flex-wrap">{books}</section>
           )}
