@@ -60,6 +60,7 @@ const ProfileTable = (props) => {
               label="Delete Account"
               icon={<CgUserRemove />}
               onClick={openDialog}
+              className="bg-red-700 text-white"
             />
           </td>
         </tr>

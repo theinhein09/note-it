@@ -33,7 +33,7 @@ const Sidebar = (props) => {
       <aside className="fixed top-0 left-0 z-10 flex min-h-screen  flex-col bg-white shadow-md shadow-black">
         {sidebar && (
           <div role="presentation" className="min-w-[280px] grow">
-            <header className="flex h-8 items-center bg-black px-1 text-white">
+            <header className="flex h-8 items-center bg-black px-1 text-white shadow shadow-black">
               <h1 className="grow">noteIt</h1>
               {!bookId ? (
                 <ButtonContainer label="Create Book" onClick={openDialog} />
@@ -51,7 +51,7 @@ const Sidebar = (props) => {
                 setSelectedPage={setSelectedPage}
               />
             </div>
-            <footer className="fixed bottom-0 flex min-w-[280px] items-center gap-2 self-end bg-black font-display text-white">
+            <footer className="fixed bottom-0 flex min-w-[280px] items-center gap-2 self-end bg-black font-display text-white shadow-[0_-1px_3px_0_rgb(0,0,0,0.1),_0_1px_2px_-1px_rgb(0,0,0,0.1)] shadow-black">
               <span className="grow text-right">{user.displayName}</span>
               <UserSettingContainer />
             </footer>
@@ -61,7 +61,7 @@ const Sidebar = (props) => {
           onClick={toggleSidebar}
           icon={sidebar ? <TiChevronLeft /> : <TiChevronRight />}
           category="icon-only"
-          className="absolute top-0 -right-8 border border-l-0 border-black bg-black text-white"
+          className="absolute top-0 -right-8 bg-black text-white"
         />
       </aside>
       {dialog && <CreateBookDialog closeDialog={closeDialog} />}

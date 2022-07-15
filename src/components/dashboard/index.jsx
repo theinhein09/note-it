@@ -41,14 +41,14 @@ const Dashboard = (props) => {
                         icon={<FaRegEye />}
                         category="icon-only"
                         title="Open Book in Preview"
-                        className="bg-black text-white shadow-sm shadow-black"
+                        className="mb-1 bg-black text-white"
                       />
                       <ButtonContainer
                         onClick={() => onDelete(book.id)}
                         icon={<RiDeleteBin6Line />}
                         category="icon-only"
                         title="Delete Book"
-                        className="bg-black text-white shadow-sm shadow-black"
+                        className="bg-red-700 text-white"
                       />
                     </div>
                   </div>

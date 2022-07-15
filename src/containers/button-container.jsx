@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ButtonContainer = (props) => {
   const { category, className: customClassName } = props;
   const defaultClassName =
-    "outline-none hover:bg-gray-500 hover:text-white focus:bg-gray-500 focus:text-white font-display flex items-center gap-1 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-black";
+    "outline-none ease-in duration-150 transition-colors hover:bg-gray-500 shadow-sm shadow-black px-2 py-0.5 hover:text-white focus:bg-gray-500 focus:text-white font-display flex items-center gap-1 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-black";
 
   let categorizedClassName = "";
 
@@ -14,12 +14,11 @@ const ButtonContainer = (props) => {
       categorizedClassName = " w-8 h-8 justify-center ";
       break;
     default:
-      categorizedClassName = " border border-black px-2 py-0.5 ";
+      categorizedClassName = " ";
       break;
   }
 
   const className = defaultClassName + categorizedClassName + customClassName;
-
   return <Button {...props} className={className} />;
 };
 

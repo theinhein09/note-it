@@ -17,7 +17,7 @@ const UserSetting = (props) => {
       />
       {userSetting && (
         <div
-          className="absolute bottom-full z-20 flex min-w-max flex-col bg-white text-black"
+          className="absolute bottom-full left-full z-20 flex min-w-max flex-col bg-white text-black shadow-md shadow-black"
           role="presentation"
         >
           <ButtonContainer

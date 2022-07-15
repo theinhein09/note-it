@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         display: ["Oswald", "sans-serif"],
-        input: ["Anonymous Pro", "monospace"],
+        input: ["Ubuntu Mono", "monospace"],
       },
     },
   },

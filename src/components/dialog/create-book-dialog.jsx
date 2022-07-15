@@ -14,6 +14,8 @@ const CreateBookDialog = (props) => {
   );
 };
 
-CreateBookDialog.propTypes = {};
+CreateBookDialog.propTypes = {
+  closeDialog: PropTypes.func,
+};
 
 export default CreateBookDialog;

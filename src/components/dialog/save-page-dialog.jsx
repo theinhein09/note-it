@@ -37,6 +37,11 @@ const SavePageDialog = (props) => {
   );
 };
 
-SavePageDialog.propTypes = {};
+SavePageDialog.propTypes = {
+  handleInputChange: PropTypes.func,
+  handleSave: PropTypes.func,
+  closeDialog: PropTypes.func,
+  page: PropTypes.object,
+};
 
 export default SavePageDialog;

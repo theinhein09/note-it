@@ -82,29 +82,19 @@ const Book = () => {
         sections={sections}
         setSelectedPage={selectedPageMemo.setSelectedPage}
       >
-        <div className="ml-8 flex max-h-8 items-center bg-black px-1 font-display text-white">
-          <div role="presentation" className="flex grow divide-x-2">
-            {!selectedBook ? (
-              <Loading />
-            ) : (
-              <>
-                <span className="px-4">Category: {selectedBook.category}</span>
-                <span className="px-4">Title: {selectedBook.title}</span>
-              </>
-            )}
-            {selectedPage && (
-              <>
-                <span className="px-4">Section: {selectedPage.section}</span>
-                <span className="px-4">Page: {selectedPage.title}</span>
-              </>
-            )}
-          </div>
-          {currentContent && <ButtonContainer icon="Save" onClick={onSave} />}
+        <div className="fixed top-0 right-0 flex gap-2">
+          {currentContent && (
+            <ButtonContainer
+              icon="Save"
+              onClick={onSave}
+              className="bg-black text-white"
+            />
+          )}
           <ButtonContainer
             icon={<VscChromeClose title="close book" />}
             category="icon-only"
             onClick={() => navigate("/")}
-            className="text-white"
+            className="bg-black text-white"
           />
         </div>
         <TextEditorContainer
