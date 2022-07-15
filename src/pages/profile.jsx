@@ -1,7 +1,6 @@
 import React, { StrictMode, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonContainer from "../containers/button-container";
-import EditableInputContainer from "../containers/editable-input-container";
 import { useErrorContextUpdater } from "../contexts/error-context";
 import { useUserContextState } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
@@ -9,16 +8,19 @@ import FireStore from "../firebase/firestore";
 import ErrorContainer from "../containers/error-container";
 import ConfirmationDialog from "../components/dialog/confirmation-dialog";
 import useBoolean from "../hooks/useBoolean";
-import { CgUserRemove } from "react-icons/cg";
 import PrivateRoute from "../components/private-route";
+import Loading from "../components/loading";
+import BooksTable from "../components/books-table";
+import ProfileTable from "../components/profile-table";
 
-const Profile = (props) => {
+const Profile = () => {
   const navigate = useNavigate();
   const { user } = useUserContextState();
   const [updatedProfile, setUpdatedProfile] = useState({
     email: null,
     displayName: null,
   });
+  const [loading, { on: startLoading, off: finishLoading }] = useBoolean();
 
   const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
 
@@ -40,6 +42,7 @@ const Profile = (props) => {
     const docs = await booksFS.getDocs();
 
     const books = await (() => {
+      startLoading();
       const promises = docs.map(async (doc) => {
         const pages = await getPages(doc.id);
         return {
@@ -50,7 +53,8 @@ const Profile = (props) => {
       return Promise.all(promises);
     })();
     setBooks(books);
-  }, [user.uid, getPages]);
+    finishLoading();
+  }, [user.uid, getPages, startLoading, finishLoading]);
 
   useEffect(() => {
     getBooks();
@@ -94,107 +98,20 @@ const Profile = (props) => {
       <PrivateRoute>
         <div role="presentation" className="p-2 font-display">
           <ButtonContainer label="Back" onClick={() => navigate(-1)} />
-          <table className="my-10 text-left">
-            <caption className="text-left">Profile</caption>
-            <tbody>
-              <tr>
-                <th className="pr-8">Username</th>
-                <td>
-                  <EditableInputContainer
-                    content={updatedProfile.displayName || user.displayName}
-                    onSave={onNameSave}
-                    id={user.uid}
-                    customClassName="min-w-full"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>
-                  <EditableInputContainer
-                    content={updatedProfile.email || user.email}
-                    onSave={onEmailSave}
-                    id={user.uid}
-                    customClassName="min-w-full"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>Change Password</th>
-                <td>
-                  <EditableInputContainer
-                    onSave={onPasswordSave}
-                    content=""
-                    id={user.uid}
-                    customClassName="min-w-full"
-                    type="password"
-                  />
-                </td>
-              </tr>
-            </tbody>
-            <tfoot className="my-5 flex">
-              <tr>
-                <td>
-                  <ButtonContainer
-                    label="Delete Account"
-                    icon={<CgUserRemove />}
-                    onClick={openDialog}
-                  />
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+          <ProfileTable
+            updatedProfile={updatedProfile}
+            onNameSave={onNameSave}
+            user={user}
+            onEmailSave={onEmailSave}
+            onPasswordSave={onPasswordSave}
+            openDialog={openDialog}
+          />
           <ErrorContainer />
-          {books.length !== 0 && (
-            <table className="border-collapse">
-              <caption className="text-left">All Books</caption>
-              <thead className="bg-black text-white">
-                <tr>
-                  <th className="border border-black px-4 py-1">No</th>
-                  <th className="border border-black px-4 py-1">Books</th>
-                  <th className="border border-black px-4 py-1">Categories</th>
-                  <th className="border border-black px-4 py-1">Sections</th>
-                  <th className="border border-black px-4 py-1">Pages</th>
-                </tr>
-              </thead>
-              <tbody>
-                {books.map((book, i) => (
-                  <tr key={book.id}>
-                    <td className="border border-black px-4 py-1 align-top">
-                      {i + 1}
-                    </td>
-                    <td className="border border-black px-4 py-1 align-top">
-                      {book.title}
-                    </td>
-                    <td className="border border-black px-4 py-1 align-top">
-                      {book.category}
-                    </td>
-                    <td className="border border-black">
-                      {book.pages.length !== 0 &&
-                        book.pages.map((page) => (
-                          <div
-                            key={page.id}
-                            className=" border-t border-black px-4 py-1 first:block first:border-none"
-                          >
-                            {page.section}
-                          </div>
-                        ))}
-                    </td>
-                    <td className="border border-black">
-                      {book.pages.length !== 0 &&
-                        book.pages.map((page) => (
-                          <div
-                            key={page.id}
-                            className=" border-t border-black px-4 py-1 first:block first:border-none"
-                          >
-                            {page.title}
-                          </div>
-                        ))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {loading ? (
+            // TODO UPDATE STYLE OF LOADING
+            <Loading />
+          ) : (
+            <>{books.length !== 0 && <BooksTable books={books} />}</>
           )}
         </div>
         {dialog && (
@@ -208,7 +125,5 @@ const Profile = (props) => {
     </StrictMode>
   );
 };
-
-Profile.propTypes = {};
 
 export default Profile;

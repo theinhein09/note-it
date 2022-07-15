@@ -39,7 +39,7 @@ const TextEditor = (props) => {
       <Editor
         editorRef={setEditorRef}
         editorState={editorState}
-        toolbarClassName="font-display"
+        toolbarClassName="font-display shadow-sm shadow-black"
         wrapperClassName="wrapperClassName"
         editorClassName="px-2"
         onEditorStateChange={setEditorState}

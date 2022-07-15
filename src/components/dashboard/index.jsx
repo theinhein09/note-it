@@ -79,7 +79,6 @@ const Dashboard = (props) => {
           )}
         </>
       )}
-
       {dialog && (
         <ConfirmationDialog
           onConfirm={onConfirm}
