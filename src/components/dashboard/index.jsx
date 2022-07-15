@@ -6,10 +6,8 @@ import Loading from "../loading";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import BookCover from "../book-cover";
 import { FaRegEye } from "react-icons/fa";
-import ModalContainer from "../../containers/modal-container";
-import DialogContainer from "../../containers/dialog-container";
 import Carousel from "../carousel";
-import ConfirmationDialog from "../dialog/confirmatiion-dialog";
+import ConfirmationDialog from "../dialog/confirmation-dialog";
 
 const Dashboard = (props) => {
   const {
@@ -43,16 +41,20 @@ const Dashboard = (props) => {
                         icon={<FaRegEye />}
                         category="icon-only"
                         title="Open Book in Preview"
+                        className="bg-black text-white shadow-sm shadow-black"
                       />
                       <ButtonContainer
                         onClick={() => onDelete(book.id)}
                         icon={<RiDeleteBin6Line />}
                         category="icon-only"
                         title="Delete Book"
+                        className="bg-black text-white shadow-sm shadow-black"
                       />
                     </div>
                   </div>
-                  <h4 className="font-display">{book.title}</h4>
+                  <h4 className="bg-black py-0.5 px-1 font-display text-white shadow-sm shadow-black">
+                    {book.title}
+                  </h4>
                 </div>
               ))}
             </Carousel>

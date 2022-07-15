@@ -5,7 +5,7 @@ import ErrorContainer from "../../containers/error-container";
 import InputContainer from "../../containers/input-container";
 
 const CreateBookForm = (props) => {
-  const { onCreateBook, title, category, onChange } = props;
+  const { onCreateBook, title, category, onChange, closeDialog } = props;
 
   return (
     <form className="flex min-w-[280px] grow flex-col gap-1 border border-l-[12px] border-black bg-white p-1 font-display">
@@ -31,6 +31,7 @@ const CreateBookForm = (props) => {
         <ErrorContainer />
       </div>
       <ButtonContainer label="Create" onClick={onCreateBook} />
+      <ButtonContainer label="Cancel" onClick={closeDialog} />
       <div className="mt-2 min-h-[80px] border border-black" />
     </form>
   );

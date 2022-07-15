@@ -12,7 +12,7 @@ const DialogRenderButton = (props) => {
       <ButtonContainer label={buttonLabel} onClick={handleClick} />
       {dialog && (
         <ModalContainer>
-          <DialogContainer closeDialog={closeDialog}>
+          <DialogContainer hideButton={true} closeDialog={closeDialog}>
             {render(closeDialog)}
           </DialogContainer>
         </ModalContainer>

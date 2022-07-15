@@ -8,7 +8,7 @@ const BookCover = (props) => {
     <div
       onClick={onClick}
       role="presentation"
-      className="mb-2 grid aspect-[17/22] w-40 flex-none place-content-center border border-l-8 border-black shadow-md shadow-black"
+      className="mb-3 grid aspect-[17/22] w-40 flex-none place-content-center border border-l-8 border-black bg-white shadow-md shadow-black"
     >
       <div
         role="presentation"

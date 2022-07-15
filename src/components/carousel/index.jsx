@@ -15,7 +15,7 @@ const Carousel = (props) => {
 
   useEffect(() => {
     memo.setWidth(slideRef.current.children[0].offsetWidth);
-  }, []);
+  }, [memo]);
 
   const handlePrev = () => {
     if (memo.index <= 0) return;
@@ -29,7 +29,7 @@ const Carousel = (props) => {
 
   return (
     <>
-      <div className="my-2 max-w-full overflow-hidden bg-white p-4 shadow-inner shadow-black">
+      <div className="my-2 max-w-full overflow-hidden bg-slate-100 p-4 shadow-inner shadow-black">
         <div
           className="whitespace-nowrap"
           style={{ transform: `translateX(${-memo.index * memo.width}px)` }}

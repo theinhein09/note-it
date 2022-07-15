@@ -6,7 +6,7 @@ import ButtonContainer from "../../containers/button-container";
 const Dialog = (props) => {
   const { children, closeDialog, hideButton = false } = props;
   return (
-    <div role="presentation" className="flex flex-col border border-black">
+    <div role="presentation" className="flex flex-col shadow-md shadow-black">
       {!hideButton && (
         <div role="presentation" className="mr-2 w-fit self-end bg-white">
           <ButtonContainer

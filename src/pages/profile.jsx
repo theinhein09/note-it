@@ -7,7 +7,7 @@ import { useUserContextState } from "../contexts/user-context";
 import Authenticator from "../firebase/authenticator";
 import FireStore from "../firebase/firestore";
 import ErrorContainer from "../containers/error-container";
-import ConfirmationDialog from "../components/dialog/confirmatiion-dialog";
+import ConfirmationDialog from "../components/dialog/confirmation-dialog";
 import useBoolean from "../hooks/useBoolean";
 import { CgUserRemove } from "react-icons/cg";
 import PrivateRoute from "../components/private-route";
