@@ -4,13 +4,17 @@ import PropTypes from "prop-types";
 import FireStore from "../firebase/firestore";
 import { useUserContextState } from "../contexts/user-context";
 import { useParams } from "react-router-dom";
+import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 
 const SectionsContainer = (props) => {
   const { setSelectedPage } = props;
   const { bookId } = useParams();
   const { user } = useUserContextState();
+  const { closeSidebar } = useSidebarContextUpdater();
+
   const openPage = (page) => (event) => {
     setSelectedPage(page);
+    closeSidebar();
   };
 
   const handlePageDelete = async (pageId) => {

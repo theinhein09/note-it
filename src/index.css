@@ -97,6 +97,9 @@
     font-size: 12px;
     font-weight: bold;
   }
+  .wrapperClassName pre {
+    line-height: 0;
+  }
   .wrapperClassName {
     line-height: 1;
   }

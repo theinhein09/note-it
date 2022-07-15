@@ -35,12 +35,12 @@ const TextEditor = (props) => {
   };
 
   return (
-    <div onClick={setEditorOnFocus} className="min-h-screen">
+    <div onClick={setEditorOnFocus} className="mx-9 min-h-screen">
       <Editor
         editorRef={setEditorRef}
         editorState={editorState}
-        toolbarClassName="font-display shadow-sm shadow-black"
-        wrapperClassName="wrapperClassName"
+        toolbarClassName="font-display shadow-sm shadow-black flex justify-center"
+        wrapperClassName="wrapperClassName mb-4"
         editorClassName="px-2"
         onEditorStateChange={setEditorState}
         onContentStateChange={setCurrentContent}

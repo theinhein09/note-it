@@ -6,7 +6,7 @@ const BooksTable = (props) => {
 
   return (
     <table className="border-collapse">
-      <caption className="text-left">All Books</caption>
+      <caption className="my-3 text-left text-3xl">All Books</caption>
       <thead className="bg-black text-white">
         <tr>
           <th className="border border-black px-4 py-1">No</th>

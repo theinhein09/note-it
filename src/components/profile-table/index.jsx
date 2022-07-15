@@ -15,8 +15,8 @@ const ProfileTable = (props) => {
   } = props;
 
   return (
-    <table className="my-10 text-left">
-      <caption className="text-left">Profile</caption>
+    <table className="my-5 text-left">
+      <caption className="my-3 text-left text-3xl">Profile</caption>
       <tbody>
         <tr>
           <th className="pr-8">Username</th>
@@ -25,7 +25,6 @@ const ProfileTable = (props) => {
               content={updatedProfile.displayName || user.displayName}
               onSave={onNameSave}
               id={user.uid}
-              customClassName="min-w-full"
             />
           </td>
         </tr>
@@ -36,7 +35,6 @@ const ProfileTable = (props) => {
               content={updatedProfile.email || user.email}
               onSave={onEmailSave}
               id={user.uid}
-              customClassName="min-w-full"
             />
           </td>
         </tr>
@@ -47,15 +45,14 @@ const ProfileTable = (props) => {
               onSave={onPasswordSave}
               content=""
               id={user.uid}
-              customClassName="min-w-full"
               type="password"
             />
           </td>
         </tr>
       </tbody>
-      <tfoot className="my-5 flex">
+      <tfoot>
         <tr>
-          <td>
+          <td className="py-3">
             <ButtonContainer
               label="Delete Account"
               icon={<CgUserRemove />}

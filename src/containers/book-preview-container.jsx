@@ -4,17 +4,14 @@ import BookPreview from "../components/book-preview";
 import { useNavigate } from "react-router-dom";
 import FireStore from "../firebase/firestore";
 import { useUserContextState } from "../contexts/user-context";
-import { useSidebarContextUpdater } from "../contexts/sidebar-context";
 
 const BookPreviewContainer = (props) => {
   const { selectedBook, setSelectedBook } = props;
   const navigate = useNavigate();
   const { user } = useUserContextState();
-  const { closeSidebar } = useSidebarContextUpdater();
 
   const handleOpen = () => {
     navigate(`${selectedBook.id}`);
-    closeSidebar();
   };
 
   const handleTitleSave = async (data) => {

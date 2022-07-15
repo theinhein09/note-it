@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Loading from "../components/loading";
 import { groupBy } from "lodash";
 import TextEditorContainer from "../containers/text-editor-container";
 import LayoutContainer from "../containers/layout-container";
@@ -11,13 +10,13 @@ import FireStore from "../firebase/firestore";
 import useOnSnapshot from "../hooks/useOnSnapshot";
 import useBoolean from "../hooks/useBoolean";
 import SavePageDialog from "../components/dialog/save-page-dialog";
+import { FaRegSave } from "react-icons/fa";
 
 const Book = () => {
   const { bookId } = useParams();
   const { user } = useUserContextState();
   const [sections, setSections] = useState(null);
   const [selectedPage, setSelectedPage] = useState(null);
-  const [selectedBook, setSelectedBook] = useState(null);
   const [currentContent, setCurrentContent] = useState();
   const [page, setPage] = useState({
     title: "",
@@ -33,15 +32,6 @@ const Book = () => {
   );
 
   const pages = useOnSnapshot(`books/${bookId}/pages`);
-
-  useEffect(() => {
-    if (!user) return;
-    (async () => {
-      const booksFS = new FireStore(`users/${user.uid}/books`);
-      const book = await booksFS.getDoc(bookId);
-      setSelectedBook(book);
-    })();
-  }, [user, bookId]);
 
   useEffect(() => {
     const groupBySection = groupBy(pages, "section");
@@ -82,12 +72,13 @@ const Book = () => {
         sections={sections}
         setSelectedPage={selectedPageMemo.setSelectedPage}
       >
-        <div className="fixed top-0 right-0 flex gap-2">
+        <div className="fixed top-0 right-0 z-20">
           {currentContent && (
             <ButtonContainer
-              icon="Save"
+              icon={<FaRegSave title="Save Page" />}
+              category="icon-only"
               onClick={onSave}
-              className="bg-black text-white"
+              className="mb-1 bg-black text-white"
             />
           )}
           <ButtonContainer

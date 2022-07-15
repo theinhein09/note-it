@@ -14,23 +14,21 @@ const BookPreview = (props) => {
         <article className="m-auto w-fit p-5">
           <BookCover />
           <br />
-          <div className="flex items-center justify-between gap-1 font-display">
-            <div>Title: </div>
+          <div className="font-display">
+            <div className="text-xl">Title</div>
             <EditableInputContainer
               content={selectedBook.title}
               onSave={onTitleSave}
               id={selectedBook.id}
-              customClassName="max-w-[100px]"
             />
           </div>
           <br />
-          <div className="flex items-center justify-between gap-1 font-display">
-            <div>Category: </div>
+          <div className="font-display">
+            <div className="text-xl">Category</div>
             <EditableInputContainer
               content={selectedBook.category}
               onSave={onCategorySave}
               id={selectedBook.category}
-              customClassName="max-w-[100px]"
             />
           </div>
           <br />

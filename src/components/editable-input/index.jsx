@@ -17,7 +17,7 @@ const EditableInput = forwardRef((props, ref) => {
   } = props;
 
   return (
-    <div role="presentation" className="flex">
+    <div role="presentation" className="flex gap-1">
       <input
         ref={ref}
         className={className}

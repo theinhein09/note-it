@@ -21,13 +21,15 @@ const Sections = (props) => {
     for (let section in sections) {
       pages.push(
         <section className="font-display" key={section}>
-          <header className="flex items-center bg-black text-white">
-            <EditableInputContainer
-              content={section}
-              id={section}
-              customClassName="bg-black flex-grow"
-              onSave={onSectionSave}
-            />
+          <header className="mt-2 mb-1 flex items-center bg-black py-1 text-white shadow-sm shadow-black">
+            <div role="presentation" className="w-full">
+              <EditableInputContainer
+                content={section}
+                id={section}
+                customClassName="bg-black flex-grow"
+                onSave={onSectionSave}
+              />
+            </div>
             <ButtonContainer
               onClick={() => onSectionDelete(section)}
               icon={<RiDeleteBin6Line />}
@@ -46,23 +48,25 @@ const Sections = (props) => {
                   index === sections[section].length - 1 && "clip-path"
                 }`}
               />
-
               <div role="presentation" className="h-0.5 w-2 bg-black" />
               <EditableInputContainer
                 content={page.title}
                 id={page.id}
                 onSave={onPageTitleSave}
+                className="mr-1"
               />
               <ButtonContainer
                 icon={<FaRegEye />}
                 onClick={openPage(page)}
                 category="icon-only"
                 title="Open Page in Text Editor"
+                className="mr-1"
               />
               <ButtonContainer
                 onClick={() => onPageDelete(page.id)}
                 icon={<RiDeleteBin6Line />}
                 category="icon-only"
+                className="mr-1"
               />
             </article>
           ))}
