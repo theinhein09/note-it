@@ -1,16 +1,14 @@
 import React from "react";
-import DialogRenderButtonContainer from "../../containers/dialog-render-button-container";
-import CreateBookFormContainer from "../../containers/create-book-form-container";
+import ButtonContainer from "../../containers/button-container";
+import useBoolean from "../../hooks/useBoolean";
+import CreateBookDialog from "../dialog/create-book-dialog";
 
 const EmptyDashboard = (props) => {
+  const [dialog, { on: openDialog, off: closeDialog }] = useBoolean();
   return (
     <>
-      <DialogRenderButtonContainer
-        buttonLabel="Create New Book"
-        render={(closeDialog) => (
-          <CreateBookFormContainer closeDialog={closeDialog} />
-        )}
-      />
+      <ButtonContainer label="Create Book" onClick={openDialog} />
+      {dialog && <CreateBookDialog closeDialog={closeDialog} />}
     </>
   );
 };
