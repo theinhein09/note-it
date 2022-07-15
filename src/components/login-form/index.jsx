@@ -18,7 +18,8 @@ const LoginForm = (props) => {
     <>
       <form
         className="flex w-full grow flex-col gap-1 border border-l-[12px] border-black bg-white p-1 
-      sm:aspect-[3/5] sm:max-w-md sm:grow-0"
+      shadow-lg shadow-black sm:aspect-[3/5] sm:max-w-md sm:grow-0"
+        onKeyDown={(e) => e.key === "Enter" && onLogin()}
       >
         <div role="presentation" className="mt-4 bg-black p-1 py-2 pl-4">
           <h1 className="text-white">noteIt</h1>
@@ -67,31 +68,33 @@ const LoginForm = (props) => {
             <caption className="text-right underline underline-offset-1">
               Sample Test Accounts
             </caption>
-            <tr>
-              <th className="pr-3">Email</th>
-              <td>
-                <em>existing@user.test</em>
-              </td>
-            </tr>
-            <tr>
-              <th className="pr-3">Password</th>
-              <td>
-                <em>existing</em>
-              </td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <th className="pr-3">Email</th>
-              <td>
-                <em>new@user.test</em>
-              </td>
-            </tr>
-            <tr>
-              <th className="pr-3">Password</th>
-              <td>
-                <em>newuser</em>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th className="pr-3">Email</th>
+                <td>
+                  <em>existing@user.test</em>
+                </td>
+              </tr>
+              <tr>
+                <th className="pr-3">Password</th>
+                <td>
+                  <em>existing</em>
+                </td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th className="pr-3">Email</th>
+                <td>
+                  <em>new@user.test</em>
+                </td>
+              </tr>
+              <tr>
+                <th className="pr-3">Password</th>
+                <td>
+                  <em>newuser</em>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </aside>
       </form>
