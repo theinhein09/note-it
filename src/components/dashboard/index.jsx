@@ -27,10 +27,10 @@ const Dashboard = (props) => {
     for (let category in categoriesMemo.categories) {
       books.push(
         <div role="presentation" className="mx-5 my-2" key={category}>
-          <h3 className="font-display text-xl">{category}</h3>
+          <h3 className="mb-1 font-display text-xl">{category}</h3>
           <div
             role="presentation"
-            className="w-[280px] border border-black py-2 px-4"
+            className="w-[280px] border border-black bg-black py-2 px-4"
           >
             <Carousel>
               {categoriesMemo.categories[category].map((book) => (

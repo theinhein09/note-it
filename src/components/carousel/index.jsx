@@ -29,7 +29,7 @@ const Carousel = (props) => {
 
   return (
     <>
-      <div className="max-w-full overflow-hidden">
+      <div className="my-2 max-w-full overflow-hidden bg-white p-4 shadow-inner shadow-black">
         <div
           className="whitespace-nowrap"
           style={{ transform: `translateX(${-memo.index * memo.width}px)` }}
@@ -47,6 +47,7 @@ const Carousel = (props) => {
             label="PREV"
             onClick={handlePrev}
             disabled={memo.index <= 0}
+            className="bg-white"
           />
         ) : (
           <ButtonContainer className="invisible" label="PREV" />
@@ -56,6 +57,7 @@ const Carousel = (props) => {
             disabled={memo.index >= children.length - 1}
             label="NEXT"
             onClick={handleNext}
+            className="bg-white"
           />
         ) : (
           <ButtonContainer className="invisible" label="NEXT" />
